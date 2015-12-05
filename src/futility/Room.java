@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 Lucas LeVieux <contact@lucaslevieux.com>
+ * Copyright (C) 2015 Lucas LeVieux & Kane McGrath
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
