@@ -28,6 +28,12 @@ public class Player {
     private static final int INVENTORYSIZE = 2;
     
     /**
+     * True if the player is still alive.  Toggled to false by die().
+     * Accessed by isAlive.
+     */
+    private boolean isAlive = true;
+    
+    /**
      * Inventory contains two items.  These are the things that the user can
      * use to make actions with other things.
      */
@@ -44,5 +50,22 @@ public class Player {
             if (inventory [i] != null) //ensure it is filled
                 result += inventory[i] + " "; //append to result
         return result;
+    }
+    
+    /**
+     * When called the player becomes not alive, AKA isAlive() returns false.
+     */
+    public void die()
+    {
+        isAlive = false;
+    }
+    
+    /**
+     * Returns true if the player is still alive, false if not.  Triggered by 
+     * die().
+     */
+    public boolean isAlive()
+    {
+        return this.isAlive;
     }
 }
