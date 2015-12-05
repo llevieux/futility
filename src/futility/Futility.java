@@ -47,15 +47,16 @@ public class Futility {
         /**
          * The number of games played so far.
          */
-        int gameNumber = 0;
+        int gameCount = 0;
         
         do
         {
-            new Game(gameNumber);
+            new Game(gameCount);
             System.out.println("\ntry again? (yes or no)");
             //keyboard.nextLine(); //get rid of \n
             again = keyboard.nextLine();
             System.out.println("\n");
+            gameCount++;
         } while (again.charAt(0) == 'y' || again.charAt(0) == 'Y');
     }
 }
