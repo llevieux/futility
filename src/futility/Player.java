@@ -18,7 +18,7 @@
 package futility;
 
 /**
- * @author
+ * @author Lucas LeVieux <contact@lucaslevieux.com>
  */
 public class Player {
     /**
