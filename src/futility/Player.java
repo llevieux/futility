@@ -61,7 +61,7 @@ public class Player {
     }
     
     /**
-     * Returns true if the player is still alive, false if not.  Triggered by 
+     * @return true if the player is still alive, false if not.  Triggered by 
      * die().
      */
     public boolean isAlive()
