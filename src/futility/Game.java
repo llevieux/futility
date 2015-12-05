@@ -38,6 +38,11 @@ public class Game {
     private int gameCount = 0;
     
     /**
+     * The player.
+     */
+    private final Player player = new Player();
+    
+    /**
      * Runs a game.
      * @param gameCount Count of games played in this session
      */
@@ -60,6 +65,6 @@ public class Game {
      */
     private void main()
     {
-        //TODO: main application logic here
+        
     }
 }
