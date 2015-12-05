@@ -21,5 +21,44 @@ package futility;
  * @author Lucas LeVieux <contact@lucaslevieux.com>
  */
 public class Room {
+    /**
+     * An array containing all of the rooms accessible from this object.
+     */
+    private Room[] accessibleRooms;
     
+    /**
+     * A copy constructor to make a duplicate of the passed object.
+     * @param toCopy object to copy
+     */
+    public Room(Room toCopy)
+    {
+        for (int i=0; i<toCopy.accessibleRooms.length-1; i++)
+            this.accessibleRooms[i] = new Room(toCopy.accessibleRooms[i]); //recursive
+    }
+    
+    /**
+     * Constructor.
+     * @param accessibleRooms an array containing all of the rooms accessible 
+     * from this one
+     */
+    public Room(Room[] accessibleRooms)
+    {
+        for (int i=0; i<accessibleRooms.length-1; i++)
+            this.accessibleRooms[i] = new Room(accessibleRooms[i]);
+    }
+    
+    /**
+     * @param input a room to be tested if it is accessible.
+     * @return true if input is an accessible room
+     */
+    public boolean isAccessible(Room input)
+    {
+        //TODO
+        return true;
+    }
+    
+    public Room[] getAccessibleRooms()
+    {
+        return accessibleRooms;
+    }
 }
