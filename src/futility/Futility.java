@@ -52,7 +52,7 @@ public class Futility {
         do
         {
             new Game(gameCount);
-            System.out.println("\ntry again? (yes or no)");
+            System.out.println("\ntry again?");
             //keyboard.nextLine(); //get rid of \n
             again = keyboard.nextLine();
             System.out.println("\n");
