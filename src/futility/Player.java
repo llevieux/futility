@@ -21,5 +21,28 @@ package futility;
  * @author
  */
 public class Player {
+    /**
+     * How many items can fit into the inventory.  Determines the size of the
+     * array inventory.
+     */
+    private static final int INVENTORYSIZE = 2;
     
+    /**
+     * Inventory contains two items.  These are the things that the user can
+     * use to make actions with other things.
+     */
+    private Item[] inventory = new Item[INVENTORYSIZE];
+    
+    /**
+     * @return string representation of the inventory, using the item.name 
+     * separated by a space.
+     */
+    public String getInventory()
+    {
+        String result = "";
+        for (int i=0; i<INVENTORYSIZE; i++) //go through each index of inventory
+            if (inventory [i] != null) //ensure it is filled
+                result += inventory[i] + " "; //append to result
+        return result;
+    }
 }
