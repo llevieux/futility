@@ -17,17 +17,45 @@
  */
 package futility;
 
+import java.util.Scanner;
+
 /**
- *
- * @author Lucas
+ * The "runme" class for futility.  The only public method, main(), makes a new 
+ * game recursively.
+ * 
+ * @author Lucas LeVieux <contact@lucaslevieux.com>
  */
 public class Futility {
+    
+    /**
+     * Object which allows for user input.
+     */
+    private static final Scanner keyboard = new Scanner(System.in);
 
     /**
+     * Iteratively does a new Game.  Counts the number of games, supplies it as
+     * constructor argument to Game.
+     * 
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        /**
+         * User input on whether to do a new game or not.
+         */
+        String again;
+        
+        /**
+         * The number of games played so far.
+         */
+        int gameNumber = 0;
+        
+        do
+        {
+            new Game(gameNumber);
+            System.out.println("\ntry again? (yes or no)");
+            //keyboard.nextLine(); //get rid of \n
+            again = keyboard.nextLine();
+            System.out.println("\n");
+        } while (again.charAt(0) == 'y' || again.charAt(0) == 'Y');
     }
-    
 }
