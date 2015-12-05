@@ -39,19 +39,27 @@ public class Game {
     
     /**
      * Runs a game.
-     */
-    public Game()
-    {
-        
-    }
-    
-    /**
-     * Runs a game.
      * @param gameCount Count of games played in this session
      */
     public Game (int gameCount)
     {
-        this();
         this.gameCount = gameCount;
+        main();
+    }
+    
+    /**
+     * Runs a game, with gameCount set at 0.
+     */
+    public Game()
+    {
+        this(0); //runs Game(int) constructor for 0
+    }
+    
+    /**
+     * The main portion of the game.  Called by the constructor.
+     */
+    private void main()
+    {
+        //TODO: main application logic here
     }
 }
