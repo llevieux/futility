@@ -17,9 +17,41 @@
  */
 package futility;
 
+import java.util.Scanner;
+
 /**
- * @author
+ * Executes a game when a constructor is called.  The constructors are the only
+ * public methods.  Called by Futility.main().
+ * 
+ * @author Lucas LeVieux <contact@lucaslevieux.com>
  */
 public class Game {
     
+    /**
+     * Object which allows for user input.
+     */
+    private static final Scanner keyboard = new Scanner(System.in);
+    
+    /**
+     * Count of games played in this session
+     */
+    private int gameCount = 0;
+    
+    /**
+     * Runs a game.
+     */
+    public Game()
+    {
+        
+    }
+    
+    /**
+     * Runs a game.
+     * @param gameCount Count of games played in this session
+     */
+    public Game (int gameCount)
+    {
+        this();
+        this.gameCount = gameCount;
+    }
 }
