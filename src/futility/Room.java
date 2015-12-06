@@ -43,8 +43,8 @@ public class Room {
      */
     public Room(Room[] accessibleRooms)
     {
-        for (int i=0; i<accessibleRooms.length-1; i++)
-            this.accessibleRooms[i] = new Room(accessibleRooms[i]);
+        for (int i=0; i<accessibleRooms.length-1; i++) //copy fom argument to instance var
+            this.accessibleRooms[i] = accessibleRooms[i]; //referance, not a copy
     }
     
     /**
