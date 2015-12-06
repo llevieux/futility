@@ -18,6 +18,7 @@
 package futility;
 
 import java.util.Scanner;
+import java.util.Random;
 
 /**
  * A game.  The constructors are the only public methods.  Called by 
@@ -41,7 +42,7 @@ public class Game
     /**
      * The player.
      */
-    private final Player player = new Player();
+    private Player player;
     
     /**
      * An array containing all the Rooms in the game.
@@ -72,6 +73,33 @@ public class Game
     private void main()
     {
         //INITIALIZATION
-        //Room theRoom = new Room("room");
+        
+        //ITEMS
+        Match[] matches = new Match[6];
+        for (int i=0; i<matches.length; i++)
+            matches[i] = new Match(randomName() + " the match");
+        Matchbox matchbox = new Matchbox("mathbox", 14)
+        
+        //ROOMS
+        Room theRoom = new Room("room");
+        theRoom.addItems(
+        
+        //PLAYERS
+        player = new Player(theRoom);
+        
+    }
+    
+    private String randomName()
+    {
+        String[] names = {
+            "hollie", "jack",  "rufus", "doriana", "ashby", "lucas", "kane",
+            "areman", "bob", "ryan", "jude", "sam", "samuel", "samuindo", "sum",
+            "sumuel", "samwise", "toby", "frodo", "santa", "cadby", "sullivan",
+            "lacy", "peg", "randy", "rando", "rundy", "ice t", "obama", "trudy",
+            "marcos", "brie", "bling", "trevor", "amathyst", "jaden", "irwin",
+            "asher", "jesus", "carolina", "chance"
+        };
+        
+        
     }
 }
