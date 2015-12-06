@@ -95,6 +95,9 @@ public class Game
         */
     }
     
+    /**
+     * @return a random name from a list of names that I made up
+     */
     private String randomName()
     {
         String[] names = {
