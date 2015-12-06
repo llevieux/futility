@@ -50,6 +50,11 @@ public class Game
     private Room[] rooms = new Room[18];
     
     /**
+     * A random generator.  nextInt(int max) is very useful.
+     */
+    Random randomGenerator = new Random();
+    
+    /**
      * Runs a game.
      * @param gameCount Count of games played in this session
      */
