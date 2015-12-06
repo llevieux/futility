@@ -61,7 +61,18 @@ public class Room {
         //TODO
         return true;
     }
+    /**
+     * @param @param accessibleRooms an array containing all of the rooms accessible 
+     * from this one
+     */
+    public void setAccessibleRooms(Room[] accessibleRooms) {
+        for (int i=0; i<accessibleRooms.length-1; i++) //copy fom argument to instance var
+            this.accessibleRooms[i] = accessibleRooms[i]; //referance, not a copy
+    }
     
+    /**
+     * @return an array containing all of the rooms accessible from this one
+     */
     public Room[] getAccessibleRooms()
     {
         return accessibleRooms;
