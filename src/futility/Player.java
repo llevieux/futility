@@ -22,7 +22,8 @@ package futility;
  * 
  * @author Lucas LeVieux <contact@lucaslevieux.com>
  */
-public class Player {
+public class Player 
+{
     /**
      * How many items can fit into the inventory.  Determines the size of the
      * array inventory.

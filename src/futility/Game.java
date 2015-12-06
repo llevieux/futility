@@ -25,7 +25,8 @@ import java.util.Scanner;
  * 
  * @author Lucas LeVieux <contact@lucaslevieux.com>
  */
-public class Game {
+public class Game 
+{
     
     /**
      * Object which allows for user input.

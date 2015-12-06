@@ -25,7 +25,8 @@ package futility;
  * 
  * @author Lucas LeVieux <contact@lucaslevieux.com>
  */
-public class Room {
+public class Room 
+{
     /**
      * An array containing all of the rooms accessible from this object.
      */
