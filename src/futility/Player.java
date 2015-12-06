@@ -42,6 +42,11 @@ public class Player {
     private Item[] inventory = new Item[INVENTORYSIZE];
     
     /**
+     * A reference to the current room in rooms
+     */
+    private Room currentRoom;
+    
+    /**
      * @return string representation of the inventory, using the item.name 
      * separated by a space.
      */

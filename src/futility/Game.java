@@ -48,11 +48,6 @@ public class Game {
     private Room[] rooms = new Room[18];
     
     /**
-     * A reference to the current room in rooms
-     */
-    private Room currentRoom;
-    
-    /**
      * Runs a game.
      * @param gameCount Count of games played in this session
      */
@@ -71,20 +66,11 @@ public class Game {
     }
     
     /**
-     * Switching the current room.
-     * @param toChange the room to switch to.
-     */
-    public void changeRoom(Room toChange)
-    {
-        if (currentRoom.isAccessible(toChange))
-            currentRoom = toChange; //not a copy. A reference.
-    }
-    
-    /**
      * The main portion of the game.  Called by the constructor.
      */
     private void main()
     {
-        
+        //INITIALIZATION
+        //Room theRoom = new Room("room");
     }
 }
