@@ -18,6 +18,11 @@
 package futility;
 
 /**
+ * An object for a room.  Includes a name, an array of items that are contained
+ * in it, an array of rooms that are accessible from it.
+ * 
+ * An array of these things are found in Game.
+ * 
  * @author Lucas LeVieux <contact@lucaslevieux.com>
  */
 public class Room {

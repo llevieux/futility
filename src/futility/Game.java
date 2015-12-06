@@ -20,8 +20,8 @@ package futility;
 import java.util.Scanner;
 
 /**
- * Executes a game when a constructor is called.  The constructors are the only
- * public methods.  Called by Futility.main().
+ * A game.  The constructors are the only public methods.  Called by 
+ * Futility.main().
  * 
  * @author Lucas LeVieux <contact@lucaslevieux.com>
  */

@@ -18,6 +18,8 @@
 package futility;
 
 /**
+ * The player, AKA the user.  Only one object, created in Game.
+ * 
  * @author Lucas LeVieux <contact@lucaslevieux.com>
  */
 public class Player {
