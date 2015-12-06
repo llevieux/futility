@@ -52,7 +52,7 @@ public class Game
     /**
      * A random generator.  nextInt(int max) is very useful.
      */
-    Random randomGenerator = new Random();
+    private final Random random = new Random();
     
     /**
      * Runs a game.
@@ -77,6 +77,7 @@ public class Game
      */
     private void main()
     {
+        /*
         //INITIALIZATION
         
         //ITEMS
@@ -91,7 +92,7 @@ public class Game
         
         //PLAYERS
         player = new Player(theRoom);
-        
+        */
     }
     
     private String randomName()
@@ -104,7 +105,6 @@ public class Game
             "marcos", "brie", "bling", "trevor", "amathyst", "jaden", "irwin",
             "asher", "jesus", "carolina", "chance"
         };
-        
-        
+        return names[random.nextInt(names.length)];
     }
 }
