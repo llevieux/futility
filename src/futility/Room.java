@@ -63,7 +63,7 @@ public class Room
         return true;
     }
     /**
-     * @param @param accessibleRooms an array containing all of the rooms accessible 
+     * @param accessibleRooms an array containing all of the rooms accessible 
      * from this one
      */
     public void setAccessibleRooms(Room[] accessibleRooms) {
