@@ -33,7 +33,17 @@ public class Room
     private Room[] accessibleRooms;
     
     /**
-     * A copy constructor to make a duplicate of the passed object.
+     * All of the items contained and available in the room.
+     */
+    private Item[] itemsInRoom;
+    
+    /**
+     * The name of the room.
+     */
+    private String name = "";
+    
+    /**
+     * A copy constructor to make a duplicate of the passed Room.
      * @param toCopy object to copy
      */
     public Room(Room toCopy)
@@ -43,14 +53,28 @@ public class Room
     }
     
     /**
-     * Constructor.
-     * @param accessibleRooms an array containing all of the rooms accessible 
-     * from this one
+     * Constructor to initialize a new room with a name, accessible rooms, and
+     * contained items.
+     * 
+     * @param name the name of the room.
+     * @param accessibleRooms all of the rooms accessible from this object
+     * @param itemsInRoom the items contained and available inside the room.
+     * Arbitrary amount of arrays of items are accepted.
      */
-    public Room(Room[] accessibleRooms)
+    public Room(String name, Room[] accessibleRooms, Item[]... itemsInRoom)
     {
+        this.name = name;
+        
         for (int i=0; i<accessibleRooms.length-1; i++) //copy fom argument to instance var
             this.accessibleRooms[i] = accessibleRooms[i]; //referance, not a copy
+        
+        int k = 0; //a counter for this.itemsInRoom, in order to unify arguments
+        for (int i=0; i<itemsInRoom.length-1; i++) //for each argument
+            for (int j=0; j<itemsInRoom[i].length-1; j++) //for each in array
+            {
+                this.itemsInRoom[k] = itemsInRoom[i][j]; //referance, not a copy
+                k++; //move to next element in this.itemsInRoom
+            }
     }
     
     /**
