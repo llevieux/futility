@@ -128,4 +128,11 @@ public class Room
         
         java.util.Arrays.sort(output); //sort alphabetically
     }
+
+    /**
+     * @return an array of all the items contained and available in the room
+     */
+    public Item[] getItems() {
+        return itemsInRoom;
+    }
 }
