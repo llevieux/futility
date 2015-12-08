@@ -37,8 +37,9 @@ public class Room
     private Room[] accessibleRooms = new Room[0];
     
     /**
-     * All of the items contained and available in the room, sorted
-     * alphabetically.  Use this.addItems to add to it.
+     * All of the items contained and available in the room, in the order that 
+     * they are entered.  Use this.addItems to add to it, and getItems to read
+     * from it.
      */
     private Item[] itemsInRoom = new Item[0];
     
@@ -65,7 +66,7 @@ public class Room
      * @param accessibleRooms all of the rooms accessible from this object
      * @param itemsInRoom the items contained and available inside the room.
      * Arbitrary amount of arrays of items are accepted.  Items will be
-     * arranged in alphabetical order, so order doesn't matter.
+     * arranged in the order that they are entered.
      */
     public Room(String name, Room[] accessibleRooms, Item[]... itemsInRoom)
     {
@@ -73,7 +74,7 @@ public class Room
         
         setAccessibleRooms(accessibleRooms);
         
-        for (int i=0; i<itemsInRoom.length-1; i++) //for each argument
+        for (int i=0; i<itemsInRoom.length; i++) //for each argument
             this.addItems(itemsInRoom[i]);
         
     }
@@ -84,6 +85,15 @@ public class Room
     public String getName() 
     {
         return this.name;
+    }
+
+    /**
+     * Set the name of the room.
+     * 
+     * @param name the name of the room
+     */
+    public void setName(String name) {
+        this.name = name;
     }
     
     /**
@@ -127,8 +137,6 @@ public class Room
         for (; i<output.length; i++, j++)
             output[i] = newRooms[j]; //output continues where it left off
         
-        java.util.Arrays.sort(output); //sort alphabetically
-        
         this.accessibleRooms = output;
     }
     
@@ -141,7 +149,7 @@ public class Room
     }
     
     /**
-     * Adds items to itemsInRoom and sorts alphabetically.
+     * Adds items to itemsInRoom in the order that they are entered.
      * 
      * @param newItems items to be added
      */
@@ -159,8 +167,6 @@ public class Room
         for (; i<output.length; i++, j++)
             output[i] = newItems[j]; //output continues where it left off
         
-        java.util.Arrays.sort(output); //sort alphabetically
-        
         this.itemsInRoom = output;
     }
 
@@ -175,28 +181,32 @@ public class Room
     /**
      * Returns a string with all the instance data.  In the format:
      * 
-     * [name]
-     * items: [item1.getName()], [item2.getName()], ... [itemn.getName()]
+     * room: [name]
+     * items in room: [item1.getName()], [item2.getName()], ... [itemn.getName()]
      * accessible rooms: [room1.getName()], [room2.getName()], ... [roomn.getName()]
      * 
+     * Outputs (none) in the appropriate area if there are no items or rooms.
      * @return string describing the room
      */
     public String toString()
     {
-        String output = this.name + "\nitems: ";
-        
+        String output = "room: " + this.name + "\nitems in room: ";
+        if (itemsInRoom.length == 0) //if empty
+            output += "(none)";
         for (int i=0; i<this.itemsInRoom.length; i++)
         {
             output += itemsInRoom[i].getName();
-            if (i != (itemsInRoom.length - 2))
+            if (i != (itemsInRoom.length - 1))
                 output += ", "; //all but last iteration
         }
         
         output += "\naccessible rooms: ";
+        if (accessibleRooms.length == 0) //if empty
+            output += "(none)";
         for (int i=0; i<this.accessibleRooms.length; i++)
         {
             output += accessibleRooms[i].getName();
-            if (i != (accessibleRooms.length - 2))
+            if (i != (accessibleRooms.length - 1))
                 output += ", "; //all but last iteration
         }   
         
