@@ -17,6 +17,8 @@
  */
 package futility;
 
+import java.util.Arrays;
+
 /**
  * An object for a room.  Includes a name, an array of items that are contained
  * in it, an array of rooms that are accessible from it.
@@ -33,9 +35,10 @@ public class Room
     private Room[] accessibleRooms;
     
     /**
-     * All of the items contained and available in the room.
+     * All of the items contained and available in the room, sorted
+     * alphabetically.  Use this.addItems to add to it.
      */
-    private Item[] itemsInRoom;
+    private Item[] itemsInRoom = new Item[0];
     
     /**
      * The name of the room.
@@ -59,22 +62,26 @@ public class Room
      * @param name the name of the room.
      * @param accessibleRooms all of the rooms accessible from this object
      * @param itemsInRoom the items contained and available inside the room.
-     * Arbitrary amount of arrays of items are accepted.
+     * Arbitrary amount of arrays of items are accepted.  Items will be
+     * arranged in alphabetical order, so order doesn't matter.
      */
     public Room(String name, Room[] accessibleRooms, Item[]... itemsInRoom)
     {
         this.name = name;
         
-        for (int i=0; i<accessibleRooms.length-1; i++) //copy fom argument to instance var
-            this.accessibleRooms[i] = accessibleRooms[i]; //referance, not a copy
+        setAccessibleRooms(accessibleRooms);
         
-        int k = 0; //a counter for this.itemsInRoom, in order to unify arguments
         for (int i=0; i<itemsInRoom.length-1; i++) //for each argument
-            for (int j=0; j<itemsInRoom[i].length-1; j++) //for each in array
-            {
-                this.itemsInRoom[k] = itemsInRoom[i][j]; //referance, not a copy
-                k++; //move to next element in this.itemsInRoom
-            }
+            this.addItems(itemsInRoom[i]);
+        
+    }
+    
+    /**
+     * @return the name of the room
+     */
+    public String getName() 
+    {
+        return this.name;
     }
     
     /**
@@ -101,5 +108,24 @@ public class Room
     public Room[] getAccessibleRooms()
     {
         return accessibleRooms;
+    }
+    
+    /**
+     * Adds items to itemsInRoom and sorts alphabetically.
+     * 
+     * @param newItems items to be added
+     */
+    public void addItems (Item[] newItems)
+    {
+        Item[] output = new Item[this.itemsInRoom.length + newItems.length];
+        
+        int i=0, j=0;
+        for (; i<this.itemsInRoom.length; i++) //for each in current
+            output[i] = this.itemsInRoom[i]; //shallow copy
+        
+        for (; i<output.length; i++, j++)
+            output[i] = newItems[j]; //output continues where it left off
+        
+        java.util.Arrays.sort(output); //sort alphabetically
     }
 }
