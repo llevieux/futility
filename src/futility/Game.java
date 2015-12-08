@@ -77,6 +77,7 @@ public class Game
      */
     private void main()
     {
+        /* commented out until the other classes are finished
         
         //--------------------------INITIALIZATION--------------------------
         
@@ -119,7 +120,7 @@ public class Game
         
         //PLAYERS
         player = new Player(theRoom);
-        
+        */
     }
     
     /**
