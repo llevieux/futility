@@ -77,22 +77,49 @@ public class Game
      */
     private void main()
     {
-        /*
-        //INITIALIZATION
+        
+        //--------------------------INITIALIZATION--------------------------
         
         //ITEMS
         Match[] matches = new Match[6];
         for (int i=0; i<matches.length; i++)
             matches[i] = new Match(randomName() + " the match");
-        Matchbox matchbox = new Matchbox("mathbox", 14)
+        Matchbox matchbox = new Matchbox("matchbox", matches);
+        
+        Item flare = new Item("flare", true, true);
+        Hammer hammer = new Hammer(randomName() + " the hammer");
+        Refrigerator refrigerator = new Refrigerator("refrigerator");
+        LawnMower lawnMower = new LawnMower("lawnmower");
+        AntHill antHill = new AntHill("anthill");
+        Box box = new Box("box");
+        Box anotherBox = new Box("anouther box");
+        
+        UselessSwitch[] levers = new UselessSwitch[random.nextInt(4) + 1];
+            //random number between 1 and 5
+        for (int i=0; i<levers.length; i++)
+            levers[i] = new UselessSwitch("lever " + (i+1));
+        
+        UselessSwitch[] buttons = new UselessSwitch[random.nextInt(3) + 1];
+            //random number between 1 and 4
+        for (int i=0; i<buttons.length; i++)
+            buttons[i] = new UselessSwitch("button " + (i+1));
+        
+        Item monopolyMoney = new Item("monopoly money", true, true);
+        UselessSwitch pressureCooker = new PressureCooker("pressure cooker");
+        Chalk chalk = new Chalk("chalk");
+        
+        Item[] theRoomItems = {matchbox, flare, hammer, refrigerator, lawnMower,
+            antHill, box, anotherBox, monopolyMoney, pressureCooker, chalk};
+        
         
         //ROOMS
-        Room theRoom = new Room("room");
-        theRoom.addItems(
+        Room theRoom = new Room("room", theRoomItems, levers, buttons);
+        
+        Room[] rooms = {theRoom};
         
         //PLAYERS
         player = new Player(theRoom);
-        */
+        
     }
     
     /**
@@ -108,6 +135,6 @@ public class Game
             "marcos", "brie", "bling", "trevor", "amathyst", "jaden", "irwin",
             "asher", "jesus", "carolina", "chance"
         };
-        return names[random.nextInt(names.length)];
+        return names[random.nextInt(names.length)]; //random from names
     }
 }
