@@ -25,7 +25,7 @@ import java.util.Scanner;
  * 
  * @author Lucas LeVieux <contact@lucaslevieux.com>
  */
-public class Futility
+public final class Futility
 {
     
     /**
