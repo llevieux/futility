@@ -134,7 +134,9 @@ public class Game
             "sumuel", "samwise", "toby", "frodo", "santa", "cadby", "sullivan",
             "lacy", "peg", "randy", "rando", "rundy", "ice t", "obama", "trudy",
             "marcos", "brie", "bling", "trevor", "amathyst", "jaden", "irwin",
-            "asher", "jesus", "carolina", "chance"
+            "asher", "jesus", "carolina", "chance", "bilbo", "steve", "john",
+            "olleh", "bam", "ban", "bun", "orion", "baby", "ice cube", "yolo",
+            "doodle", "diddle", "jax", "harry", "cassidy", "light", "flame"
         };
         return names[random.nextInt(names.length)]; //random from names
     }
