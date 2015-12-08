@@ -30,7 +30,9 @@ import java.util.Arrays;
 public class Room 
 {
     /**
-     * An array containing all of the rooms accessible from this object.
+     * An array containing all of the rooms accessible from this object.  Sorted
+     * alphabetically.  Use addAccessibleRooms, setAccessibleRooms,
+     * getAccessibleRooms, and isAccessible(Room).
      */
     private Room[] accessibleRooms;
     
@@ -93,13 +95,36 @@ public class Room
         //TODO
         return true;
     }
+    
     /**
      * @param accessibleRooms an array containing all of the rooms accessible 
      * from this one
      */
-    public void setAccessibleRooms(Room[] accessibleRooms) {
+    public void setAccessibleRooms(Room[] accessibleRooms) 
+    {
         for (int i=0; i<accessibleRooms.length-1; i++) //copy fom argument to instance var
             this.accessibleRooms[i] = accessibleRooms[i]; //referance, not a copy
+    }
+    
+    /**
+     * Add rooms that are now accessible from this object.
+     * 
+     * @param newRooms the newly accessible rooms
+     */
+    public void addAccessibleRooms(Room[] newRooms)
+    {
+        Room[] output = new Room[this.accessibleRooms.length + newRooms.length];
+        
+        int i=0, j=0;
+        for (; i<this.accessibleRooms.length; i++) //for each in current
+            output[i] = this.accessibleRooms[i]; //shallow copy
+        
+        for (; i<output.length; i++, j++)
+            output[i] = newRooms[j]; //output continues where it left off
+        
+        java.util.Arrays.sort(output); //sort alphabetically
+        
+        this.accessibleRooms = output;
     }
     
     /**
@@ -127,6 +152,8 @@ public class Room
             output[i] = newItems[j]; //output continues where it left off
         
         java.util.Arrays.sort(output); //sort alphabetically
+        
+        this.itemsInRoom = output;
     }
 
     /**
