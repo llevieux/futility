@@ -102,6 +102,8 @@ public class Room
      */
     public void setAccessibleRooms(Room[] accessibleRooms) 
     {
+        if (accessibleRooms == null)
+            return;
         for (int i=0; i<accessibleRooms.length-1; i++) //copy fom argument to instance var
             this.accessibleRooms[i] = accessibleRooms[i]; //referance, not a copy
     }
@@ -113,6 +115,9 @@ public class Room
      */
     public void addAccessibleRooms(Room[] newRooms)
     {
+        if (newRooms == null)
+            return;
+        
         Room[] output = new Room[this.accessibleRooms.length + newRooms.length];
         
         int i=0, j=0;
@@ -142,6 +147,9 @@ public class Room
      */
     public void addItems (Item[] newItems)
     {
+        if (newItems == null)
+            return;
+        
         Item[] output = new Item[this.itemsInRoom.length + newItems.length];
         
         int i=0, j=0;
