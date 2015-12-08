@@ -34,7 +34,7 @@ public class Room
      * alphabetically.  Use addAccessibleRooms, setAccessibleRooms,
      * getAccessibleRooms, and isAccessible(Room).
      */
-    private Room[] accessibleRooms;
+    private Room[] accessibleRooms = new Room[0];
     
     /**
      * All of the items contained and available in the room, sorted
@@ -167,7 +167,39 @@ public class Room
     /**
      * @return an array of all the items contained and available in the room
      */
-    public Item[] getItems() {
+    public Item[] getItems() 
+    {
         return itemsInRoom;
+    }
+    
+    /**
+     * Returns a string with all the instance data.  In the format:
+     * 
+     * [name]
+     * items: [item1.getName()], [item2.getName()], ... [itemn.getName()]
+     * accessible rooms: [room1.getName()], [room2.getName()], ... [roomn.getName()]
+     * 
+     * @return string describing the room
+     */
+    public String toString()
+    {
+        String output = this.name + "\nitems: ";
+        
+        for (int i=0; i<this.itemsInRoom.length; i++)
+        {
+            output += itemsInRoom[i].getName();
+            if (i != (itemsInRoom.length - 2))
+                output += ", "; //all but last iteration
+        }
+        
+        output += "\naccessible rooms: ";
+        for (int i=0; i<this.accessibleRooms.length; i++)
+        {
+            output += accessibleRooms[i].getName();
+            if (i != (accessibleRooms.length - 2))
+                output += ", "; //all but last iteration
+        }   
+        
+        return output;
     }
 }
