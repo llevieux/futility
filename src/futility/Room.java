@@ -49,16 +49,6 @@ public class Room
     private String name = "";
     
     /**
-     * A copy constructor to make a duplicate of the passed Room.
-     * @param toCopy object to copy
-     */
-    public Room(Room toCopy)
-    {
-        for (int i=0; i<toCopy.accessibleRooms.length-1; i++)
-            this.accessibleRooms[i] = new Room(toCopy.accessibleRooms[i]); //recursive
-    }
-    
-    /**
      * Constructor to initialize a new room with a name, accessible rooms, and
      * contained items.
      * 
@@ -76,7 +66,16 @@ public class Room
         
         for (int i=0; i<itemsInRoom.length; i++) //for each argument
             this.addItems(itemsInRoom[i]);
-        
+    }
+    
+    /**
+     * Constructor to only name the room.
+     * 
+     * @param name the name of the room.
+     */
+    public Room(String name)
+    {
+        this(name, null);
     }
     
     /**
@@ -85,15 +84,6 @@ public class Room
     public String getName() 
     {
         return this.name;
-    }
-
-    /**
-     * Set the name of the room.
-     * 
-     * @param name the name of the room
-     */
-    public void setName(String name) {
-        this.name = name;
     }
     
     /**
