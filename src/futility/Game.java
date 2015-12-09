@@ -55,6 +55,20 @@ public class Game
     private final Random random = new Random();
     
     /**
+     * Some names I made up.  see randomName().
+     */
+    private String[] names = {
+            "hollie", "jack",  "rufus", "doriana", "ashby", "lucas", "kane",
+            "areman", "bob", "ryan", "jude", "sam", "samuel", "samuindo", "sum",
+            "sumuel", "samwise", "toby", "frodo", "santa", "cadby", "sullivan",
+            "lacy", "peg", "randy", "rando", "rundy", "ice t", "obama", "trudy",
+            "marcos", "brie", "bling", "trevor", "amathyst", "jaden", "irwin",
+            "asher", "jesus", "carolina", "chance", "bilbo", "steve", "john",
+            "olleh", "bam", "ban", "bun", "orion", "baby", "ice cube", "yolo",
+            "doodle", "diddle", "jax", "harry", "cassidy", "light", "flame"
+        };
+    
+    /**
      * Runs a game.
      * @param gameCount Count of games played in this session
      */
@@ -114,30 +128,53 @@ public class Game
         
         
         //ROOMS
-        Room theRoom = new Room("room", theRoomItems, levers, buttons);
+        Room theRoom = new Room("room", 
+                new Room[0], //no rooms accessible from theRoom
+                theRoomItems, levers, buttons //three lists of items to be added
+        );
         
         Room[] rooms = {theRoom};
         
         //PLAYERS
         player = new Player(theRoom);
         */
+        System.out.println(randomName() + ", " + randomName() + ", " 
+                + randomName() + ", " + randomName() + ", " + randomName());
     }
     
     /**
-     * @return a random name from a list of names that I made up
+     * @return a random name from a list of names that I made up.  Each name
+     * can only be generated once, so don't worry about duplicate names.
+     * If there's no more non-duplicate names left, it returns "loaf".
      */
     private String randomName()
     {
-        String[] names = {
-            "hollie", "jack",  "rufus", "doriana", "ashby", "lucas", "kane",
-            "areman", "bob", "ryan", "jude", "sam", "samuel", "samuindo", "sum",
-            "sumuel", "samwise", "toby", "frodo", "santa", "cadby", "sullivan",
-            "lacy", "peg", "randy", "rando", "rundy", "ice t", "obama", "trudy",
-            "marcos", "brie", "bling", "trevor", "amathyst", "jaden", "irwin",
-            "asher", "jesus", "carolina", "chance", "bilbo", "steve", "john",
-            "olleh", "bam", "ban", "bun", "orion", "baby", "ice cube", "yolo",
-            "doodle", "diddle", "jax", "harry", "cassidy", "light", "flame"
-        };
-        return names[random.nextInt(names.length)]; //random from names
+        int randomIndex = 0, i = 0;
+        boolean empty = true; //assume emtpy, untill proven false
+        do
+        {
+            if (i == names.length) 
+            {
+                for (int h=0; h<names.length; h++) //look in each
+                {
+                    if (names[h] != null)
+                    {
+                        empty = false;
+                        break;
+                    }
+                }
+                if (empty == true)
+                    return "loaf"; //no non-nulls left :(
+            }
+            else
+                i++;
+            randomIndex = random.nextInt(names.length);
+            
+        } while(names[randomIndex] == null); //find a name that hasn't been used
+                
+        String output = new String(names[randomIndex]); //deep copy
+        names[randomIndex] = null;
+        
+        return output;
     }
 }
