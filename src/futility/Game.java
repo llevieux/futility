@@ -142,6 +142,18 @@ public class Game
         revealText("you are in a small, concrete-reinforced room",
                 "your only wish in your humble life is to get out",
                 "there are no doors and no windows");
+        
+        while (player.isAlive() && player.getCurrentRoom().getName() == "room")
+        {
+            //main loop(through each turn)
+        }
+        
+        //GAME OVER
+        if (player.getCurrentRoom().getName() != "room")
+            revealText("wow.", "you won.", "did you cheat?", 
+                    "this game was supposed to be unbeatable", "what a hack");
+        else if (!player.isAlive())
+            revealText("you died in a small, concrete-reinforced room");        
     }
     
     /**
