@@ -110,4 +110,12 @@ public final class Futility
     {
         return repeatedCharactors(numberOfLines, '\n');
     }
+    
+    /**
+     * Clears the screen by adding 50 newLines.
+     */
+    public static void clearScreen()
+    {
+        System.out.print(newLines(50));
+    }
 }
