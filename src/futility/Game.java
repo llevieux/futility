@@ -47,7 +47,7 @@ public class Game
     /**
      * An array containing all the Rooms in the game.
      */
-    private Room[] rooms = new Room[18];
+    private Room[] rooms;
     
     /**
      * A random generator.  nextInt(int max) is very useful.
