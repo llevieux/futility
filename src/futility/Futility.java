@@ -56,7 +56,6 @@ public final class Futility
         ); //looks good when fixed-width
         
         keyboard.nextLine(); //proceed on enter
-        clearScreen();
         
         /**
          * User input on whether to do a new game or not.
@@ -70,11 +69,10 @@ public final class Futility
         
         do
         {
+            clearScreen();
             new Game(gameCount);
             System.out.println("\ntry again?");
-            //keyboard.nextLine(); //get rid of \n
             again = keyboard.nextLine();
-            System.out.println("\n");
             gameCount++;
         } while (Character.toLowerCase(again.charAt(0)) == 'y');
     }
@@ -125,11 +123,11 @@ public final class Futility
      * 
      * @param seconds the amount of time to pause.
      */
-    public static void wait(int seconds)
+    public static void wait(double seconds)
     {
         try 
         {
-            Thread.sleep(1000 * seconds);
+            Thread.sleep((int)(1000 * seconds));
         } catch(InterruptedException ex) 
         {
             Thread.currentThread().interrupt();
