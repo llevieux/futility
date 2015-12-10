@@ -138,6 +138,10 @@ public class Game
         //PLAYERS
         player = new Player(theRoom);
         */
+        
+        revealText("you are in a small, concrete-reinforced room",
+                "your only wish in your humble life is to get out",
+                "there are no doors and no windows");
     }
     
     /**
@@ -174,5 +178,18 @@ public class Game
         availableNames[randomIndex] = null;
         
         return output;
+    }
+    
+    private static void revealText(String... text)
+    {
+        for (int i=0; i<text.length; i++)
+        {
+            System.out.print(text[i]);
+            for (int h=0; h<6; h++)
+            {
+                System.out.println();
+                Futility.wait(1.0);
+            }
+        }
     }
 }
