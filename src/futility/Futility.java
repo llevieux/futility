@@ -76,7 +76,7 @@ public final class Futility
             again = keyboard.nextLine();
             System.out.println("\n");
             gameCount++;
-        } while (again.charAt(0) == 'y' || again.charAt(0) == 'Y');
+        } while (Character.toLowerCase(again.charAt(0)) == 'y');
     }
     
     /**
