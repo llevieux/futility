@@ -32,7 +32,7 @@ public class Game
     /**
      * Object which allows for user input.
      */
-    private static final Scanner keyboard = new Scanner(System.in);
+    private static final Scanner keyboard = Futility.keyboard;
     
     /**
      * Count of games played in this session
@@ -138,8 +138,6 @@ public class Game
         //PLAYERS
         player = new Player(theRoom);
         */
-        System.out.println(randomName() + ", " + randomName() + ", " 
-                + randomName() + ", " + randomName() + ", " + randomName());
     }
     
     /**
