@@ -139,21 +139,26 @@ public class Game
         player = new Player(theRoom);
         */
         
+        
+        //--------------------------INTRODUCTION--------------------------
         revealText("you are in a small, concrete-reinforced room",
                 "your only wish in your humble life is to get out",
                 "there are no doors and no windows");
         
+        
+        //--------------------------MAIN LOOP--------------------------
         while (player.isAlive() && player.getCurrentRoom().getName() == "room")
         {
             //main loop(through each turn)
         }
         
-        //GAME OVER
+        //--------------------------GAME OVER--------------------------
         if (player.getCurrentRoom().getName() != "room")
             revealText("wow.", "you won.", "did you cheat?", 
                     "this game was supposed to be unbeatable", "what a hack");
         else if (!player.isAlive())
-            revealText("you died in a small, concrete-reinforced room");        
+            revealText("you died in a small, concrete-reinforced room.",
+                    "game over");        
     }
     
     /**
