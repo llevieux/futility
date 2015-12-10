@@ -57,7 +57,7 @@ public class Game
     /**
      * Some names I made up.  see randomName().
      */
-    private String[] names = {
+    private String[] availableNames = {
             "hollie", "jack",  "rufus", "doriana", "ashby", "lucas", "kane",
             "areman", "bob", "ryan", "jude", "sam", "samuel", "samuindo", "sum",
             "sumuel", "samwise", "toby", "frodo", "santa", "cadby", "sullivan",
@@ -153,11 +153,11 @@ public class Game
         boolean empty = true; //assume emtpy, untill proven false
         do
         {
-            if (i == names.length) 
+            if (i == availableNames.length) 
             {
-                for (int h=0; h<names.length; h++) //look in each
+                for (int h=0; h<availableNames.length; h++) //look in each
                 {
-                    if (names[h] != null)
+                    if (availableNames[h] != null)
                     {
                         empty = false;
                         break;
@@ -168,12 +168,12 @@ public class Game
             }
             else
                 i++;
-            randomIndex = random.nextInt(names.length);
+            randomIndex = random.nextInt(availableNames.length);
             
-        } while(names[randomIndex] == null); //find a name that hasn't been used
+        } while(availableNames[randomIndex] == null); //find a name that hasn't been used
                 
-        String output = new String(names[randomIndex]); //deep copy
-        names[randomIndex] = null;
+        String output = new String(availableNames[randomIndex]); //deep copy
+        availableNames[randomIndex] = null;
         
         return output;
     }
