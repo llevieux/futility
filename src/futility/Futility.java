@@ -20,8 +20,8 @@ package futility;
 import java.util.Scanner;
 
 /**
- * The "runme" class for futility.  The only public method, main(), makes a new 
- * game recursively.
+ * The "runme" class for futility.  The only public method, main(), introduces
+ * the user, and makes a new game recursively.
  * 
  * @author Lucas LeVieux <contact@lucaslevieux.com>
  */
@@ -34,12 +34,24 @@ public final class Futility
     private static final Scanner keyboard = new Scanner(System.in);
 
     /**
-     * Iteratively does a new Game.  Counts the number of games, supplies it as
-     * constructor argument to Game.
+     * Introduces the user, then iteratively does a new Game.  Counts the number
+     * of games, and supplies it as constructor argument to Game.
      * 
-     * @param args the command line arguments
+     * @param args the command line arguments (none used)
      */
     public static void main(String[] args) {
+        System.out.println(
+            "  ████           ██   ██  ██  ██   ██\n" +
+            " ██            ██████     ██     ██████\n" +
+            " ██    ██   ██   ██   ██  ██  ██   ██   ██   ██\n" +
+            "█████  ██   ██   ██   ██  ██  ██   ██    ██ ██\n" +
+            " ██    ██   ██   ██   ██  ██  ██   ██     ███\n" +
+            " ██     █████    ██   ██  ██  ██   ██    ██\n" +
+            "                                        ██\n" +
+            "                  the game"); //looks good when fixed-width
+        
+        
+        
         /**
          * User input on whether to do a new game or not.
          */
@@ -59,5 +71,19 @@ public final class Futility
             System.out.println("\n");
             gameCount++;
         } while (again.charAt(0) == 'y' || again.charAt(0) == 'Y');
+    }
+    
+    /**
+     * @param numberOfSpaces number of spaces to output
+     * @return a string containing numberOfSpaces spaces
+     */
+    private static String spaces(int numberOfSpaces)
+    {
+        String output = "";
+        
+        for (int i=0; i<numberOfSpaces; i++)
+            output += " ";
+        
+        return output;
     }
 }
