@@ -119,4 +119,14 @@ public final class Futility
     {
         System.out.print(newLines(50));
     }
+    
+    /**
+     * Pauses execution for seconds seconds.
+     * 
+     * @param seconds the amount of time to pause.
+     */
+    public static void wait(int seconds)
+    {
+        Thread.sleep(100 * seconds);
+    }
 }
