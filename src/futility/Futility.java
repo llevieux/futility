@@ -43,7 +43,7 @@ public final class Futility
         int leftSpacing = 16; //number of spaces to insert to the left of the wordmark
         
         System.out.print(newLines(8) +
-            spaces(leftSpacing) + "  ████           ██   ██  ██  ██   ██\n" +
+            spaces(leftSpacing) + " █████           ██   ██  ██  ██   ██\n" +
             spaces(leftSpacing) + " ██            ██████     ██     ██████\n" +
             spaces(leftSpacing) + " ██    ██   ██   ██   ██  ██  ██   ██   ██   ██\n" +
             spaces(leftSpacing) + "█████  ██   ██   ██   ██  ██  ██   ██    ██ ██\n" +
