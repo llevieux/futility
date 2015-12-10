@@ -31,7 +31,7 @@ public final class Futility
     /**
      * Object which allows for user input.
      */
-    private static final Scanner keyboard = new Scanner(System.in);
+    public static final Scanner keyboard = new Scanner(System.in);
 
     /**
      * Introduces the user, then iteratively does a new Game.  Counts the number
@@ -40,17 +40,22 @@ public final class Futility
      * @param args the command line arguments (none used)
      */
     public static void main(String[] args) {
-        System.out.println(
-            "  ████           ██   ██  ██  ██   ██\n" +
-            " ██            ██████     ██     ██████\n" +
-            " ██    ██   ██   ██   ██  ██  ██   ██   ██   ██\n" +
-            "█████  ██   ██   ██   ██  ██  ██   ██    ██ ██\n" +
-            " ██    ██   ██   ██   ██  ██  ██   ██     ███\n" +
-            " ██     █████    ██   ██  ██  ██   ██    ██\n" +
-            "                                        ██\n" +
-            "                  the game"); //looks good when fixed-width
+        int leftSpacing = 16; //number of spaces to insert to the left of the wordmark
         
+        System.out.print(newLines(7) +
+            spaces(leftSpacing) + "  ████           ██   ██  ██  ██   ██\n" +
+            spaces(leftSpacing) + " ██            ██████     ██     ██████\n" +
+            spaces(leftSpacing) + " ██    ██   ██   ██   ██  ██  ██   ██   ██   ██\n" +
+            spaces(leftSpacing) + "█████  ██   ██   ██   ██  ██  ██   ██    ██ ██\n" +
+            spaces(leftSpacing) + " ██    ██   ██   ██   ██  ██  ██   ██     ███\n" +
+            spaces(leftSpacing) + " ██     █████    ██   ██  ██  ██   ██    ██\n" +
+            spaces(leftSpacing) + "                                        ██\n" +
+            spaces(leftSpacing + 18) + "the game" + 
+                newLines (5)+
+                "press enter to start"
+        ); //looks good when fixed-width
         
+        keyboard.nextLine(); //proceed on enter
         
         /**
          * User input on whether to do a new game or not.
@@ -74,15 +79,34 @@ public final class Futility
     }
     
     /**
-     * @param numberOfSpaces number of spaces to output
-     * @return a string containing numberOfSpaces spaces
+     * @param numberOfSpaces number of spaces to return
+     * @return numberOfSpaces spaces
      */
-    private static String spaces(int numberOfSpaces)
+    public static String spaces(int numberOfSpaces)
+    {
+        return repeatedCharactors(numberOfSpaces, ' ');
+    }
+    
+    /**
+     * @param numberOfSpaces number of newlines to return
+     * @return string containing numberOfNewLines x "\n"s
+     */
+    public static String newLines(int numberOfLines)
+    {
+        return repeatedCharactors(numberOfLines, '\n');
+    }
+    
+    /**
+     * @param repetitions number of characters to return
+     * @param character which character to repeat repetitions times
+     * @return a string containing repetitions x character
+     */
+    public static String repeatedCharactors(int repetitions, char character)
     {
         String output = "";
         
-        for (int i=0; i<numberOfSpaces; i++)
-            output += " ";
+        for (int i=0; i<repetitions; i++)
+            output += character;
         
         return output;
     }
