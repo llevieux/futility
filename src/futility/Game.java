@@ -180,11 +180,17 @@ public class Game
         return output;
     }
     
+    /**
+     * Prints each string entered successively, with 6 lines blank lines in 
+     * between slowly scrolling at 1 second per line.
+     * 
+     * @param text the text to be revealed, element by element
+     */
     private static void revealText(String... text)
     {
         for (int i=0; i<text.length; i++)
         {
-            System.out.print(text[i]);
+            System.out.print(" " + text[i]);
             for (int h=0; h<6; h++)
             {
                 System.out.println();
