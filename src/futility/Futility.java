@@ -127,6 +127,12 @@ public final class Futility
      */
     public static void wait(int seconds)
     {
-        Thread.sleep(100 * seconds);
+        try 
+        {
+            Thread.sleep(100 * seconds);
+        } catch(InterruptedException ex) 
+        {
+            Thread.currentThread().interrupt();
+        }
     }
 }
