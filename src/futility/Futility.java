@@ -42,7 +42,7 @@ public final class Futility
     public static void main(String[] args) {
         int leftSpacing = 16; //number of spaces to insert to the left of the wordmark
         
-        System.out.print(newLines(7) +
+        System.out.print(newLines(9) +
             spaces(leftSpacing) + "  ████           ██   ██  ██  ██   ██\n" +
             spaces(leftSpacing) + " ██            ██████     ██     ██████\n" +
             spaces(leftSpacing) + " ██    ██   ██   ██   ██  ██  ██   ██   ██   ██\n" +
@@ -51,7 +51,7 @@ public final class Futility
             spaces(leftSpacing) + " ██     █████    ██   ██  ██  ██   ██    ██\n" +
             spaces(leftSpacing) + "                                        ██\n" +
             spaces(leftSpacing + 18) + "the game" + 
-                newLines (5)+
+                newLines (7)+
                 "press enter to start"
         ); //looks good when fixed-width
         
@@ -79,6 +79,21 @@ public final class Futility
     }
     
     /**
+     * @param repetitions number of characters to return
+     * @param character which character to repeat repetitions times
+     * @return a string containing repetitions x character
+     */
+    public static String repeatedCharactors(int repetitions, char character)
+    {
+        String output = "";
+        
+        for (int i=0; i<repetitions; i++)
+            output += character;
+        
+        return output;
+    }
+    
+    /**
      * @param numberOfSpaces number of spaces to return
      * @return numberOfSpaces spaces
      */
@@ -94,20 +109,5 @@ public final class Futility
     public static String newLines(int numberOfLines)
     {
         return repeatedCharactors(numberOfLines, '\n');
-    }
-    
-    /**
-     * @param repetitions number of characters to return
-     * @param character which character to repeat repetitions times
-     * @return a string containing repetitions x character
-     */
-    public static String repeatedCharactors(int repetitions, char character)
-    {
-        String output = "";
-        
-        for (int i=0; i<repetitions; i++)
-            output += character;
-        
-        return output;
     }
 }
