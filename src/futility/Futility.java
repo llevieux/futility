@@ -42,7 +42,7 @@ public final class Futility
     public static void main(String[] args) {
         int leftSpacing = 16; //number of spaces to insert to the left of the wordmark
         
-        System.out.print(newLines(9) +
+        System.out.print(newLines(8) +
             spaces(leftSpacing) + "  ████           ██   ██  ██  ██   ██\n" +
             spaces(leftSpacing) + " ██            ██████     ██     ██████\n" +
             spaces(leftSpacing) + " ██    ██   ██   ██   ██  ██  ██   ██   ██   ██\n" +
@@ -51,11 +51,12 @@ public final class Futility
             spaces(leftSpacing) + " ██     █████    ██   ██  ██  ██   ██    ██\n" +
             spaces(leftSpacing) + "                                        ██\n" +
             spaces(leftSpacing + 18) + "the game" + 
-                newLines (7)+
+                newLines (8)+
                 "press enter to start"
         ); //looks good when fixed-width
         
         keyboard.nextLine(); //proceed on enter
+        clearScreen();
         
         /**
          * User input on whether to do a new game or not.
