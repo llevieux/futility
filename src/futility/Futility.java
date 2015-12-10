@@ -129,7 +129,7 @@ public final class Futility
     {
         try 
         {
-            Thread.sleep(100 * seconds);
+            Thread.sleep(1000 * seconds);
         } catch(InterruptedException ex) 
         {
             Thread.currentThread().interrupt();
