@@ -76,4 +76,11 @@ public class Player
     {
         return this.isAlive;
     }
+    
+    /**
+     * @return the room the Player is currently in.
+     */
+    public Room getCurrentRoom() {
+        return currentRoom;
+    }
 }
