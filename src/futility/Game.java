@@ -52,7 +52,7 @@ public class Game
     /**
      * A random generator.  nextInt(int max) is very useful.
      */
-    private final Random random = new Random();
+    private static final Random random = new Random();
     
     /**
      * Some names I made up.  see randomName().
@@ -203,7 +203,7 @@ public class Game
      * 
      * @param text the text to be revealed, element by element
      */
-    private static void revealText(String... text)
+    public static void revealText(String... text)
     {
         for (int i=0; i<text.length; i++)
         {
@@ -214,5 +214,17 @@ public class Game
                 Futility.wait(1.0);
             }
         }
+    }
+    
+    /**
+     * Returns a random string of those passed.  Useful for messages that you
+     * don't want to be the same every time.
+     * 
+     * @param text strings that have an equal chance of being printed to the
+     * screen.
+     */
+    public static String randomText(String... text)
+    {
+        return text[random.nextInt(text.length)];
     }
 }
