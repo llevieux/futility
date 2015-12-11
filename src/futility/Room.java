@@ -92,8 +92,12 @@ public class Room
      */
     public boolean isAccessible(Room input)
     {
-        //TODO
-        return true;
+        for (int i=0; i<accessibleRooms.length-1; i++) //go through all the accessible rooms
+            if (accessibleRooms[i] == input) //if we've found the room
+                return true;
+        
+        //if not found
+        return false;
     }
     
     /**
