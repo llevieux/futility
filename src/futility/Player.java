@@ -48,6 +48,16 @@ public class Player
     private Room currentRoom;
     
     /**
+     * Constructor that initializes the current room.
+     * 
+     * @param startingRoom the room that the Player starts in
+     */
+    public Player(Room startingRoom)
+    {
+        this.currentRoom = startingRoom;
+    }
+    
+    /**
      * @return string representation of the inventory, using the item.name 
      * separated by a space.
      */
@@ -100,7 +110,19 @@ public class Player
     /**
      * @return the room the Player is currently in.
      */
-    public Room getCurrentRoom() {
+    public Room getCurrentRoom() 
+    {
         return currentRoom;
+    }
+    
+    /**
+     * Moves the player to a specified room.
+     * 
+     * @param toRoom the room to move to
+     */
+    public void move(Room toRoom)
+    {
+        if (toRoom != null)
+            currentRoom = toRoom;
     }
 }
