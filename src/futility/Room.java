@@ -49,6 +49,11 @@ public class Room
     private String name = "";
     
     /**
+     * Text that is printed on look().
+     */
+    private String lookText;
+    
+    /**
      * Constructor to initialize a new room with a name, accessible rooms, and
      * contained items.
      * 
@@ -205,5 +210,27 @@ public class Room
         }   
         
         return output;
+    }
+    
+    /**
+     * Prints a description of the Room.  The text can, and should, be added via
+     * setLookText.
+     */
+    public void look()
+    {
+        if (lookText == null)
+            System.out.println("the room is just a normal room.");
+        else
+            System.out.println(lookText);
+    }
+    
+    /**
+     * Sets the text that is used by loop().
+     * 
+     * @param lookText a wry description of the room.
+     */
+    public void setLookText (String lookText)
+    {
+        this.lookText = lookText;
     }
 }
