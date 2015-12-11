@@ -61,6 +61,26 @@ public class Player
     }
     
     /**
+     * Picks up an item, by adding it to inventory.
+     * 
+     * @param toGet item to pick up.
+     */
+    public void get(Item toGet)
+    {
+        int i=0;
+        
+        for(i=0; i<inventory.length; i++)
+            if (inventory[i] == null)
+                break;
+        
+        if (inventory[i] != null)
+            System.out.println(" you are a human. you can't really hold more "
+                    + "than 2 things.  you'll need to drop something first.");
+        else
+            inventory[i] = toGet;
+    }
+    
+    /**
      * When called the player becomes not alive, AKA isAlive() returns false.
      */
     public void die()
