@@ -133,4 +133,17 @@ public final class Futility
             Thread.currentThread().interrupt();
         }
     }
+    
+    /**
+     * Displays an about + help message.
+     */
+    public static void about()
+    {
+        System.out.println(
+            " futility: the game\n\n"
+            + "      by lucas levieux and kane mcgrath\n\n\n"
+            + " github.com/llevieux/futility\n\n\n\n"
+            + " futility is a text based game.  that means when you type in \n"
+            + " certain commands, things happen.  good luck I guess.");
+    }
 }
