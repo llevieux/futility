@@ -160,6 +160,7 @@ public class Game
             
             System.out.print(" what do you do? ");
             String command1 = keyboard.next().toLowerCase();
+            
             if (!requiresSecondCommand(command1))
             {
                 keyboard.nextLine();
@@ -184,14 +185,21 @@ public class Game
                         revealText(
                             "you are still in a small, concrete-reinforced room",
                                 "you can't \"" + command1 + "\".");
+                        Futility.clearScreen();
                         continue;
                     default:
-                        System.out.println("internal error #1");
+                        System.out.println(" internal error #1 - sorry bout that");
                         break;
                 }
             } else 
             {
-                // second command
+                String command2 = keyboard.next().toLowerCase();
+                
+                switch(command2)
+                {
+                    default:
+                        System.out.println("\n\n you can't do that.");
+                }
             }
         } 
         
