@@ -35,6 +35,11 @@ public class Game
     private static final Scanner keyboard = Futility.keyboard;
     
     /**
+     * The time between lines in revealText.
+     */
+    private static final double WAITTIME = 0; //1 for normal, 0 for testing
+    
+    /**
      * Count of games played in this session
      */
     private int gameCount = 0;
@@ -125,19 +130,21 @@ public class Game
         
         Item[] theRoomItems = {matchbox, flare, hammer, refrigerator, lawnMower,
             antHill, box, anotherBox, monopolyMoney, pressureCooker, chalk};
-        
+        */
         
         //ROOMS
         Room theRoom = new Room("room", 
-                new Room[0], //no rooms accessible from theRoom
-                theRoomItems, levers, buttons //three lists of items to be added
+                new Room[0] //no rooms accessible from theRoom
+                //theRoomItems, levers, buttons //three lists of items to be added
         );
         
         Room[] rooms = {theRoom};
         
+        
+        
         //PLAYERS
         player = new Player(theRoom);
-        */
+        
         
         
         //--------------------------INTRODUCTION--------------------------
@@ -147,10 +154,46 @@ public class Game
         
         
         //--------------------------MAIN LOOP--------------------------
-        while (player.isAlive() && player.getCurrentRoom().getName() == "room")
-        {
-            //main loop(through each turn)
-        }
+        while (player.isAlive()/* && player.getCurrentRoom().getName() == "room"*/)
+        {            
+            //display hints and stats
+            
+            System.out.print(" what do you do? ");
+            String command1 = keyboard.next().toLowerCase();
+            if (!requiresSecondCommand(command1))
+            {
+                keyboard.nextLine();
+                Futility.clearScreen();
+            
+                switch(command1)
+                {
+                    case "about":
+                    case "help":
+                        Futility.about();
+                        continue; //no need for a second command
+                    case "inventory":
+                        System.out.println(player.getInventory());
+                        continue;
+                    case "look":
+                    case "scope":
+                        player.getCurrentRoom().look();
+                        continue;
+                    case "exit":
+                    case "end":
+                    case "quit":
+                        revealText(
+                            "you are still in a small, concrete-reinforced room",
+                                "you can't \"" + command1 + "\".");
+                        continue;
+                    default:
+                        System.out.println("internal error #1");
+                        break;
+                }
+            } else 
+            {
+                // second command
+            }
+        } 
         
         //--------------------------GAME OVER--------------------------
         if (player.getCurrentRoom().getName() != "room")
@@ -211,7 +254,7 @@ public class Game
             for (int h=0; h<6; h++)
             {
                 System.out.println();
-                Futility.wait(1.0);
+                Futility.wait(WAITTIME);
             }
         }
     }
@@ -226,5 +269,22 @@ public class Game
     public static String randomText(String... text)
     {
         return text[random.nextInt(text.length)];
+    }
+    
+    /**
+     * @param command the command as given in the main loop
+     * @return true if the command is the kind of command that needs more info
+     */
+    private static boolean requiresSecondCommand(String command)
+    {
+        String[] blacklist = {"about", "help", "inventory", "look", "scope", 
+            "exit", "quit", "end"};
+        
+        for (int i=0; i<blacklist.length; i++) //look in each blacklist
+            if (blacklist[i].equals(command)) //if it's the same as the parameter
+                return false;
+        
+        //else, it requires a second command
+        return true;
     }
 }
