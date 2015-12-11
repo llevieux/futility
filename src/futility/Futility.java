@@ -52,7 +52,7 @@ public final class Futility
             spaces(leftSpacing) + "                                        ██\n" +
             spaces(leftSpacing + 18) + "the game" + 
                 newLines (8)+
-                "press enter to start"
+                " press enter to start"
         ); //looks good when fixed-width
         
         keyboard.nextLine(); //proceed on enter
@@ -139,11 +139,17 @@ public final class Futility
      */
     public static void about()
     {
-        System.out.println(
-            " futility: the game\n\n"
-            + "      by lucas levieux and kane mcgrath\n\n\n"
-            + " github.com/llevieux/futility\n\n\n\n"
-            + " futility is a text based game.  that means when you type in \n"
-            + " certain commands, things happen.  good luck I guess.");
+        System.out.print(
+            " futility: the game" + newLines(2)
+            + "      by lucas levieux and kane mcgrath" + newLines(5)
+            + " github.com/llevieux/futility" + newLines(5)
+            + " futility is a text based game.  that means when you type in"
+            + " certain commands, \n"
+            + " things happen." + newLines(2) 
+            + " good luck I guess." + newLines(5)
+            + " press enter to continue");
+        keyboard.nextLine();
+        keyboard.nextLine();
+        clearScreen();
     }
 }
