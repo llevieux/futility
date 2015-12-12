@@ -37,7 +37,7 @@ public class Game
     /**
      * The time between lines in revealText.
      */
-    private static final double WAITTIME = 0; //1 for normal, 0 for testing
+    private static final double WAITTIME = 1; //1 for normal, 0 for testing
     
     /**
      * Count of games played in this session
@@ -178,6 +178,7 @@ public class Game
                     case "look":
                     case "scope":
                         player.getCurrentRoom().look();
+                        System.out.print(Futility.newLines(5));
                         continue;
                     case "exit":
                     case "end":

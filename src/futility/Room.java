@@ -219,9 +219,9 @@ public class Room
     public void look()
     {
         if (lookText == null)
-            System.out.println("the room is just a normal room.");
+            System.out.println(" the room is just a normal room.");
         else
-            System.out.println(lookText);
+            System.out.println(" " + lookText);
     }
     
     /**
