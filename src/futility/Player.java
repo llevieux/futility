@@ -122,7 +122,7 @@ public class Player
      */
     public void move(Room toRoom)
     {
-        if (toRoom != null)
+        if (toRoom != null && currentRoom.isAccessible(toRoom))
             currentRoom = toRoom;
     }
 }
