@@ -137,8 +137,10 @@ public class Game
                 new Room[0] //no rooms accessible from theRoom
                 //theRoomItems, levers, buttons //three lists of items to be added
         );
+        Room billiardsRoom = new Room("billiards room", null,
+                new Item[]{new Item("cue stick"), new Item("chair")});
         
-        Room[] rooms = {theRoom};
+        Room[] rooms = {theRoom, billiardsRoom};
         
         
         
