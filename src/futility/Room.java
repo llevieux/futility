@@ -55,10 +55,11 @@ public class Room
     
     /**
      * Constructor to initialize a new room with a name, accessible rooms, and
-     * contained items.
+     * arrays with contained items.
      * 
      * @param name the name of the room.
-     * @param accessibleRooms all of the rooms accessible from this object
+     * @param accessibleRooms  all of the rooms accessible from this object (can
+     * be null)
      * @param itemsInRoom the items contained and available inside the room.
      * Arbitrary amount of arrays of items are accepted.  Items will be
      * arranged in the order that they are entered.
