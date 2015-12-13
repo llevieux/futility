@@ -168,6 +168,16 @@ public class Room
         
         this.itemsInRoom = output;
     }
+    
+    /**
+     * Adds a single item via addItems
+     * 
+     * @param newItem item to be added to the room
+     */
+    public void addItem (Item newItem)
+    {
+        addItems (new Item[]{newItem});
+    }
 
     /**
      * @return an array of all the items contained and available in the room
