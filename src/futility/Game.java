@@ -147,8 +147,6 @@ public class Game
         //PLAYERS
         player = new Player(theRoom);
         
-        
-        
         //--------------------------INTRODUCTION--------------------------
         revealText("you are in a small, concrete-reinforced room",
                 "your only wish in your humble life is to get out",
@@ -159,9 +157,12 @@ public class Game
         while (player.isAlive()/* && player.getCurrentRoom().getName() == "room"*/)
         {            
             //display hints and stats
-            
-            System.out.print(" what do you do? ");
-            String command1 = keyboard.next().toLowerCase();
+            String command1;
+            do
+            {
+                System.out.print(" what do you do? ");
+                command1 = keyboard.next().toLowerCase();
+            } while (isValidCommand(command1));
             
             if (!requiresSecondCommand(command1))
             {
@@ -297,5 +298,22 @@ public class Game
         
         //else, it requires a second command
         return true;
+    }
+    
+    /**
+     * @param command the command as given in the main loop
+     * @return true if the command is a valid command
+     */
+    private static boolean isValidCommand(String command)
+    {
+        String[] whitelist = {"about", "help", "inventory", "look", "scope", 
+            "exit", "quit", "end"};
+        
+        for (int i=0; i<whitelist.length; i++) //look in each blacklist
+            if (whitelist[i].equals(command)) //if it's the same as the parameter
+                return true;
+        
+        //else
+        return false;
     }
 }
