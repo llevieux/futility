@@ -37,7 +37,7 @@ public class Game
     /**
      * The time between lines in revealText.
      */
-    private static final double WAITTIME = 1; //1 for normal, 0 for testing
+    private static final double WAITTIME = 0; //1 for normal, 0 for testing
     
     /**
      * Count of games played in this session
@@ -162,7 +162,9 @@ public class Game
             {
                 System.out.print(" what do you do? ");
                 command1 = keyboard.next().toLowerCase();
-            } while (isValidCommand(command1));
+                if (!isValidCommand(command1))
+                    System.out.println("\n nope, that's not something you can do.\n");
+            } while (!isValidCommand(command1));
             
             if (!requiresSecondCommand(command1))
             {
@@ -182,6 +184,15 @@ public class Game
                     case "scope":
                         player.getCurrentRoom().look();
                         System.out.print(Futility.newLines(5));
+                        continue;
+                    case "jump":
+                        revealText("you jump in the air", "\"whee, you shout\"");
+                        continue;
+                    case "die":
+                        System.out.println(" how morbid of you.");
+                        Futility.wait(3.0);
+                        Futility.clearScreen();
+                        player.die();
                         continue;
                     case "exit":
                     case "end":
@@ -290,7 +301,7 @@ public class Game
     private static boolean requiresSecondCommand(String command)
     {
         String[] blacklist = {"about", "help", "inventory", "look", "scope", 
-            "exit", "quit", "end"};
+            "exit", "quit", "end", "jump", "die"};
         
         for (int i=0; i<blacklist.length; i++) //look in each blacklist
             if (blacklist[i].equals(command)) //if it's the same as the parameter
@@ -307,7 +318,7 @@ public class Game
     private static boolean isValidCommand(String command)
     {
         String[] whitelist = {"about", "help", "inventory", "look", "scope", 
-            "exit", "quit", "end"};
+            "exit", "quit", "end", "jump", "die", "run"};
         
         for (int i=0; i<whitelist.length; i++) //look in each blacklist
             if (whitelist[i].equals(command)) //if it's the same as the parameter
