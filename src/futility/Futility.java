@@ -71,7 +71,7 @@ public final class Futility
         {
             clearScreen();
             new Game(gameCount);
-            System.out.println("\ntry again?");
+            System.out.println("\n try again?");
             again = keyboard.nextLine();
             gameCount++;
         } while (Character.toLowerCase(again.charAt(0)) == 'y');
