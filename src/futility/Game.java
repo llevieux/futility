@@ -140,7 +140,13 @@ public class Game
         Room billiardsRoom = new Room("billiards room", null,
                 new Item[]{new Item("cue stick"), new Item("chair")});
         
-        Room[] rooms = {theRoom, billiardsRoom};
+        Room garage = new Room("garage", null,
+                new Item[]{new Item("car"), new Item("oil stain"), new Item("box")});
+        
+        Room armory = new Room("armory", null,
+                new Item[]{new Item("sword")});
+        
+        Room[] rooms = {theRoom, billiardsRoom, garage, armory};
         
         
         
@@ -274,7 +280,7 @@ public class Game
         for (int i=0; i<text.length; i++)
         {
             System.out.print(" " + text[i]);
-            for (int h=0; h<6; h++)
+            for (int h=0; h<4; h++)
             {
                 System.out.println();
                 Futility.wait(WAITTIME);
