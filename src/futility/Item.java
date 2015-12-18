@@ -35,5 +35,4 @@ public class Item
         return name;
     }
     
-    //I'm sorry, I am trying
 }
