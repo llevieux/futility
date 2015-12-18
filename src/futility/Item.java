@@ -39,4 +39,15 @@ public class Item
         return name;
     }
     
+    public void eat(){
+        System.out.println("You ate the " + name);
+    }
+    
+    public void burn(){
+        System.out.println("You burned the " + name);
+    }
+    
+    public void toss(){
+        System.out.println("You threw the " + name);
+    }
 }
