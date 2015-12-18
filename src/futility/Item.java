@@ -24,11 +24,15 @@ package futility;
  */
 public class Item 
 {
-    private String name = "";
+    private String name;
+    private boolean isFlammable;
+    private boolean isMoveable;
     
-    public Item(String name)
+    public Item(String name, boolean isFlammable, boolean isMoveable)
     {
         this.name = name;
+        this.isFlammable = isFlammable;
+        this.isMoveable = isMoveable;
     }
 
     public String getName() {
