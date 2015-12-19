@@ -386,7 +386,6 @@ public class Game
     }
     
     /**
-     * 
      * @param command a string with the name or alias of a command
      * @return a Command object that matches the string
      */
@@ -400,12 +399,19 @@ public class Game
         return null;
     }
     
+    /**
+     * Finds an item inside of the current room.
+     * 
+     * @param itemName the name of the item to find
+     * @return the first object in the current room whose name matches itemName.
+     * null if no such item is found.
+     */
     private Item getItemObject (String itemName)
     {
         Item[] itemsInRoom = player.getCurrentRoom().getItems();
         
-        for (int i=0; i<itemsInRoom.length; i++) 
-            if (itemsInRoom[i].getName().equals(itemName))
+        for (int i=0; i<itemsInRoom.length; i++)
+            if (itemsInRoom[i] != null && itemsInRoom[i].getName().equals(itemName)) //lazy evalutation saves a null pointer exception
                 return itemsInRoom[i];
         
         //else
