@@ -113,8 +113,6 @@ public class Game
      */
     private void main()
     {
-        /* commented out until the other classes are finished
-        
         //--------------------------INITIALIZATION--------------------------
         
         //ITEMS
@@ -127,9 +125,9 @@ public class Game
         Hammer hammer = new Hammer(randomName() + " the hammer");
         Refrigerator refrigerator = new Refrigerator("refrigerator");
         LawnMower lawnMower = new LawnMower("lawnmower");
-        AntHill antHill = new AntHill("anthill");
-        Box box = new Box("box");
-        Box anotherBox = new Box("anouther box");
+        //AntHill antHill = new AntHill("anthill");
+        //Box box = new Box("box");
+        //Box anotherBox = new Box("anouther box");
         
         UselessSwitch[] levers = new UselessSwitch[random.nextInt(4) + 1];
             //random number between 1 and 5
@@ -142,12 +140,13 @@ public class Game
             buttons[i] = new UselessSwitch("button " + (i+1));
         
         Item monopolyMoney = new Item("monopoly money", true, true);
-        UselessSwitch pressureCooker = new PressureCooker("pressure cooker");
-        Chalk chalk = new Chalk("chalk");
+        UselessSwitch pressureCooker = new UselessSwitch("pressure cooker");
+        //Chalk chalk = new Chalk("chalk");
         
         Item[] theRoomItems = {matchbox, flare, hammer, refrigerator, lawnMower,
-            antHill, box, anotherBox, monopolyMoney, pressureCooker, chalk};
-        */
+            monopolyMoney, pressureCooker, 
+            //chalk, antHill, box, anotherBox
+        };
         
         //ROOMS
         Room theRoom = new Room("room", 
