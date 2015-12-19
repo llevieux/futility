@@ -37,7 +37,7 @@ public class Game
     /**
      * The time between lines in revealText.
      */
-    private static final double WAITTIME = 0; //1 for normal, 0 for testing
+    private static final double WAITTIME = 1; //1 for normal, 0 for testing
     
     /**
      * Count of games played in this session
@@ -217,7 +217,7 @@ public class Game
         
         while (player.isAlive() && player.getCurrentRoom() == theRoom)
         {            
-            System.out.print("available commands: ");
+            System.out.print(" available commands: ");
             
             for (int i=0; i<commands.length; i++)
             {
@@ -232,8 +232,9 @@ public class Game
                     System.out.println();
             }
             
-            System.out.println("inventory: " + player.getInventory());
-            
+            System.out.println(" inventory: " + player.getInventory());
+            System.out.println(" accessible rooms: " + player.getInventory());
+            System.out.println();
             
             String command1;
             do
@@ -243,7 +244,8 @@ public class Game
                 if (!isValidCommand(command1))
                     System.out.println(randomText("\n nope, that's not something you can do.\n",
                             "\n you can't do that.\n",
-                            "\n no.\n"));
+                            "\n no.\n",
+                            "\n you tried to " + command1 + ", but nothing happened."));
             } while (!isValidCommand(command1));
             
             Command command1Object = getCommandObject (command1);
@@ -256,7 +258,7 @@ public class Game
                 if (command1Object.isNameOrAlias("about"))
                     Futility.about();
                 else if (command1Object.isNameOrAlias("inventory"))
-                    System.out.println(player.getInventory());
+                    revealText(player.getInventory());
                 else if (command1Object.isNameOrAlias("look"))
                     player.getCurrentRoom().look();
                 else if (command1Object.isNameOrAlias("jump"))
@@ -288,6 +290,8 @@ public class Game
                         System.out.println("\n\n you can't do that.");
                 }
             }
+            
+            System.out.println("\n");
         } 
         
         //--------------------------GAME OVER--------------------------
