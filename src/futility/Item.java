@@ -20,7 +20,7 @@ package futility;
 /**
  * A thing found in a room. Can be picked up and dropped via the player.
  * 
- * @author Lucas LeVieux <contact@lucaslevieux.com>
+ * @author Lucas LeVieux <contact@lucaslevieux.com> & Kane McGrath
  */
 public class Item 
 {
