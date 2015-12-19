@@ -109,7 +109,7 @@ public class Command
      */
     public boolean isNameOrAlias(String input)
     {
-        if (input == name || isAlias(input))
+        if (input.equals(name) || isAlias(input))
             return true;
         else 
             return false;
@@ -121,7 +121,7 @@ public class Command
     public boolean isAlias (String input)
     {
         for (int i=0; i<alias.length; i++) //look through the alias for input
-            if (input == alias[i])
+            if (input.equals(alias[i]))
                 return true;
         //else
         return false;
