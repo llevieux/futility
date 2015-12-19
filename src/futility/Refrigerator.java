@@ -12,9 +12,10 @@ package futility;
 public class Refrigerator extends Item{
     
     public Refrigerator(String name){
+        super(name);
         isFlammable = false;
         isMoveable = false;
-        super(Item);
+        
     }
     
     public void refrigerate(Item item){
