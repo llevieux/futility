@@ -69,6 +69,7 @@ public class Game
         
         new Command("go", true, "go <room>", "run", "move"),
         new Command("get", true, "get <item>", "pickup", "add", "take"),
+        new Command("light", true, "light <match>", "strike", "ignite"),
         new Command("drop", true, "drop <item>", "put", "remove", "leave")
     };
     
@@ -295,6 +296,16 @@ public class Game
                 player.get(getItemObject(command2));
             else if (command1Object.isNameOrAlias("drop"))
                 player.drop(getItemObject(command2));
+            else if (command1Object.isNameOrAlias("go"))
+                System.out.println("\n you're stuck inside a small, concrete-"
+                + "reinforced room.  you can't just leave.\n");
+            else if (command1Object.isNameOrAlias("light"))
+            {
+                for (int i=0; i<player.getInventoryArray().length; i++)
+                    if (player.getInventoryArray()[i] instanceof Match ||
+                        player.getInventoryArray()[i].getName().equals(command2))
+                            player.getInventoryArray()[i].light();
+            }
             else 
                 System.out.println(" internal error #1 - sorry bout that");
             
