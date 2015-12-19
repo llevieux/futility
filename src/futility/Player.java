@@ -87,6 +87,9 @@ public class Player
      */
     public void get(Item toGet)
     {
+        if (toGet == null)
+            return;
+        
         for(int i=0; i<inventory.length; i++)
             if (toGet.isMoveable){
                 if (inventory[i] == null) //there's an emtpty slot in the inventory
@@ -109,6 +112,9 @@ public class Player
     
     public void drop(Item toDrop)
     {
+        if (toDrop == null)
+            return;
+        
         for(int i=0; i<inventory.length; i++)
             if (inventory[i] == toDrop){
                 inventory[i] = null; //remove from inventory
