@@ -70,5 +70,29 @@ public class Command
         this.requiresVerb = requiresVerb;
     }
     
+    /**
+     * @return The name of the command. eg "go" or "run"
+     */
+    public String getName()
+    {
+        return name;
+    }
     
+    /**
+     * @return If the command requires a second command (in 
+     * game.java's main loop).
+     */
+    public boolean requiresVerb()
+    {
+        return requiresVerb;
+    }
+    
+    /**
+     * @return A short description of how the command should be used. 
+     * eg. "go <room>"
+     */
+    public String getDescription()
+    {
+        return description;
+    }
 }
