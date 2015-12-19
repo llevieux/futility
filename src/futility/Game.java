@@ -142,11 +142,11 @@ public class Game
             buttons[i] = new UselessSwitch("button " + (i+1));
         
         Item monopolyMoney = new Item("monopoly money", true, true);
-        monopolyMoney.setDescription("The troubles of money are so foolish "
+        monopolyMoney.setDescription("the troubles of money are so foolish "
                 + "relative to the current situation");
         UselessSwitch pressureCooker = new UselessSwitch("pressure cooker");
-        pressureCooker.setDescription("The cruel Irony of having no food, and a "
-                + "Device to cook it with");
+        pressureCooker.setDescription("The cruel irony of having no food, and a "
+                + "device to cook it with");
         //Chalk chalk = new Chalk("chalk");
         
         Item[] theRoomItems = {matchbox, flare, hammer, refrigerator, lawnMower,
