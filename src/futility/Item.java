@@ -35,7 +35,12 @@ public class Item
         this.isMoveable = isMoveable;
     }
     public Item(String name){
+        
         this(name, true, true);
+    }
+    
+    public Item(){
+        this("");
     }
 
     public String getName() {
