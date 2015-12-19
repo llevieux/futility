@@ -18,6 +18,7 @@ public class UselessSwitch extends Item{
         super(name);
         isFlammable = false;
         isMoveable = false;
+        Description = "It is a Switch, you should press it.";
     }
     
     public void Switch(){
