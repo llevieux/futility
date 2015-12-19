@@ -188,6 +188,34 @@ public class Room
                     output += ", "; //every time but the last time.
             }
         
+        if (output.equals(""))
+            return "(none)";
+        
+        return output;
+    }
+    
+    /**
+     * @return a string representation of the items in the rooms.  In the form
+     * "name1, name2, name2"
+     */
+    public String getStringOfItemsInRoom()
+    {
+        String output = "";
+        
+        for (int i=0; i<itemsInRoom.length; i++)
+            {
+                if (itemsInRoom[i] == null)
+                    continue;
+                
+                output += itemsInRoom[i].getName();
+                
+                if (i < (itemsInRoom.length-1))
+                    output += ", "; //every time but the last time.
+            }
+        
+        if (output.equals(""))
+            return "(none)";
+        
         return output;
     }
     
