@@ -29,13 +29,7 @@ public class Item
     boolean isMoveable;
     String Description;
     
-    public Item(String name, boolean isFlammable, boolean isMoveable, String Description)
-    {
-        this.name = name;
-        this.isFlammable = isFlammable;
-        this.isMoveable = isMoveable;
-        this.Description = Description;
-    }
+    
     public Item(String name, boolean isFlammable, boolean isMoveable)
     {
         this.name = name;
