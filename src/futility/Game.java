@@ -146,6 +146,9 @@ public class Game
         Room billiardsRoom = new Room("billiards room", null,
                 new Item[]{new Item("cue stick"), new Item("chair")});
         
+        Room billiardsAirlock = new Room("billiards airlock",
+                new Room[]{billiardsRoom}, null);
+        
         Room garage = new Room("garage", null,
                 new Item[]{new Item("car"), new Item("oil stain"), new Item("box")});
         
@@ -164,8 +167,20 @@ public class Game
             for (int i=0; i<random.nextInt(4); i++)
                 dragons1.addItem(new Item("dragon"));
         
+        Room oilRefinery = new Room("oil refinery", 
+                new Room[]{satan}, 
+                new Item[]{new Item("oil"), new Item("machines")});
         
+        Room closet = new Room("closet");
+        
+        Room sadness = new Room("sadness room");
+        
+        Room hallway = new Room("hallway");
             
+        Room hanger = new Room("hanger", 
+                new Room[]{hallway, satan},
+                new Item[]{new Item("lucas the airplane"), 
+                    new Item("kane the airplane")});
         
         Room[] rooms = {theRoom, billiardsRoom, garage, untitled, satan};
         
