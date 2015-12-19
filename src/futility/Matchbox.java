@@ -10,9 +10,17 @@ package futility;
  * @author Kane
  */
 public class Matchbox extends Item{
-    public Matchbox(String name, boolean isFlammable, boolean isMoveable){
+    private Match[] matches = new Match[6];
+    
+    public Matchbox(String name, Match[] p2){
         super(name);
         isFlammable = true;
         isMoveable = true;
+        
+        for(int i = 0; i < p2.length; i++){
+            matches[i] = p2[i];
+        }
     }
+    
+    
 }
