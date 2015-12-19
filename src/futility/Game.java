@@ -208,13 +208,13 @@ public class Game
         //PLAYERS
         player = new Player(theRoom);
         
-        //--------------------------INTRODUCTION--------------------------
+        
+        //--------------------------MAIN GAME--------------------------
         revealText("you are in a small, concrete-reinforced room",
                 "your only wish in your humble life is to get out",
                 "there are no doors and no windows");
         
         
-        //--------------------------MAIN LOOP--------------------------
         while (player.isAlive() && player.getCurrentRoom() == theRoom)
         {            
             System.out.print("available commands: ");
@@ -231,47 +231,39 @@ public class Game
                             "\n no.\n"));
             } while (!isValidCommand(command1));
             
-            if (!getCommandObject(command1).requiresVerb())
+            Command command1Object = getCommandObject (command1);
+            
+            if (!command1Object.requiresVerb())
             {
                 keyboard.nextLine();
                 Futility.clearScreen();
-            
-                switch(command1)
+                
+                if (command1Object.isNameOrAlias("about"))
+                    Futility.about();
+                else if (command1Object.isNameOrAlias("inventory"))
+                    System.out.println(player.getInventory());
+                else if (command1Object.isNameOrAlias("look"))
+                    player.getCurrentRoom().look();
+                else if (command1Object.isNameOrAlias("jump"))
+                    revealText("you jump in the air", "\"whee, you shout\"");
+                else if (command1Object.isNameOrAlias("die"))
                 {
-                    case "about":
-                    case "help":
-                        Futility.about();
-                        continue; //no need for a second command
-                    case "inventory":
-                        System.out.println(player.getInventory());
-                        continue;
-                    case "look":
-                    case "scope":
-                        player.getCurrentRoom().look();
-                        System.out.print(Futility.newLines(5));
-                        continue;
-                    case "jump":
-                        revealText("you jump in the air", "\"whee, you shout\"");
-                        continue;
-                    case "die":
-                        System.out.println(" how morbid of you.");
-                        Futility.wait(3.0);
-                        Futility.clearScreen();
-                        player.die();
-                        continue;
-                    case "exit":
-                    case "end":
-                    case "quit":
-                        revealText(
+                    System.out.println(" how morbid of you.");
+                    Futility.wait(3.0);
+                    Futility.clearScreen();
+                    player.die();
+                }
+                else if (command1Object.isNameOrAlias("exit"))
+                {
+                    revealText(
                             "you are still in a small, concrete-reinforced room",
                                 "you can't \"" + command1 + "\".");
-                        Futility.clearScreen();
-                        continue;
-                    default:
-                        System.out.println(" internal error #1 - sorry bout that");
-                        break;
+                    Futility.clearScreen();
                 }
-            } else 
+                else 
+                    System.out.println(" internal error #1 - sorry bout that");
+            
+            } else //needs a second prompt
             {
                 String command2 = keyboard.next().toLowerCase();
                 
