@@ -246,15 +246,17 @@ public class Game
             System.out.println(" items in room: " + player.getCurrentRoom().getStringOfItemsInRoom());
             System.out.println();
             
-            String input, command1, command2;
+            String input = "", command1 = "", command2 = "";
             do
             {
                 System.out.print(" what do you do? ");
                 input = keyboard.nextLine().toLowerCase().trim();
                 
                 String[] inputArray = input.split(" ", 2);
-                command1 = inputArray[0];
-                command2 = inputArray[1];
+                if (inputArray.length > 0)
+                    command1 = inputArray[0];
+                if (inputArray.length > 1)
+                    command2 = inputArray[1];
                 
                 if (!isValidCommand(command1))
                     System.out.println(randomText("\n nope, that's not something you can do.\n",
