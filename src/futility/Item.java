@@ -53,6 +53,10 @@ public class Item
         return name;
     }
     
+    public void light(){
+        System.out.println(" you can't light the " + name);
+    }
+    
     public void eat(){
         System.out.println(" you ate the " + name);
     }
