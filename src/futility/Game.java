@@ -137,12 +137,11 @@ public class Game
         
         //ROOMS
         Room theRoom = new Room("room", 
-                new Room[0] //no rooms accessible from theRoom
+                null, //no rooms accessible from theRoom
+                "you are in a small, concrete-reinforced room.\n\n\n"
+                + " there are no doors and no windows"
                 //theRoomItems, levers, buttons //three lists of items to be added
         );
-        
-        theRoom.setLookText("you are in a small, concrete-reinforced room.\n\n\n"
-                + " there are no doors and no windows");
         
         Room billiardsRoom = new Room("billiards room", null,
                 new Item[]{new Item("cue stick"), new Item("chair")});
@@ -150,10 +149,12 @@ public class Game
         Room garage = new Room("garage", null,
                 new Item[]{new Item("car"), new Item("oil stain"), new Item("box")});
         
-        Room armory = new Room("armory", null,
-                new Item[]{new Item("sword")});
+        Room untitled = new Room("untitled");
         
-        Room[] rooms = {theRoom, billiardsRoom, garage, armory};
+        Room satan = new Room("satan.", null,
+                new Item[]{new Item("fire")});
+        
+        Room[] rooms = {theRoom, billiardsRoom, garage, untitled, satan};
         
         
         
