@@ -11,7 +11,9 @@ package futility;
  */
 public class Matchbox extends Item{
     public Matchbox(String name, boolean isFlammable, boolean isMoveable){
-        super(Item);
+        super(name);
+        
+        
     }
     
 }
