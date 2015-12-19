@@ -25,5 +25,32 @@ package futility;
  */
 public class Command 
 {
+    /**
+     * The name of the command. eg "go" or "run"
+     */
+    private String name;
     
+    /**
+     * If the command requires a second command (in game.java's main loop).
+     */
+    private boolean requiresVerb = false;
+    
+    /**
+     * A short description of how the command should be used.
+     * 
+     * eg. "go <room>"
+     */
+    private String description = "";
+    
+    public Command(String name, String description)
+    {
+        this.name = name;
+        this.description = description;
+    }
+    
+    public Command(String name, boolean requiresVerb, String description)
+    {
+        this(name, description);
+        this.requiresVerb = requiresVerb;
+    }
 }
