@@ -41,7 +41,6 @@ public class Match extends Item{
     public void eat(){
         if (lit){
             System.out.println(" You have ate the match and the fire burns your throat");
-            player.die();
         } else {
             System.out.println(" You have swallowed the match");
         }
