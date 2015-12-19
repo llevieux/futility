@@ -104,4 +104,23 @@ public class Command
     {
         return description;
     }
+    
+    /**
+     * @return true if the input is equal to either the name or the alias of
+     * this command.
+     */
+    public boolean isNameOrAlias(String input)
+    {
+        if (input == name)
+            return true;
+        else 
+        {
+            for (int i=0; i<alias.length; i++) //look through the alias for input
+                if (input == alias[i])
+                    return true;
+            
+            //else
+            return false;
+        }
+    }
 }
