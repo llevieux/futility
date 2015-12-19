@@ -24,16 +24,33 @@ package futility;
  */
 public class Item 
 {
-    private String name = "";
+    String name;
+    boolean isFlammable;
+    boolean isMoveable;
     
-    public Item(String name)
+    public Item(String name, boolean isFlammable, boolean isMoveable)
     {
         this.name = name;
+        this.isFlammable = isFlammable;
+        this.isMoveable = isMoveable;
+    }
+    public Item(String name){
+        this(name, true, true);
     }
 
     public String getName() {
         return name;
     }
     
-    //I'm sorry, I am trying
+    public void eat(){
+        System.out.println(" You ate the " + name);
+    }
+    
+    public void burn(){
+        System.out.println(" You burned the " + name);
+    }
+    
+    public void toss(){
+        System.out.println(" You threw the " + name);
+    }
 }
