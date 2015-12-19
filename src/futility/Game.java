@@ -57,8 +57,14 @@ public class Game
     /**
      * Valid commands.
      */
-    private String[] commands = {"about", "help", "inventory", "look", "scope", 
-            "exit", "quit", "end", "jump", "die", "run"};
+    private static String[] commands = {"about", "help", "inventory", "look", 
+        "scope", "exit", "quit", "end", "jump", "die", "run", "go", ""};
+    
+    /**
+     * Commands that don't need a second command.
+     */
+    private static String[] needsNoSubject = {"about", "help", "inventory", "look", "scope", 
+            "exit", "quit", "end", "jump", "die"};
     
     /**
      * A random generator.  nextInt(int max) is very useful.
@@ -78,6 +84,7 @@ public class Game
             "olleh", "bam", "ban", "bun", "orion", "baby", "ice cube", "yolo",
             "doodle", "diddle", "jax", "harry", "cassidy", "light", "flame"
         };
+    
     
     /**
      * Runs a game.
@@ -150,7 +157,7 @@ public class Game
                 new Item[]{new Item("cue stick"), new Item("chair")});
         
         Room billiardsAirlock = new Room("billiards airlock",
-                new Room[]{billiardsRoom}, null);
+                new Room[]{billiardsRoom});
         
         Room hallway = new Room("hallway", new Room[]{billiardsRoom});
             
@@ -207,7 +214,9 @@ public class Game
         //--------------------------MAIN LOOP--------------------------
         while (player.isAlive() && player.getCurrentRoom() == theRoom)
         {            
-            //display hints and stats
+            System.out.print("available commands: ");
+            
+            
             String command1;
             do
             {
@@ -358,11 +367,8 @@ public class Game
      */
     private boolean requiresSecondCommand(String command)
     {
-        String[] blacklist = {"about", "help", "inventory", "look", "scope", 
-            "exit", "quit", "end", "jump", "die"};
-        
-        for (int i=0; i<blacklist.length; i++) //look in each blacklist
-            if (blacklist[i].equals(command)) //if it's the same as the parameter
+        for (int i=0; i<needsNoSubject.length; i++) //look in each blacklist
+            if (needsNoSubject[i].equals(command)) //if it's the same as the parameter
                 return false;
         
         //else, it requires a second command
