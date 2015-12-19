@@ -57,14 +57,18 @@ public class Game
     /**
      * Valid commands.
      */
-    private static String[] commands = {"about", "help", "inventory", "look", 
-        "scope", "exit", "quit", "end", "jump", "die", "run", "go", ""};
-    
-    /**
-     * Commands that don't need a second command.
-     */
-    private static String[] needsNoSubject = {"about", "help", "inventory", "look", "scope", 
-            "exit", "quit", "end", "jump", "die"};
+//    private static Command[] commands = {"about", "help", "inventory", "look", 
+//        "scope", "exit", "quit", "end", "jump", "die", "run", "go", "move"};
+    private static Command[] commands = {
+        new Command("about", "help", "info"),
+        new Command("inventory"),
+        new Command("look", "scope"),
+        new Command("exit", "quit", "end"),
+        new Command("jump", "hop"),
+        new Command("die"),
+        
+        new Command("go", true, "go <room>", "run", "move")
+    };
     
     /**
      * A random generator.  nextInt(int max) is very useful.
@@ -164,7 +168,7 @@ public class Game
         Room hanger = new Room("hanger", 
                 new Room[]{hallway},
                 new Item[]{new Item("lucas the airplane"), 
-                    new Item("kane the airplane")});
+                new Item("kane the airplane")});
         
         hallway.addAccessibleRoom(hanger);
         
@@ -359,20 +363,6 @@ public class Game
     public static String randomText(String... text)
     {
         return text[random.nextInt(text.length)];
-    }
-    
-    /**
-     * @param command the command as given in the main loop
-     * @return true if the command is the kind of command that needs more info
-     */
-    private boolean requiresSecondCommand(String command)
-    {
-        for (int i=0; i<needsNoSubject.length; i++) //look in each blacklist
-            if (needsNoSubject[i].equals(command)) //if it's the same as the parameter
-                return false;
-        
-        //else, it requires a second command
-        return true;
     }
     
     /**
