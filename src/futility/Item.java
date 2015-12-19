@@ -34,6 +34,7 @@ public class Item
         this.name = name;
         this.isFlammable = isFlammable;
         this.isMoveable = isMoveable;
+        this.Description = "";
     }
     public Item(String name){
         this(name, true, true);
