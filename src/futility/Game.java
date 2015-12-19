@@ -418,6 +418,12 @@ public class Game
             if (itemsInRoom[i] != null && itemsInRoom[i].getName().equals(itemName)) //lazy evalutation saves a null pointer exception
                 return itemsInRoom[i];
         
+        Item[] itemsInInventory = player.getInventoryArray();
+        
+        for (int i=0; i<itemsInInventory.length; i++)
+            if (itemsInInventory[i] != null && itemsInInventory[i].getName().equals(itemName)) //lazy evalutation saves a null pointer exception
+                return itemsInInventory[i];
+        
         //else
         Futility.clearScreen();
         System.out.println(" " + itemName + " is not an object in this room.\n\n");
