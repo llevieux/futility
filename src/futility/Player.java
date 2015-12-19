@@ -76,6 +76,7 @@ public class Player
     
     /**
      * Picks up an item, by adding it to inventory.
+     * and removing it from the current room
      * 
      * @param toGet item to pick up.
      */
@@ -91,7 +92,11 @@ public class Player
             System.out.println(" you are a human. you can't really hold more "
                     + "than 2 things.  you'll need to drop something first.");
         else
+        {
             inventory[i] = toGet;
+            currentRoom.removeItem(toGet);
+        }
+        
     }
     
     /**
@@ -130,9 +135,6 @@ public class Player
             currentRoom = toRoom;
     }
     
-    /**
-     * 
-     * @param toGet the item that is picked up
-     */
+     
 
 }
