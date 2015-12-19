@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 Kane
+ * Copyright (C) 2015 Lucas LeVieux & Kane Mcgrath
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,8 +18,7 @@
 package futility;
 
 /**
- *
- * @author Kane
+ * @author Kane McGrath
  */
 public class Box extends Item{
     public Box(String name){
