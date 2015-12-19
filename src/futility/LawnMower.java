@@ -22,6 +22,7 @@ package futility;
  * @author Kane
  */
 public class LawnMower extends Item{
+    private boolean running = false;
     public LawnMower(String name){
         super(name);
         isFlammable = false;
@@ -29,5 +30,11 @@ public class LawnMower extends Item{
         description = "The real beauty is underneath";
     }
     
-    
+    public void mow(Item item){
+        if (running){
+            System.out.println("You push the mower on to the " + name + " and it breaks"); 
+        }else{
+            System.out.println("You push the silent mower on to the " + name + " and it does nothing");
+        }
+    }
 }
