@@ -57,14 +57,18 @@ public class Game
     /**
      * Valid commands.
      */
-    private static String[] commands = {"about", "help", "inventory", "look", 
-        "scope", "exit", "quit", "end", "jump", "die", "run", "go", ""};
-    
-    /**
-     * Commands that don't need a second command.
-     */
-    private static String[] needsNoSubject = {"about", "help", "inventory", "look", "scope", 
-            "exit", "quit", "end", "jump", "die"};
+//    private static Command[] commands = {"about", "help", "inventory", "look", 
+//        "scope", "exit", "quit", "end", "jump", "die", "run", "go", "move"};
+    private static Command[] commands = {
+        new Command("about", "help", "info"),
+        new Command("inventory"),
+        new Command("look", "scope"),
+        new Command("exit", "quit", "end"),
+        new Command("jump", "hop"),
+        new Command("die"),
+        
+        new Command("go", true, "go <room>", "run", "move")
+    };
     
     /**
      * A random generator.  nextInt(int max) is very useful.
@@ -109,8 +113,6 @@ public class Game
      */
     private void main()
     {
-        /* commented out until the other classes are finished
-        
         //--------------------------INITIALIZATION--------------------------
         
         //ITEMS
@@ -123,9 +125,9 @@ public class Game
         Hammer hammer = new Hammer(randomName() + " the hammer");
         Refrigerator refrigerator = new Refrigerator("refrigerator");
         LawnMower lawnMower = new LawnMower("lawnmower");
-        AntHill antHill = new AntHill("anthill");
-        Box box = new Box("box");
-        Box anotherBox = new Box("anouther box");
+        //AntHill antHill = new AntHill("anthill");
+        //Box box = new Box("box");
+        //Box anotherBox = new Box("anouther box");
         
         UselessSwitch[] levers = new UselessSwitch[random.nextInt(4) + 1];
             //random number between 1 and 5
@@ -138,12 +140,13 @@ public class Game
             buttons[i] = new UselessSwitch("button " + (i+1));
         
         Item monopolyMoney = new Item("monopoly money", true, true);
-        UselessSwitch pressureCooker = new PressureCooker("pressure cooker");
-        Chalk chalk = new Chalk("chalk");
+        UselessSwitch pressureCooker = new UselessSwitch("pressure cooker");
+        //Chalk chalk = new Chalk("chalk");
         
         Item[] theRoomItems = {matchbox, flare, hammer, refrigerator, lawnMower,
-            antHill, box, anotherBox, monopolyMoney, pressureCooker, chalk};
-        */
+            monopolyMoney, pressureCooker, 
+            //chalk, antHill, box, anotherBox
+        };
         
         //ROOMS
         Room theRoom = new Room("room", 
@@ -164,7 +167,7 @@ public class Game
         Room hanger = new Room("hanger", 
                 new Room[]{hallway},
                 new Item[]{new Item("lucas the airplane"), 
-                    new Item("kane the airplane")});
+                new Item("kane the airplane")});
         
         hallway.addAccessibleRoom(hanger);
         
@@ -205,16 +208,31 @@ public class Game
         //PLAYERS
         player = new Player(theRoom);
         
-        //--------------------------INTRODUCTION--------------------------
+        
+        //--------------------------MAIN GAME--------------------------
         revealText("you are in a small, concrete-reinforced room",
                 "your only wish in your humble life is to get out",
                 "there are no doors and no windows");
         
         
-        //--------------------------MAIN LOOP--------------------------
         while (player.isAlive() && player.getCurrentRoom() == theRoom)
         {            
             System.out.print("available commands: ");
+            
+            for (int i=0; i<commands.length; i++)
+            {
+                if (commands[i].requiresVerb())
+                    System.out.print(commands[i].getDescription());
+                else
+                    System.out.print(commands[i].getName());
+                
+                if (i < (commands.length-1))
+                    System.out.print(", "); //every time but the last time.
+                else
+                    System.out.println();
+            }
+            
+            System.out.println("inventory: " + player.getInventory());
             
             
             String command1;
@@ -228,47 +246,39 @@ public class Game
                             "\n no.\n"));
             } while (!isValidCommand(command1));
             
-            if (!requiresSecondCommand(command1))
+            Command command1Object = getCommandObject (command1);
+            
+            if (!command1Object.requiresVerb())
             {
                 keyboard.nextLine();
                 Futility.clearScreen();
-            
-                switch(command1)
+                
+                if (command1Object.isNameOrAlias("about"))
+                    Futility.about();
+                else if (command1Object.isNameOrAlias("inventory"))
+                    System.out.println(player.getInventory());
+                else if (command1Object.isNameOrAlias("look"))
+                    player.getCurrentRoom().look();
+                else if (command1Object.isNameOrAlias("jump"))
+                    revealText("you jump in the air", "\"whee, you shout\"");
+                else if (command1Object.isNameOrAlias("die"))
                 {
-                    case "about":
-                    case "help":
-                        Futility.about();
-                        continue; //no need for a second command
-                    case "inventory":
-                        System.out.println(player.getInventory());
-                        continue;
-                    case "look":
-                    case "scope":
-                        player.getCurrentRoom().look();
-                        System.out.print(Futility.newLines(5));
-                        continue;
-                    case "jump":
-                        revealText("you jump in the air", "\"whee, you shout\"");
-                        continue;
-                    case "die":
-                        System.out.println(" how morbid of you.");
-                        Futility.wait(3.0);
-                        Futility.clearScreen();
-                        player.die();
-                        continue;
-                    case "exit":
-                    case "end":
-                    case "quit":
-                        revealText(
+                    System.out.println(" how morbid of you.");
+                    Futility.wait(3.0);
+                    Futility.clearScreen();
+                    player.die();
+                }
+                else if (command1Object.isNameOrAlias("exit"))
+                {
+                    revealText(
                             "you are still in a small, concrete-reinforced room",
                                 "you can't \"" + command1 + "\".");
-                        Futility.clearScreen();
-                        continue;
-                    default:
-                        System.out.println(" internal error #1 - sorry bout that");
-                        break;
+                    Futility.clearScreen();
                 }
-            } else 
+                else 
+                    System.out.println(" internal error #1 - sorry bout that");
+            
+            } else //needs a second prompt
             {
                 String command2 = keyboard.next().toLowerCase();
                 
@@ -363,30 +373,26 @@ public class Game
     
     /**
      * @param command the command as given in the main loop
-     * @return true if the command is the kind of command that needs more info
-     */
-    private boolean requiresSecondCommand(String command)
-    {
-        for (int i=0; i<needsNoSubject.length; i++) //look in each blacklist
-            if (needsNoSubject[i].equals(command)) //if it's the same as the parameter
-                return false;
-        
-        //else, it requires a second command
-        return true;
-    }
-    
-    /**
-     * @param command the command as given in the main loop
      * @return true if the command is a valid command
      */
     private boolean isValidCommand(String command)
     {        
-        for (int i=0; i<commands.length; i++) //look in each blacklist
-            if (commands[i].equals(command)) //if it's the same as the parameter
-                return true;
+        return getCommandObject(command) != null;
+    }
+    
+    /**
+     * 
+     * @param command a string with the name or alias of a command
+     * @return a Command object that matches the string
+     */
+    private Command getCommandObject(String command)
+    {
+        for (int i=0; i<commands.length; i++) 
+            if (commands[i].isNameOrAlias(command))
+                return commands[i];
         
         //else
-        return false;
+        return null;
     }
     
     /**

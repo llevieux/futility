@@ -149,7 +149,6 @@ public final class Futility
             + " good luck I guess." + newLines(5)
             + " press enter to continue");
         keyboard.nextLine();
-        keyboard.nextLine();
         clearScreen();
     }
 }
