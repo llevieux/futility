@@ -75,6 +75,24 @@ public class Room
     }
     
     /**
+     * Constructor to initialize a new room with a name, accessible rooms, look 
+     * text and arrays with contained items.
+     * 
+     * @param name the name of the room.
+     * @param accessibleRooms  all of the rooms accessible from this object (can
+     * be null)
+     * @param lookText the text that is displayed by the "look" command
+     * @param itemsInRoom the items contained and available inside the room.
+     * Arbitrary amount of arrays of items are accepted.  Items will be
+     * arranged in the order that they are entered.
+     */
+    public Room(String name, Room[] accessibleRooms, String lookText, Item[]... itemsInRoom)
+    {
+        this(name, accessibleRooms, itemsInRoom);
+        setLookText(lookText);
+    }
+    
+    /**
      * Constructor to only name the room.
      * 
      * @param name the name of the room.
@@ -236,7 +254,7 @@ public class Room
     }
     
     /**
-     * Sets the text that is used by loop().
+     * Sets the text that is used by look().
      * 
      * @param lookText a wry description of the room.
      */
