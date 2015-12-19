@@ -219,6 +219,19 @@ public class Game
         {            
             System.out.print("available commands: ");
             
+            for (int i=0; i<commands.length; i++)
+            {
+                if (commands[i].requiresVerb())
+                    System.out.print(commands[i].getDescription());
+                else
+                    System.out.print(commands[i].getName());
+                
+                if (i < (commands.length-1))
+                    System.out.print(", "); //every time but the last time.
+                else
+                    System.out.println();
+            }
+            
             
             String command1;
             do
