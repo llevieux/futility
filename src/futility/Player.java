@@ -74,6 +74,11 @@ public class Player
         return result;
     }
     
+    public Item[] getInventoryArray()
+    {
+        return inventory;
+    }
+    
     /**
      * Picks up an item, by adding it to inventory.
      * and removing it from the current room
@@ -106,11 +111,12 @@ public class Player
     {
         for(int i=0; i<inventory.length; i++)
             if (inventory[i] == toDrop){
-                inventory[i] = null;
-                currentRoom.addItem(toDrop);
-            } else {
-                System.out.println("you do not have the item in your invetory");
+                inventory[i] = null; //remove from inventory
+                currentRoom.addItem(toDrop); //add to room
+                return;
             }
+        
+        System.out.println("you do not have the item in your invetory");
                
     }
     
