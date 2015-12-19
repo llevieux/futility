@@ -44,7 +44,11 @@ public class Item
     public Item(){
         this("");
     }
-
+    
+    public void setDescription(String input){
+        Description = input;
+    }
+    
     public String getName() {
         return name;
     }
