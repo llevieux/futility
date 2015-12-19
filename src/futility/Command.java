@@ -127,9 +127,10 @@ public class Command
         return false;
     }
     
-    public String toSting ()
+    @Override
+    public String toString()
     {
-        String output = name + ", aliases: ";
+        String output = name + ". aliases: ";
         for (int i=0; i<alias.length; i++) //look through the alias for input
             output += alias[i] + ", ";
         if (requiresVerb)
