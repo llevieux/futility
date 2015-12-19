@@ -26,4 +26,8 @@ public class UselessSwitch extends Item{
         else
             state = true;
     }
+    
+    public boolean getState(){
+        return state;
+    }
 }
