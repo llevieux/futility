@@ -158,6 +158,11 @@ public class Room
         this.accessibleRooms = output;
     }
     
+    public void addAccessibleRoom(Room newRoom)
+    {
+        addAccessibleRooms(new Room[]{newRoom});
+    }
+    
     /**
      * @return an array containing all of the rooms accessible from this one
      */
