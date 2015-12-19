@@ -8,9 +8,9 @@ package futility;
 /**
  *
  * @author Kane
+ * 
+ * each lever is either on or off.  Otherwise they do nothing.
  */
-
-
 public class UselessSwitch extends Item{
     public UselessSwitch(String name){
         super(name);
