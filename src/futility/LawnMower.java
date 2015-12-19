@@ -45,4 +45,12 @@ public class LawnMower extends Item{
             running = true;
         }
     }
+    public void stop(){
+        if (running){
+            System.out.println("You Turn off the lawn mower"); 
+            running = false;
+        }else{
+            System.out.println("It is already off");
+        }
+    }
 }
