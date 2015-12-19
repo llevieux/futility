@@ -22,5 +22,12 @@ package futility;
  * @author Kane
  */
 public class LawnMower extends Item{
+    public LawnMower(String name){
+        super(name);
+        isFlammable = false;
+        isMoveable = false;
+        description = "The real beauty is underneath";
+    }
+    
     
 }
