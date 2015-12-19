@@ -22,9 +22,37 @@ package futility;
  * @author Kane
  */
 public class Match extends Item{
+    private boolean lit = false; //Wether the match is lit true = lit
     public Match(String name){
         super(name);
         isFlammable = true;
         isMoveable = true;
+    }
+    
+    public void light(){
+        if (!lit){
+            System.out.println(" You have lit the match");
+            lit = true;
+        } else {
+            System.out.println(" The match is already lit");
+        }
+        
+    }
+    public void eat(){
+        if (lit){
+            System.out.println(" You have ate the match and the fire burns your throat");
+            player.die();
+        } else {
+            System.out.println(" You have swallowed the match");
+        }
+    }
+    public void extinguish(){
+        if (lit){
+            System.out.println(" You have Extinguished the match");
+            lit = false;
+        } else {
+            System.out.println(" you try to extinguish the unlit match");
+            System.out.println(" and it does not work");
+        }
     }
 }
