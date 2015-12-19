@@ -15,6 +15,4 @@ public class Matchbox extends Item{
         isFlammable = true;
         isMoveable = true;
     }
-    
-    
 }
