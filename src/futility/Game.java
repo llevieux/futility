@@ -154,6 +154,19 @@ public class Game
         Room satan = new Room("satan.", null,
                 new Item[]{new Item("fire")});
         
+        Room dragons1 = new Room("dragons (probably)");
+        if (random.nextInt(4) < 3) //75%
+            for (int i=0; i<random.nextInt(4); i++)
+                dragons1.addItem(new Item("dragon"));
+        
+        Room dragons2 = new Room("dragons (unlikey)");
+        if (random.nextInt(4) == 1) //25%
+            for (int i=0; i<random.nextInt(4); i++)
+                dragons1.addItem(new Item("dragon"));
+        
+        
+            
+        
         Room[] rooms = {theRoom, billiardsRoom, garage, untitled, satan};
         
         
