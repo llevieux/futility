@@ -20,4 +20,8 @@ public class Refrigerator extends Item{
     public void refrigerate(Item item){
         System.out.println("You refrigerated the " + this.name);
     }
+    
+     public void freeze(Item item){
+        System.out.println("You froze the " + this.name);
+    }
 }
