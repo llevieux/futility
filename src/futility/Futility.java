@@ -65,7 +65,7 @@ public final class Futility
         /**
          * The number of games played so far.
          */
-        int gameCount = 0;
+        int gameCount = 1;
         
         do
         {

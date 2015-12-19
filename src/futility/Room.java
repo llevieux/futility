@@ -70,8 +70,9 @@ public class Room
         
         setAccessibleRooms(accessibleRooms);
         
-        for (int i=0; i<itemsInRoom.length; i++) //for each argument
-            this.addItems(itemsInRoom[i]);
+        if (itemsInRoom != null)
+            for (int i=0; i<itemsInRoom.length; i++) //for each argument
+                this.addItems(itemsInRoom[i]);
     }
     
     /**

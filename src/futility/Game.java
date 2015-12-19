@@ -47,13 +47,16 @@ public class Game
     /**
      * The player.
      */
-    private Player player;
+    public Player player;
     
     /**
      * An array containing all the Rooms in the game.
      */
     private Room[] rooms;
     
+    /**
+     * Valid commands.
+     */
     private String[] commands = {"about", "help", "inventory", "look", "scope", 
             "exit", "quit", "end", "jump", "die", "run"};
     
@@ -186,12 +189,10 @@ public class Game
         Room sadness = new Room("sadness room");
         
         billiardsRoom.addAccessibleRooms(new Room[]{billiardsAirlock, hallway});
-        billiardsRoom.addAccessibleRooms(new Room[]{billiardsAirlock, hallway});
         
         Room[] rooms = {theRoom, billiardsRoom, billiardsAirlock, hallway,
             untitled, satan, oilRefinery, untitled, dragons1, dragons2, closet,
             sadness};
-        
         
         
         //PLAYERS
@@ -213,7 +214,9 @@ public class Game
                 System.out.print(" what do you do? ");
                 command1 = keyboard.next().toLowerCase();
                 if (!isValidCommand(command1))
-                    System.out.println("\n nope, that's not something you can do.\n");
+                    System.out.println(randomText("\n nope, that's not something you can do.\n",
+                            "\n you can't do that.\n",
+                            "\n no.\n"));
             } while (!isValidCommand(command1));
             
             if (!requiresSecondCommand(command1))
@@ -273,8 +276,13 @@ public class Game
             revealText("wow.", "you won.", "did you cheat?", 
                     "this game was supposed to be unbeatable", "what a hack");
         else if (!player.isAlive())
-            revealText("you died in a small, concrete-reinforced room.",
-                    "game over");        
+            if (gameCount > 4)
+                revealText("you died in a small, concrete-reinforced room.",
+                        "for the " + ordinal(gameCount) + " time",
+                        "game over");
+            else
+                revealText("you died in a small, concrete-reinforced room.",
+                        "game over");        
     }
     
     /**
@@ -373,5 +381,27 @@ public class Game
         
         //else
         return false;
+    }
+    
+    /**
+     * Converts an input into an ordinal string.  
+     * 
+     * eg. 1 => 1st, 2 => 2nd, 3 => 3rd...
+     * 
+     * @param i a positive integer
+     * @return an ordinal representation of the integer
+     */
+    public static String ordinal(int i) 
+    {
+        String[] sufixes = new String[]{"th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th"};
+        switch (i % 100) 
+        {
+            case 11:
+            case 12:
+            case 13:
+                return i + "th";
+            default:
+                return i + sufixes[i % 10];
+        }
     }
 }
