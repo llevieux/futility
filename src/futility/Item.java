@@ -54,18 +54,23 @@ public class Item
     }
     
     public void eat(){
-        System.out.println(" You ate the " + name);
+        System.out.println(" you ate the " + name);
     }
     
     public void burn(){
-        System.out.println(" You burned the " + name);
+        System.out.println(" you burned the " + name);
     }
     
     public void toss(){
-        System.out.println(" You threw the " + name);
+        System.out.println(" you threw the " + name);
     }
     
     public void examine(){
         System.out.println(description);
+    }
+    
+    public String toString()
+    {
+        return name + ": " + description;
     }
 }
