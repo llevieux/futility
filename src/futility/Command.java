@@ -126,4 +126,15 @@ public class Command
         //else
         return false;
     }
+    
+    public String toSting ()
+    {
+        String output = name + ", aliases: ";
+        for (int i=0; i<alias.length; i++) //look through the alias for input
+            output += alias[i] + ", ";
+        if (requiresVerb)
+            output += "requires verb.  description: " + description;
+        
+        return output;
+    }
 }
