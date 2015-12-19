@@ -27,7 +27,7 @@ public class Item
     String name;
     boolean isFlammable;
     boolean isMoveable;
-    String Description;
+    String description;
     
     
     public Item(String name, boolean isFlammable, boolean isMoveable)
@@ -35,7 +35,7 @@ public class Item
         this.name = name;
         this.isFlammable = isFlammable;
         this.isMoveable = isMoveable;
-        this.Description = "";
+        this.description = "";
     }
     public Item(String name){
         this(name, true, true);
@@ -46,7 +46,7 @@ public class Item
     }
     
     public void setDescription(String input){
-        Description = input;
+        description = input;
     }
     
     public String getName() {
@@ -66,6 +66,6 @@ public class Item
     }
     
     public void examine(){
-        System.out.println(Description);
+        System.out.println(description);
     }
 }
