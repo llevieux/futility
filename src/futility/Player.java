@@ -82,20 +82,18 @@ public class Player
      */
     public void get(Item toGet)
     {
-        int i=0;
-        
-        for(i=0; i<inventory.length; i++)
+        for(int i=0; i<inventory.length; i++)
             if (inventory[i] == null)
-                break;
-        
-        if (inventory[i] != null)
-            System.out.println(" you are a human. you can't really hold more "
-                    + "than 2 things.  you'll need to drop something first.");
-        else
-        {
-            inventory[i] = toGet;
-            currentRoom.removeItem(toGet);
-        }
+            {
+                inventory[i] = toGet;
+                currentRoom.removeItem(toGet);
+            } else
+                System.out.println(" you are a human. you can't really hold more "
+                    + "than 2 things.  you'll need to drop something first.");        
+    }
+    
+    public void drop(Item toDrop)
+    {
         
     }
     
