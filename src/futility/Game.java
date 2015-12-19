@@ -186,12 +186,10 @@ public class Game
         Room sadness = new Room("sadness room");
         
         billiardsRoom.addAccessibleRooms(new Room[]{billiardsAirlock, hallway});
-        billiardsRoom.addAccessibleRooms(new Room[]{billiardsAirlock, hallway});
         
         Room[] rooms = {theRoom, billiardsRoom, billiardsAirlock, hallway,
             untitled, satan, oilRefinery, untitled, dragons1, dragons2, closet,
             sadness};
-        
         
         
         //PLAYERS
@@ -213,7 +211,9 @@ public class Game
                 System.out.print(" what do you do? ");
                 command1 = keyboard.next().toLowerCase();
                 if (!isValidCommand(command1))
-                    System.out.println("\n nope, that's not something you can do.\n");
+                    System.out.println(randomText("\n nope, that's not something you can do.\n",
+                            "\n you can't do that.\n",
+                            "\n no.\n"));
             } while (!isValidCommand(command1));
             
             if (!requiresSecondCommand(command1))
