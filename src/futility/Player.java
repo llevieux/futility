@@ -76,22 +76,38 @@ public class Player
     
     /**
      * Picks up an item, by adding it to inventory.
+     * and removing it from the current room
      * 
      * @param toGet item to pick up.
      */
     public void get(Item toGet)
     {
-        int i=0;
-        
-        for(i=0; i<inventory.length; i++)
+        for(int i=0; i<inventory.length; i++)
             if (inventory[i] == null)
-                break;
-        
-        if (inventory[i] != null)
-            System.out.println(" you are a human. you can't really hold more "
-                    + "than 2 things.  you'll need to drop something first.");
-        else
-            inventory[i] = toGet;
+            {
+                inventory[i] = toGet;
+                currentRoom.removeItem(toGet);
+            } else
+                System.out.println(" you are a human. you can't really hold more "
+                    + "than 2 things.  you'll need to drop something first.");        
+    }
+    
+    /**
+     * Removes an Item from your inventory and adds it to the current room
+     * 
+     * @param toDrop The item to drop
+     */
+    
+    public void drop(Item toDrop)
+    {
+        for(int i=0; i<inventory.length; i++)
+            if (inventory[i] == toDrop){
+                inventory[i] = null;
+                currentRoom.addItem(toDrop);
+            } else {
+                System.out.println("you do not have the item in your invetory");
+            }
+               
     }
     
     /**
@@ -130,9 +146,6 @@ public class Player
             currentRoom = toRoom;
     }
     
-    /**
-     * 
-     * @param toGet the item that is picked up
-     */
+     
 
 }
