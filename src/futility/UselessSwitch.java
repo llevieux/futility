@@ -8,21 +8,26 @@ package futility;
 /**
  *
  * @author Kane
+ * 
+ * each lever is either on or off.  Otherwise they do nothing.
  */
-public class Refrigerator extends Item{
+public class UselessSwitch extends Item{
+    private boolean state = false;
     
-    public Refrigerator(String name){
+    public UselessSwitch(String name){
         super(name);
         isFlammable = false;
         isMoveable = false;
-        
     }
     
-    public void refrigerate(Item item){
-        System.out.println(" You refrigerated the " + this.name);
+    public void Switch(){
+        if (state)
+            state = false;
+        else
+            state = true;
     }
     
-     public void freeze(Item item){
-        System.out.println(" You froze the " + this.name);
+    public boolean getState(){
+        return state;
     }
 }

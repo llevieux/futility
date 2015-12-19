@@ -9,10 +9,14 @@ package futility;
  *
  * @author Kane
  */
-public class Matchbox extends Item{
-    public Matchbox(String name, boolean isFlammable, boolean isMoveable){
+public class Hammer extends Item{
+    public Hammer(String name){
         super(name);
-        isFlammable = true;
+        isFlammable = false;
         isMoveable = true;
+    }
+    
+    public void Strike(Item toStrike){
+        System.out.println(" You hit the " + this.name + " It made a loud noise");
     }
 }
