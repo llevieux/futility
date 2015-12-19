@@ -54,6 +54,9 @@ public class Game
      */
     private Room[] rooms;
     
+    private String[] commands = {"about", "help", "inventory", "look", "scope", 
+            "exit", "quit", "end", "jump", "die", "run"};
+    
     /**
      * A random generator.  nextInt(int max) is very useful.
      */
@@ -134,19 +137,24 @@ public class Game
         
         //ROOMS
         Room theRoom = new Room("room", 
-                new Room[0] //no rooms accessible from theRoom
+                null, //no rooms accessible from theRoom
+                "you are in a small, concrete-reinforced room.\n\n\n"
+                + " there are no doors and no windows"
                 //theRoomItems, levers, buttons //three lists of items to be added
         );
+        
         Room billiardsRoom = new Room("billiards room", null,
                 new Item[]{new Item("cue stick"), new Item("chair")});
         
         Room garage = new Room("garage", null,
                 new Item[]{new Item("car"), new Item("oil stain"), new Item("box")});
         
-        Room armory = new Room("armory", null,
-                new Item[]{new Item("sword")});
+        Room untitled = new Room("untitled");
         
-        Room[] rooms = {theRoom, billiardsRoom, garage, armory};
+        Room satan = new Room("satan.", null,
+                new Item[]{new Item("fire")});
+        
+        Room[] rooms = {theRoom, billiardsRoom, garage, untitled, satan};
         
         
         
@@ -160,7 +168,7 @@ public class Game
         
         
         //--------------------------MAIN LOOP--------------------------
-        while (player.isAlive()/* && player.getCurrentRoom().getName() == "room"*/)
+        while (player.isAlive() && player.getCurrentRoom() == theRoom)
         {            
             //display hints and stats
             String command1;
@@ -304,7 +312,7 @@ public class Game
      * @param command the command as given in the main loop
      * @return true if the command is the kind of command that needs more info
      */
-    private static boolean requiresSecondCommand(String command)
+    private boolean requiresSecondCommand(String command)
     {
         String[] blacklist = {"about", "help", "inventory", "look", "scope", 
             "exit", "quit", "end", "jump", "die"};
@@ -321,13 +329,10 @@ public class Game
      * @param command the command as given in the main loop
      * @return true if the command is a valid command
      */
-    private static boolean isValidCommand(String command)
-    {
-        String[] whitelist = {"about", "help", "inventory", "look", "scope", 
-            "exit", "quit", "end", "jump", "die", "run"};
-        
-        for (int i=0; i<whitelist.length; i++) //look in each blacklist
-            if (whitelist[i].equals(command)) //if it's the same as the parameter
+    private boolean isValidCommand(String command)
+    {        
+        for (int i=0; i<commands.length; i++) //look in each blacklist
+            if (commands[i].equals(command)) //if it's the same as the parameter
                 return true;
         
         //else
