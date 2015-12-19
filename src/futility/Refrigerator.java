@@ -10,7 +10,9 @@ package futility;
  * @author Kane
  */
 public class Refrigerator extends Item{
-    public Refrigerator(String name, boolean isFlammable, boolean isMoveable){
+    public Refrigerator(String name){
+        isFlammable = false;
+        isMoveable = false;
         super(Item);
     }
     
