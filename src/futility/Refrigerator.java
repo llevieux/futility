@@ -10,10 +10,14 @@ package futility;
  * @author Kane
  */
 public class Refrigerator extends Item{
+    
     public Refrigerator(String name){
         isFlammable = false;
         isMoveable = false;
         super(Item);
     }
     
+    public void refrigerate(Item item){
+        System.out.println("You refrigerated the " + this.name);
+    }
 }
