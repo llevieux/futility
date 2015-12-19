@@ -268,10 +268,17 @@ public class Room
     {
         this.lookText = lookText;
     }
-    public void removeItem (Item toRemove){
-        
-        for (int i = 0; i < itemsInRoom.length; i++){
-            if (itemsInRoom[i].equals(toRemove)){
+    /**
+     * Removes an item from the room
+     * 
+     * @param toRemove the item to remove
+     */
+    public void removeItem (Item toRemove)
+    {
+        for (int i = 0; i < itemsInRoom.length; i++)
+        {
+            if (itemsInRoom[i] == toRemove)
+            {
                 itemsInRoom[i] = null;
             }
         }
