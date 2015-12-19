@@ -66,7 +66,7 @@ public class Player
         String result = "";
         for (int i=0; i<INVENTORYSIZE; i++) //go through each index of inventory
             if (inventory [i] != null) //ensure it is filled
-                result += inventory[i] + " "; //append to result
+                result += inventory[i].getName() + ", "; //append to result
         
         if (result.equals(""))
             return "(none)";
@@ -83,13 +83,15 @@ public class Player
     public void get(Item toGet)
     {
         for(int i=0; i<inventory.length; i++)
-            if (inventory[i] == null)
+            if (inventory[i] == null) //there's an emtpty slot in the inventory
             {
-                inventory[i] = toGet;
-                currentRoom.removeItem(toGet);
-            } else
-                System.out.println(" you are a human. you can't really hold more "
-                    + "than 2 things.  you'll need to drop something first.");        
+                inventory[i] = toGet; //add to inventory
+                currentRoom.removeItem(toGet); //remove from room
+                return;
+            }
+        //else
+        System.out.println(" you are a human. you can't really hold more "
+                + "than 2 things.  you'll need to drop something first.");        
     }
     
     /**
