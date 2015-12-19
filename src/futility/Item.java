@@ -67,5 +67,7 @@ public class Item
         System.out.println(" You threw the " + name);
     }
     
-    
+    public void examine(){
+        System.out.println(Description);
+    }
 }
