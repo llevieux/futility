@@ -15,7 +15,7 @@ public class Refrigerator extends Item{
         super(name);
         isFlammable = false;
         isMoveable = false;
-        
+        description = "Large white maker of Ice, ";
     }
     
     public void refrigerate(Item item){
