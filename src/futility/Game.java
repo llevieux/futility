@@ -37,7 +37,7 @@ public class Game
     /**
      * The time between lines in revealText.
      */
-    private static final double WAITTIME = 1; //1 for normal, 0 for testing
+    private static final double WAITTIME = 0; //1 for normal, 0 for testing
     
     /**
      * Count of games played in this session
@@ -67,7 +67,9 @@ public class Game
         new Command("jump", "hop"),
         new Command("die"),
         
-        new Command("go", true, "go <room>", "run", "move")
+        new Command("go", true, "go <room>", "run", "move"),
+        new Command("get", true, "get <item>", "pickup", "add", "take"),
+        new Command("drop", true, "drop <item>", "put", "remove", "leave")
     };
     
     /**
@@ -144,7 +146,7 @@ public class Game
         //Chalk chalk = new Chalk("chalk");
         
         Item[] theRoomItems = {matchbox, flare, hammer, refrigerator, lawnMower,
-            monopolyMoney, pressureCooker, 
+            monopolyMoney, pressureCooker
             //chalk, antHill, box, anotherBox
         };
         
@@ -152,8 +154,8 @@ public class Game
         Room theRoom = new Room("room", 
                 null, //no rooms accessible from theRoom
                 "you are in a small, concrete-reinforced room.\n\n\n"
-                + " there are no doors and no windows"
-                //theRoomItems, levers, buttons //three lists of items to be added
+                + " there are no doors and no windows",
+                theRoomItems, levers, buttons //three lists of items to be added
         );
         
         Room billiardsRoom = new Room("billiards room", null,
@@ -233,7 +235,7 @@ public class Game
             }
             
             System.out.println(" inventory: " + player.getInventory());
-            System.out.println(" accessible rooms: " + player.getInventory());
+            System.out.println(" accessible rooms: " + player.getCurrentRoom().getStringOfAccessibleRooms());
             System.out.println();
             
             String command1;
@@ -284,11 +286,10 @@ public class Game
             {
                 String command2 = keyboard.next().toLowerCase();
                 
-                switch(command2)
-                {
-                    default:
-                        System.out.println("\n\n you can't do that.");
-                }
+                if (command1Object.isNameOrAlias("get"))
+                    player.get(getItemObject(command2));
+//                else if (command1Object.isNameOrAlias("drop"))
+//                    player.drop(getItemObject(command2));
             }
             
             System.out.println("\n");
@@ -394,6 +395,18 @@ public class Game
         for (int i=0; i<commands.length; i++) 
             if (commands[i].isNameOrAlias(command))
                 return commands[i];
+        
+        //else
+        return null;
+    }
+    
+    private Item getItemObject (String itemName)
+    {
+        Item[] itemsInRoom = player.getCurrentRoom().getItems();
+        
+        for (int i=0; i<itemsInRoom.length; i++) 
+            if (itemsInRoom[i].getName().equals(itemName))
+                return itemsInRoom[i];
         
         //else
         return null;
