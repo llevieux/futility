@@ -51,14 +51,11 @@ public class Command
      * Constructor that assumes the command needs no second command.
      * 
      * @param name The name of the command. eg "go" or "run"
-     * @param description A short description of how the command should be used. 
-     * eg. "go <room>"
      * @param alias other command names that do the exact same thing
      */
-    public Command(String name, String description, String... alias)
+    public Command(String name, String... alias)
     {
         this.name = name;
-        this.description = description;
         this.alias = alias;
     }
     
@@ -75,7 +72,8 @@ public class Command
     public Command(String name, boolean requiresVerb, String description,
             String... alias)
     {
-        this(name, description, alias);
+        this(name,  alias);
+        this.description = description;
         this.requiresVerb = requiresVerb;
     }
     
