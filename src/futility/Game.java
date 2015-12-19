@@ -243,11 +243,16 @@ public class Game
             System.out.println(" items in room: " + player.getCurrentRoom().getStringOfItemsInRoom());
             System.out.println();
             
-            String command1;
+            String input, command1, command2;
             do
             {
                 System.out.print(" what do you do? ");
-                command1 = keyboard.next().toLowerCase();
+                input = keyboard.nextLine().toLowerCase().trim();
+                
+                String[] inputArray = input.split(" ", 2);
+                command1 = inputArray[0];
+                command2 = inputArray[1];
+                
                 if (!isValidCommand(command1))
                     System.out.println(randomText("\n nope, that's not something you can do.\n",
                             "\n you can't do that.\n",
@@ -257,45 +262,36 @@ public class Game
             
             Command command1Object = getCommandObject (command1);
             
-            if (!command1Object.requiresVerb())
+            Futility.clearScreen();
+
+            if (command1Object.isNameOrAlias("about"))
+                Futility.about();
+            else if (command1Object.isNameOrAlias("inventory"))
+                revealText(player.getInventory());
+            else if (command1Object.isNameOrAlias("look"))
+                player.getCurrentRoom().look();
+            else if (command1Object.isNameOrAlias("jump"))
+                revealText("you jump in the air", "\"whee, you shout\"");
+            else if (command1Object.isNameOrAlias("die"))
             {
-                keyboard.nextLine();
+                System.out.println(" how morbid of you.");
+                Futility.wait(3.0);
                 Futility.clearScreen();
-                
-                if (command1Object.isNameOrAlias("about"))
-                    Futility.about();
-                else if (command1Object.isNameOrAlias("inventory"))
-                    revealText(player.getInventory());
-                else if (command1Object.isNameOrAlias("look"))
-                    player.getCurrentRoom().look();
-                else if (command1Object.isNameOrAlias("jump"))
-                    revealText("you jump in the air", "\"whee, you shout\"");
-                else if (command1Object.isNameOrAlias("die"))
-                {
-                    System.out.println(" how morbid of you.");
-                    Futility.wait(3.0);
-                    Futility.clearScreen();
-                    player.die();
-                }
-                else if (command1Object.isNameOrAlias("exit"))
-                {
-                    revealText(
-                            "you are still in a small, concrete-reinforced room",
-                                "you can't \"" + command1 + "\".");
-                    Futility.clearScreen();
-                }
-                else 
-                    System.out.println(" internal error #1 - sorry bout that");
-            
-            } else //needs a second prompt
-            {
-                String command2 = keyboard.next().toLowerCase();
-                
-                if (command1Object.isNameOrAlias("get"))
-                    player.get(getItemObject(command2));
-                else if (command1Object.isNameOrAlias("drop"))
-                    player.drop(getItemObject(command2));
+                player.die();
             }
+            else if (command1Object.isNameOrAlias("exit"))
+            {
+                revealText(
+                        "you are still in a small, concrete-reinforced room",
+                            "you can't \"" + command1 + "\".");
+                Futility.clearScreen();
+            }
+            else if (command1Object.isNameOrAlias("get"))
+                player.get(getItemObject(command2));
+            else if (command1Object.isNameOrAlias("drop"))
+                player.drop(getItemObject(command2));
+            else 
+                System.out.println(" internal error #1 - sorry bout that");
             
             System.out.println("\n");
         } 
