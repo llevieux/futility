@@ -83,15 +83,17 @@ public class Player
     public void get(Item toGet)
     {
         for(int i=0; i<inventory.length; i++)
-            if (inventory[i] == null) //there's an emtpty slot in the inventory
-            {
-                inventory[i] = toGet; //add to inventory
-                currentRoom.removeItem(toGet); //remove from room
-                return;
+            if (toGet.isMoveable){
+                if (inventory[i] == null) //there's an emtpty slot in the inventory
+                {
+                    inventory[i] = toGet; //add to inventory
+                    currentRoom.removeItem(toGet); //remove from room
+                    return;
+                }
+            //else
+            System.out.println(" you are a human. you can't really hold more "
+                    + "than 2 things.  you'll need to drop something first.");  
             }
-        //else
-        System.out.println(" you are a human. you can't really hold more "
-                + "than 2 things.  you'll need to drop something first.");        
     }
     
     /**
