@@ -14,6 +14,9 @@ public class Hammer extends Item{
         super(name);
         isFlammable = false;
         isMoveable = true;
-        
+    }
+    
+    public void Strike(Item toStrike){
+        System.out.println(" You hit the " + this.name + " It made a loud noise");
     }
 }
