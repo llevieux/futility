@@ -34,6 +34,9 @@ public class Item
         this.isFlammable = isFlammable;
         this.isMoveable = isMoveable;
     }
+    public Item(String name){
+        this(name, true, true);
+    }
 
     public String getName() {
         return name;
