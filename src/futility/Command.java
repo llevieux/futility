@@ -43,16 +43,23 @@ public class Command
     private String description = "";
     
     /**
+     * Other command names that do the exact same thing
+     */
+    private String[] alias;
+    
+    /**
      * Constructor that assumes the command needs no second command.
      * 
      * @param name The name of the command. eg "go" or "run"
      * @param description A short description of how the command should be used. 
      * eg. "go <room>"
+     * @param alias other command names that do the exact same thing
      */
-    public Command(String name, String description)
+    public Command(String name, String description, String... alias)
     {
         this.name = name;
         this.description = description;
+        this.alias = alias;
     }
     
     /**
@@ -63,10 +70,12 @@ public class Command
      * game.java's main loop).
      * @param description A short description of how the command should be used. 
      * eg. "go <room>"
+     * @param alias other command names that do the exact same thing
      */
-    public Command(String name, boolean requiresVerb, String description)
+    public Command(String name, boolean requiresVerb, String description,
+            String... alias)
     {
-        this(name, description);
+        this(name, description, alias);
         this.requiresVerb = requiresVerb;
     }
     
