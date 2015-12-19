@@ -36,21 +36,39 @@ public class Command
     private boolean requiresVerb = false;
     
     /**
-     * A short description of how the command should be used.
+     * A short description of how the command should be used. 
      * 
      * eg. "go <room>"
      */
     private String description = "";
     
+    /**
+     * Constructor that assumes the command needs no second command.
+     * 
+     * @param name The name of the command. eg "go" or "run"
+     * @param description A short description of how the command should be used. 
+     * eg. "go <room>"
+     */
     public Command(String name, String description)
     {
         this.name = name;
         this.description = description;
     }
     
+    /**
+     * Constructor that assumes the command needs no second command.
+     * 
+     * @param name The name of the command. eg "go" or "run"
+     * @param requiresVerb If the command requires a second command (in 
+     * game.java's main loop).
+     * @param description A short description of how the command should be used. 
+     * eg. "go <room>"
+     */
     public Command(String name, boolean requiresVerb, String description)
     {
         this(name, description);
         this.requiresVerb = requiresVerb;
     }
+    
+    
 }
