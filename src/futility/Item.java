@@ -27,6 +27,7 @@ public class Item
     String name;
     boolean isFlammable;
     boolean isMoveable;
+    String Description;
     
     public Item(String name, boolean isFlammable, boolean isMoveable)
     {
@@ -35,7 +36,6 @@ public class Item
         this.isMoveable = isMoveable;
     }
     public Item(String name){
-        
         this(name, true, true);
     }
     
@@ -58,4 +58,6 @@ public class Item
     public void toss(){
         System.out.println(" You threw the " + name);
     }
+    
+    
 }
