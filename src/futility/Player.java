@@ -92,11 +92,18 @@ public class Player
                     + "than 2 things.  you'll need to drop something first.");        
     }
     
+    /**
+     * Removes an Item from your inventory and adds it to the current room
+     * 
+     * @param toDrop The item to drop
+     */
+    
     public void drop(Item toDrop)
     {
         for(int i=0; i<inventory.length; i++)
             if (inventory[i] == toDrop){
-                
+                inventory[i] = null;
+                currentRoom.addItem(toDrop);
             } else {
                 System.out.println("you do not have the item in your invetory");
             }
