@@ -61,15 +61,20 @@ public class Game
 //        "scope", "exit", "quit", "end", "jump", "die", "run", "go", "move"};
     private static Command[] commands = {
         new Command("about", "help", "info"),
-        new Command("inventory"),
+        new Command("inventory", "inv"),
         new Command("look", "scope"),
         new Command("exit", "quit", "end"),
         new Command("jump", "hop"),
         new Command("die"),
         
+        new Command("switch", true, "switch <lever or button>", "push", "pull" ,"on", "off", "activate"),
         new Command("go", true, "go <room>", "run", "move"),
+        new Command("examine", true, "examine <item>", "ex", "watch"),
+        new Command("eat", true, "eat <item>"),
+        new Command("open", true, "open <matchbox>"),
         new Command("get", true, "get <item>", "pickup", "add", "take"),
         new Command("light", true, "light <match>", "strike", "ignite"),
+        new Command("extinguish", true, "extinguish <match>", "putout", "ext"),
         new Command("drop", true, "drop <item>", "put", "remove", "leave")
     };
     
@@ -299,8 +304,40 @@ public class Game
             else if (command1Object.isNameOrAlias("go"))
                 System.out.println("\n you're stuck inside a small, concrete-"
                 + "reinforced room.  you can't just leave.\n");
+            else if (command1Object.isNameOrAlias("open"))
+            {
+                player.getCurrentRoom().addItems(matches);
+                System.out.println("\n you've opened the matchbox, now there are "
+                        + "matches all over the floor.");
+            }
             else if (command1Object.isNameOrAlias("light"))
-                getItemObject(command2).light();
+            {
+                if (getItemObject(command2) != null)
+                    getItemObject(command2).light();
+            }
+            else if (command1Object.isNameOrAlias("extinguish"))
+            {
+                if (getItemObject(command2) != null)
+                    getItemObject(command2).extinguish();
+            }
+            else if (command1Object.isNameOrAlias("examine"))
+            {
+                if (getItemObject(command2) != null)
+                    getItemObject(command2).examine();
+            }
+            else if (command1Object.isNameOrAlias("eat"))
+            {
+                if (getItemObject(command2) != null)
+                {
+                    getItemObject(command2).eat();
+                    player.die();
+                }
+            }
+            else if (command1Object.isNameOrAlias("switch"))
+            {
+                if (getItemObject(command2) != null)
+                    getItemObject(command2).Switch();
+            }
             else 
                 System.out.println(" internal error #1 - sorry bout that");
             

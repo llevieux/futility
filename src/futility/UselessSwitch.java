@@ -32,6 +32,7 @@ public class UselessSwitch extends Item{
     }
     
     public void Switch(){
+        System.out.println("\n you switched a switch!\n");
         if (state)
             state = false;
         else

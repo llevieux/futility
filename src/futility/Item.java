@@ -57,6 +57,10 @@ public class Item
         System.out.println(" you can't light the " + name);
     }
     
+    public void extinguish(){
+        System.out.println(" you can't extinguish the " + name);
+    }
+    
     public void eat(){
         System.out.println(" you ate the " + name);
     }
@@ -70,11 +74,16 @@ public class Item
     }
     
     public void examine(){
-        System.out.println(description);
+        System.out.println(" " + description);
     }
     
     public String toString()
     {
         return name + ": " + description;
+    }
+    
+    public void Switch()
+    {
+        System.out.println(" you can't switch the " + name);
     }
 }
