@@ -24,9 +24,9 @@ package futility;
  */
 public class Item 
 {
-    private String name;
-    private boolean isFlammable;
-    private boolean isMoveable;
+    String name;
+    boolean isFlammable;
+    boolean isMoveable;
     
     public Item(String name, boolean isFlammable, boolean isMoveable)
     {
@@ -40,14 +40,14 @@ public class Item
     }
     
     public void eat(){
-        System.out.println("You ate the " + name);
+        System.out.println(" You ate the " + name);
     }
     
     public void burn(){
-        System.out.println("You burned the " + name);
+        System.out.println(" You burned the " + name);
     }
     
     public void toss(){
-        System.out.println("You threw the " + name);
+        System.out.println(" You threw the " + name);
     }
 }
