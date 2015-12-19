@@ -122,7 +122,7 @@ public class Player
                 return;
             }
         
-        System.out.println("you do not have the item in your invetory");
+        System.out.println(" you do not have the item in your inventory");
                
     }
     
