@@ -129,10 +129,10 @@ public class Player
         if (toRoom != null && currentRoom.isAccessible(toRoom))
             currentRoom = toRoom;
     }
+    
     /**
-     * Picks up an object to your inventory
+     * 
+     * @param toGet the item that is picked up
      */
-    public void get(Item toGet, Room fromRoom){
-        
-    }
+
 }
