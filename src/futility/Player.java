@@ -67,6 +67,10 @@ public class Player
         for (int i=0; i<INVENTORYSIZE; i++) //go through each index of inventory
             if (inventory [i] != null) //ensure it is filled
                 result += inventory[i] + " "; //append to result
+        
+        if (result.equals(""))
+            return "(none)";
+        
         return result;
     }
     
@@ -124,5 +128,11 @@ public class Player
     {
         if (toRoom != null && currentRoom.isAccessible(toRoom))
             currentRoom = toRoom;
+    }
+    /**
+     * Picks up an object to your inventory
+     */
+    public void get(Item toGet, Room fromRoom){
+        
     }
 }
