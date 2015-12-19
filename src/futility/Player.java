@@ -94,7 +94,13 @@ public class Player
     
     public void drop(Item toDrop)
     {
-        
+        for(int i=0; i<inventory.length; i++)
+            if (inventory[i] == toDrop){
+                
+            } else {
+                System.out.println("you do not have the item in your invetory");
+            }
+               
     }
     
     /**
