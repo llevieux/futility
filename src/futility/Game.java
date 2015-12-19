@@ -240,6 +240,7 @@ public class Game
             
             System.out.println(" inventory: " + player.getInventory());
             System.out.println(" accessible rooms: " + player.getCurrentRoom().getStringOfAccessibleRooms());
+            System.out.println(" items in room: " + player.getCurrentRoom().getStringOfItemsInRoom());
             System.out.println();
             
             String command1;
