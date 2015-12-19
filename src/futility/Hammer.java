@@ -14,6 +14,7 @@ public class Hammer extends Item{
         super(name);
         isFlammable = false;
         isMoveable = true;
+        description = "The hammer is a piece of steel on the top of a wooden stick, this represents existentialism";
     }
     
     public void Strike(Item toStrike){

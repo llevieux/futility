@@ -16,6 +16,7 @@ public class Matchbox extends Item{
         super(name);
         isFlammable = true;
         isMoveable = true;
+        description = "the flame will guide all who seek darkness to the brim of daylight where all shall be calm";
         
         for(int i = 0; i < p2.length; i++){
             matches[i] = p2[i];

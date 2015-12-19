@@ -27,22 +27,28 @@ public class Item
     String name;
     boolean isFlammable;
     boolean isMoveable;
+    String description;
+    
     
     public Item(String name, boolean isFlammable, boolean isMoveable)
     {
         this.name = name;
         this.isFlammable = isFlammable;
         this.isMoveable = isMoveable;
+        this.description = "";
     }
     public Item(String name){
-        
         this(name, true, true);
     }
     
     public Item(){
         this("");
     }
-
+    
+    public void setDescription(String input){
+        description = input;
+    }
+    
     public String getName() {
         return name;
     }
@@ -57,5 +63,9 @@ public class Item
     
     public void toss(){
         System.out.println(" You threw the " + name);
+    }
+    
+    public void examine(){
+        System.out.println(description);
     }
 }
