@@ -300,12 +300,7 @@ public class Game
                 System.out.println("\n you're stuck inside a small, concrete-"
                 + "reinforced room.  you can't just leave.\n");
             else if (command1Object.isNameOrAlias("light"))
-            {
-                for (int i=0; i<player.getInventoryArray().length; i++)
-                    if (player.getInventoryArray()[i] instanceof Match ||
-                        player.getInventoryArray()[i].getName().equals(command2))
-                            player.getInventoryArray()[i].light();
-            }
+                getItemObject(command2).light();
             else 
                 System.out.println(" internal error #1 - sorry bout that");
             
