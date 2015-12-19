@@ -232,7 +232,7 @@ public class Game
                             "\n no.\n"));
             } while (!isValidCommand(command1));
             
-            if (!requiresSecondCommand(command1))
+            if (!getCommandObject(command1).requiresVerb())
             {
                 keyboard.nextLine();
                 Futility.clearScreen();
@@ -371,12 +371,22 @@ public class Game
      */
     private boolean isValidCommand(String command)
     {        
-        for (int i=0; i<commands.length; i++) //look in each blacklist
-            if (commands[i].equals(command)) //if it's the same as the parameter
-                return true;
+        return getCommandObject(command) != null;
+    }
+    
+    /**
+     * 
+     * @param command a string with the name or alias of a command
+     * @return a Command object that matches the string
+     */
+    private Command getCommandObject(String command)
+    {
+        for (int i=0; i<commands.length; i++) 
+            if (commands[i].isNameOrAlias(command))
+                return commands[i];
         
         //else
-        return false;
+        return null;
     }
     
     /**
