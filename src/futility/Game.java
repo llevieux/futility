@@ -251,7 +251,7 @@ public class Game
                     System.out.println(randomText("\n nope, that's not something you can do.\n",
                             "\n you can't do that.\n",
                             "\n no.\n",
-                            "\n you tried to " + command1 + ", but nothing happened."));
+                            "\n you tried to " + command1 + ", but nothing happened.\n"));
             } while (!isValidCommand(command1));
             
             Command command1Object = getCommandObject (command1);
@@ -292,8 +292,8 @@ public class Game
                 
                 if (command1Object.isNameOrAlias("get"))
                     player.get(getItemObject(command2));
-//                else if (command1Object.isNameOrAlias("drop"))
-//                    player.drop(getItemObject(command2));
+                else if (command1Object.isNameOrAlias("drop"))
+                    player.drop(getItemObject(command2));
             }
             
             System.out.println("\n");
@@ -419,6 +419,8 @@ public class Game
                 return itemsInRoom[i];
         
         //else
+        Futility.clearScreen();
+        System.out.println(" " + itemName + " is not an object in this room.\n\n");
         return null;
     }
     
