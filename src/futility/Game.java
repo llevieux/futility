@@ -149,13 +149,27 @@ public class Game
         Room billiardsAirlock = new Room("billiards airlock",
                 new Room[]{billiardsRoom}, null);
         
-        Room garage = new Room("garage", null,
-                new Item[]{new Item("car"), new Item("oil stain"), new Item("box")});
+        Room hallway = new Room("hallway", new Room[]{billiardsRoom});
+            
+        Room hanger = new Room("hanger", 
+                new Room[]{hallway},
+                new Item[]{new Item("lucas the airplane"), 
+                    new Item("kane the airplane")});
         
-        Room untitled = new Room("untitled");
+        hallway.addAccessibleRoom(hanger);
         
         Room satan = new Room("satan.", null,
                 new Item[]{new Item("fire")});
+        
+        hanger.addAccessibleRoom(satan);
+        
+        Room oilRefinery = new Room("oil refinery", 
+                new Room[]{satan}, 
+                new Item[]{new Item("oil"), new Item("machines")});
+        
+        //UNCONNECTED ROOMS
+        
+        Room untitled = new Room("untitled", new Room[]{satan});
         
         Room dragons1 = new Room("dragons (probably)");
         if (random.nextInt(4) < 3) //75%
@@ -167,22 +181,16 @@ public class Game
             for (int i=0; i<random.nextInt(4); i++)
                 dragons1.addItem(new Item("dragon"));
         
-        Room oilRefinery = new Room("oil refinery", 
-                new Room[]{satan}, 
-                new Item[]{new Item("oil"), new Item("machines")});
-        
         Room closet = new Room("closet");
         
         Room sadness = new Room("sadness room");
         
-        Room hallway = new Room("hallway");
-            
-        Room hanger = new Room("hanger", 
-                new Room[]{hallway, satan},
-                new Item[]{new Item("lucas the airplane"), 
-                    new Item("kane the airplane")});
+        billiardsRoom.addAccessibleRooms(new Room[]{billiardsAirlock, hallway});
+        billiardsRoom.addAccessibleRooms(new Room[]{billiardsAirlock, hallway});
         
-        Room[] rooms = {theRoom, billiardsRoom, garage, untitled, satan};
+        Room[] rooms = {theRoom, billiardsRoom, billiardsAirlock, hallway,
+            untitled, satan, oilRefinery, untitled, dragons1, dragons2, closet,
+            sadness};
         
         
         
