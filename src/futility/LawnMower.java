@@ -37,4 +37,12 @@ public class LawnMower extends Item{
             System.out.println("You push the silent mower on to the " + name + " and it does nothing");
         }
     }
+    public void start(){
+        if (running){
+            System.out.println("The lawnmower is already running, you are losing your sanity."); 
+        }else{
+            System.out.println("You have started the lawnmower");
+            running = true;
+        }
+    }
 }
