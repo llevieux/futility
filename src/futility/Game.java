@@ -147,10 +147,13 @@ public class Game
         UselessSwitch pressureCooker = new UselessSwitch("pressure cooker");
         pressureCooker.setDescription("The cruel irony of having no food, and a "
                 + "device to cook it with");
+        Item box = new Item("Box", true, false);
+        box.setDescription("you take in all of the deep symbolism of the box, "
+                + "like the box you are in, they are both worthless");
         //Chalk chalk = new Chalk("chalk");
         
         Item[] theRoomItems = {matchbox, flare, hammer, refrigerator, lawnMower,
-            monopolyMoney, pressureCooker
+            monopolyMoney, pressureCooker, box
             //chalk, antHill, box, anotherBox
         };
         
