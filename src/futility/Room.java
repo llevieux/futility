@@ -173,6 +173,25 @@ public class Room
     }
     
     /**
+     * @return a string representation of the accessible rooms.  In the form
+     * "name1, name2, name2"
+     */
+    public String getStringOfAccessibleRooms()
+    {
+        String output = "";
+        
+        for (int i=0; i<accessibleRooms.length; i++)
+            {
+                output += accessibleRooms[i].getName();
+                
+                if (i < (accessibleRooms.length-1))
+                    output += ", "; //every time but the last time.
+            }
+        
+        return output;
+    }
+    
+    /**
      * Adds items to itemsInRoom in the order that they are entered.
      * 
      * @param newItems items to be added
