@@ -37,7 +37,7 @@ public class Game
     /**
      * The time between lines in revealText.
      */
-    private static final double WAITTIME = 0; //1 for normal, 0 for testing
+    private static final double WAITTIME = .75; //.75 for normal, 0 for testing
     
     /**
      * Count of games played in this session
