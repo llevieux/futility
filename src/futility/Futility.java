@@ -40,7 +40,9 @@ public final class Futility
      * @param args the command line arguments (none used)
      */
     public static void main(String[] args) {
-        int leftSpacing = 16; //number of spaces to insert to the left of the wordmark
+        clearScreen();
+
+	int leftSpacing = 16; //number of spaces to insert to the left of the wordmark
         
         System.out.print(newLines(8) +
             spaces(leftSpacing) + " █████           ██   ██  ██  ██   ██\n" +
@@ -115,7 +117,7 @@ public final class Futility
      */
     public static void clearScreen()
     {
-        System.out.print(newLines(50));
+        System.out.print(newLines(100));
     }
     
     /**
