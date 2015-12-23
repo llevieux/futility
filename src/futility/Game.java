@@ -147,13 +147,13 @@ public class Game
         for (int i=0; i<buttons.length; i++)
             buttons[i] = new UselessSwitch("button " + (i+1));
         
-        Item monopolyMoney = new Item("monopoly money", true, true);
+        Item monopolyMoney = new Item("monopoly money");
         monopolyMoney.setDescription("the troubles of money are so foolish "
                 + "relative to the current situation");
         UselessSwitch pressureCooker = new UselessSwitch("pressure cooker");
-        pressureCooker.setDescription("The cruel irony of having no food, and a "
+        pressureCooker.setDescription("the cruel irony of having no food, and a "
                 + "device to cook it with");
-        Item box = new Item("Box", true, false);
+        Item box = new Item("box");
         box.setDescription("you take in all of the deep symbolism of the box, "
                 + "like the box you are in, they are both worthless");
         //Chalk chalk = new Chalk("chalk");
@@ -178,7 +178,7 @@ public class Game
                 new Room[]{billiardsRoom});
         
         Room hallway = new Room("hallway", new Room[]{billiardsRoom});
-            
+        
         Room hanger = new Room("hanger", 
                 new Room[]{hallway},
                 new Item[]{new Item("lucas the airplane"), 
