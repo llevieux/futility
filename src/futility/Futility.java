@@ -46,16 +46,16 @@ public final class Futility
 
 	int leftSpacing = 16; //number of spaces to insert to the left of the wordmark
         
-        System.out.print(newLines(8) +
-            spaces(leftSpacing) + " █████           ██   ██  ██  ██   ██\n" +
-            spaces(leftSpacing) + " ██            ██████     ██     ██████\n" +
-            spaces(leftSpacing) + " ██    ██   ██   ██   ██  ██  ██   ██   ██   ██\n" +
-            spaces(leftSpacing) + "█████  ██   ██   ██   ██  ██  ██   ██    ██ ██\n" +
-            spaces(leftSpacing) + " ██    ██   ██   ██   ██  ██  ██   ██     ███\n" +
-            spaces(leftSpacing) + " ██     █████    ██   ██  ██  ██   ██    ██\n" +
-            spaces(leftSpacing) + "                                        ██\n" +
-            spaces(leftSpacing + 18) + "the game" + 
-                newLines (8)+
+        System.out.print(Output.newLines(8) +
+            Output.spaces(leftSpacing) + " █████           ██   ██  ██  ██   ██\n" +
+            Output.spaces(leftSpacing) + " ██            ██████     ██     ██████\n" +
+            Output.spaces(leftSpacing) + " ██    ██   ██   ██   ██  ██  ██   ██   ██   ██\n" +
+            Output.spaces(leftSpacing) + "█████  ██   ██   ██   ██  ██  ██   ██    ██ ██\n" +
+            Output.spaces(leftSpacing) + " ██    ██   ██   ██   ██  ██  ██   ██     ███\n" +
+            Output.spaces(leftSpacing) + " ██     █████    ██   ██  ██  ██   ██    ██\n" +
+            Output.spaces(leftSpacing) + "                                        ██\n" +
+            Output.spaces(leftSpacing + 18) + "the game" + 
+                Output.newLines (8)+
                 " press enter to start"
         ); //looks good when fixed-width
         
@@ -89,52 +89,17 @@ public final class Futility
     }
     
     /**
-     * @param repetitions number of characters to return
-     * @param character which character to repeat repetitions times
-     * @return a string containing repetitions x character
-     */
-    public static String repeatedCharactors(int repetitions, char character)
-    {
-        String output = "";
-        
-        for (int i=0; i<repetitions; i++)
-            output += character;
-        
-        return output;
-    }
-    
-    /**
-     * @param numberOfSpaces number of spaces to return
-     * @return numberOfSpaces spaces
-     */
-    public static String spaces(int numberOfSpaces)
-    {
-        return repeatedCharactors(numberOfSpaces, ' ');
-    }
-    
-    /**
-     * @param numberOfLines number of newlines to return
-     * @return string containing numberOfNewLines x "\n"s
-     */
-    public static String newLines(int numberOfLines)
-    {
-        return repeatedCharactors(numberOfLines, '\n');
-    }
-    
-    
-    /**
      * Displays an about + help message.
      */
     public static void about()
     {
-        System.out.print(
-            " futility: the game" + newLines(2)
-            + "      by lucas levieux and kane mcgrath" + newLines(5)
-            + " github.com/llevieux/futility" + newLines(5)
+        System.out.print(" futility: the game" + Output.newLines(2)
+            + "      by lucas levieux and kane mcgrath" + Output.newLines(5)
+            + " github.com/llevieux/futility" + Output.newLines(5)
             + " futility is a text based game.  that means when you type in"
             + " certain commands, \n"
-            + " things happen." + newLines(2) 
-            + " good luck I guess." + newLines(5)
+            + " things happen." + Output.newLines(2) 
+            + " good luck I guess." + Output.newLines(5)
             + " press enter to continue");
         keyboard.nextLine();
         Output.clearScreen();
