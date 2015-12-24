@@ -27,6 +27,8 @@ public class Output {
      * Whether debug mode is on or not.
      */
     public static boolean debugMode = false;
+    
+    
 
     /**
      * Clears the screen by adding 100 newLines.
@@ -81,6 +83,21 @@ public class Output {
                 System.out.println();
                 wait(.75);
             }
+        }
+    }
+    
+    /**
+     * Prints each letter in text, with a small space of time in between.
+     * 
+     * @param text the text to be printed to the screen
+     */
+    public static void revealByLetter(String text)
+    {
+        char[] charArray = text.toCharArray();
+        for (int i=0; i<charArray.length; i++)
+        {
+            System.out.print(charArray[i]);
+            wait(.1);
         }
     }
 
