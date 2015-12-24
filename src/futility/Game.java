@@ -81,7 +81,7 @@ public class Game
     /**
      * A random generator.  nextInt(int max) is very useful.
      */
-    private static final Random random = new Random();
+    public static final Random random = new Random();
     
     /**
      * Some names I made up.  see randomName().
@@ -110,7 +110,7 @@ public class Game
     public Game (int gameCount, boolean debugMode)
     {
         if (debugMode)
-            this.waitTime = 0;
+            Output.debugMode = true;
         
         this.gameCount = gameCount;
         main();
@@ -243,8 +243,8 @@ public class Game
         
         
         //--------------------------MAIN GAME--------------------------
-        revealText("you are in a small, concrete-reinforced room",
-                "your only wish in your humble life is to get out",
+        Output.revealText("you are in a small, concrete-reinforced room",
+                "your only wish in your humble life is to get out", 
                 "there are no doors and no windows");
         
         
@@ -283,7 +283,7 @@ public class Game
                     command2 = inputArray[1];
                 
                 if (!isValidCommand(command1))
-                    System.out.println(randomText("\n nope, that's not something you can do.\n",
+                    System.out.println(Output.randomText("\n nope, that's not something you can do.\n",
                             "\n you can't do that.\n",
                             "\n no.\n",
                             "\n you tried to " + command1 + ", but nothing happened.\n"));
@@ -291,29 +291,28 @@ public class Game
             
             Command command1Object = getCommandObject (command1);
             
-            Futility.clearScreen();
+            Output.clearScreen();
 
             if (command1Object.isNameOrAlias("about"))
                 Futility.about();
             else if (command1Object.isNameOrAlias("inventory"))
-                revealText(player.getInventory());
+                Output.revealText(player.getInventory());
             else if (command1Object.isNameOrAlias("look"))
                 player.getCurrentRoom().look();
             else if (command1Object.isNameOrAlias("jump"))
-                revealText("you jump in the air", "\"whee, you shout\"");
+                Output.revealText("you jump in the air", "\"whee, you shout\"");
             else if (command1Object.isNameOrAlias("die"))
             {
                 System.out.println(" how morbid of you.");
-                Futility.wait(3.0);
-                Futility.clearScreen();
+                Output.wait(3.0);
+                Output.clearScreen();
                 player.die();
             }
             else if (command1Object.isNameOrAlias("exit"))
             {
-                revealText(
-                        "you are still in a small, concrete-reinforced room",
+                Output.revealText("you are still in a small, concrete-reinforced room", 
                             "you can't \"" + command1 + "\".");
-                Futility.clearScreen();
+                Output.clearScreen();
             }
             else if (command1Object.isNameOrAlias("get"))
                 player.get(getItemObject(command2));
@@ -364,15 +363,15 @@ public class Game
         
         //--------------------------GAME OVER--------------------------
         if (player.getCurrentRoom().getName() != "room")
-            revealText("wow.", "you won.", "did you cheat?", 
+            Output.revealText("wow.", "you won.", "did you cheat?", 
                     "this game was supposed to be unbeatable", "what a hack");
         else if (!player.isAlive())
             if (gameCount > 4)
-                revealText("you died in a small, concrete-reinforced room.",
-                        "for the " + ordinal(gameCount) + " time",
+                Output.revealText("you died in a small, concrete-reinforced room.",
+                        "for the " + Game.ordinal(gameCount) + " time",
                         "game over");
             else
-                revealText("you died in a small, concrete-reinforced room.",
+                Output.revealText("you died in a small, concrete-reinforced room.",
                         "game over");        
     }
     
@@ -412,36 +411,6 @@ public class Game
         return output;
     }
     
-    /**
-     * Prints each string entered successively, with 6 lines blank lines in 
-     * between slowly scrolling at 1 second per line.
-     * 
-     * @param text the text to be revealed, element by element
-     */
-    public void revealText(String... text)
-    {
-        for (int i=0; i<text.length; i++)
-        {
-            System.out.print(" " + text[i]);
-            for (int h=0; h<4; h++)
-            {
-                System.out.println();
-                Futility.wait(waitTime);
-            }
-        }
-    }
-    
-    /**
-     * Returns a random string of those passed.  Useful for messages that you
-     * don't want to be the same every time.
-     * 
-     * @param text strings that have an equal chance of being printed to the
-     * screen.
-     */
-    public static String randomText(String... text)
-    {
-        return text[random.nextInt(text.length)];
-    }
     
     /**
      * @param command the command as given in the main loop
@@ -488,7 +457,7 @@ public class Game
                 return itemsInInventory[i];
         
         //else
-        Futility.clearScreen();
+        Output.clearScreen();
         System.out.println(" " + itemName + " is not an object in this room.\n\n");
         return null;
     }

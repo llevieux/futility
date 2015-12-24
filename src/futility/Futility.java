@@ -42,7 +42,7 @@ public final class Futility
      * @param args the command line arguments (none used)
      */
     public static void main(String... args) {
-        clearScreen();
+        Output.clearScreen();
 
 	int leftSpacing = 16; //number of spaces to insert to the left of the wordmark
         
@@ -80,7 +80,7 @@ public final class Futility
         
         do
         {
-            clearScreen();
+            Output.clearScreen();
             new Game(gameCount, debugMode);
             System.out.println("\n try again?");
             again = keyboard.nextLine();
@@ -113,7 +113,7 @@ public final class Futility
     }
     
     /**
-     * @param numberOfSpaces number of newlines to return
+     * @param numberOfLines number of newlines to return
      * @return string containing numberOfNewLines x "\n"s
      */
     public static String newLines(int numberOfLines)
@@ -121,29 +121,6 @@ public final class Futility
         return repeatedCharactors(numberOfLines, '\n');
     }
     
-    /**
-     * Clears the screen by adding 50 newLines.
-     */
-    public static void clearScreen()
-    {
-        System.out.print(newLines(100));
-    }
-    
-    /**
-     * Pauses execution for seconds seconds.
-     * 
-     * @param seconds the amount of time to pause.
-     */
-    public static void wait(double seconds)
-    {
-        try 
-        {
-            Thread.sleep((int)(1000 * seconds));
-        } catch(InterruptedException ex) 
-        {
-            Thread.currentThread().interrupt();
-        }
-    }
     
     /**
      * Displays an about + help message.
@@ -160,6 +137,6 @@ public final class Futility
             + " good luck I guess." + newLines(5)
             + " press enter to continue");
         keyboard.nextLine();
-        clearScreen();
+        Output.clearScreen();
     }
 }
