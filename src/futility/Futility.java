@@ -82,7 +82,7 @@ public final class Futility
         {
             Output.clearScreen();
             new Game(gameCount, debugMode);
-            System.out.println("\n try again?");
+            System.out.print("\n try again? ");
             again = keyboard.nextLine();
             gameCount++;
         } while (Character.toLowerCase(again.charAt(0)) == 'y');
