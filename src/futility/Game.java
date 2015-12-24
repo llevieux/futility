@@ -87,6 +87,8 @@ public class Game
             "doodle", "diddle", "jax", "harry", "cassidy", "light", "flame"
         };
     
+    private static boolean skipIntro = false;
+    
     
     /**
      * Runs the game.
@@ -97,23 +99,22 @@ public class Game
      * @param gameCount Count of games played in this session
      * @param debugMode whether the game is in debug mode/
      */
-    public Game (int gameCount, boolean debugMode)
+    public Game (int gameCount, String[] args)
     {
-        if (debugMode)
-            Output.debugMode = true;
+        if (args.length > 0)
+        {
+            for (String arg:args)
+            {
+                if (arg.equals("-d") || arg.equals("debug") || arg.equals("--debug"))
+                    Output.debugMode = true;
+                if (args[0].equals("-s") || args[0].equals("skipintro") || args[0].equals("--skipintro"))
+                    skipIntro = true;
+            }
+        }
+        
         
         this.gameCount = gameCount;
         main();
-    }
-    
-    /**
-     * Runs a game, not in debug mode.
-     * 
-     * @param gameCount Count of games played in this session
-     */
-    public Game (int gameCount)
-    {
-        this(gameCount, false);
     }
     
     /**
@@ -121,7 +122,7 @@ public class Game
      */
     public Game()
     {
-        this(0); //runs Game(int) constructor for 0
+        this(0, new String[]{}); //runs Game(int) constructor for 0
     }
     
     /**
@@ -233,12 +234,15 @@ public class Game
         
         
         //--------------------------MAIN GAME--------------------------
-        Output.revealByLine("you are in a small, concrete-reinforced room",
-                "your only wish in your humble life is to get out", 
-                "there are no doors",
-                "and no windows");
-        
-        Output.wait(3.0);
+        if (!skipIntro)
+        {
+            Output.revealByLine("you are in a small, concrete-reinforced room",
+                    "your only wish in your humble life is to get out", 
+                    "there are no doors",
+                    "and no windows");
+
+            Output.wait(3.0);
+        }
         
         while (player.isAlive() && player.getCurrentRoom() == theRoom)
         {            
@@ -256,16 +260,12 @@ public class Game
             }
             Output.horizontalLine();
             System.out.println();
-            Output.revealByLetter(availableCommands, .001);
-            System.out.println();
-            Output.revealByLetter("inventory: " + player.getInventory(), .001);
-            System.out.println();
-            Output.revealByLetter("accessible rooms: " + player.getCurrentRoom().getStringOfAccessibleRooms(), 
+            Output.revealByLetterln(availableCommands, .001);
+            Output.revealByLetterln("inventory: " + player.getInventory(), .001);
+            Output.revealByLetterln("accessible rooms: " + player.getCurrentRoom().getStringOfAccessibleRooms(), 
                     .001);
-            System.out.println();
-            Output.revealByLetter("items in room: " + player.getCurrentRoom().getStringOfItemsInRoom(),
+            Output.revealByLetterln("items in room: " + player.getCurrentRoom().getStringOfItemsInRoom(),
                     .001);
-            System.out.println();
             System.out.println();
             
             String input = "", command1 = "", command2 = "";
@@ -281,7 +281,7 @@ public class Game
                     command2 = inputArray[1];
                 
                 if (!isValidCommand(command1))
-                    System.out.println(Output.randomText("\n nope, that's not something you can do.\n",
+                    Output.revealByLetterln(Output.randomText("\n nope, that's not something you can do.\n",
                             "\n you can't do that.\n",
                             "\n no.\n",
                             "\n you tried to " + command1 + ", but nothing happened.\n"));
@@ -294,14 +294,26 @@ public class Game
             if (command1Object.isNameOrAlias("about"))
                 Futility.about();
             else if (command1Object.isNameOrAlias("inventory"))
-                Output.revealByLine(player.getInventory());
+            {
+                if (player.getInventory() != "(none)")
+                    Output.revealByLine(player.getInventory());
+                else 
+                    Output.revealByLine(
+                        Output.randomText("you literally have nothing in your inventory",
+                        "inventory: nothing",
+                        "you're not carrying anything. pick something up, loser."));
+            }
             else if (command1Object.isNameOrAlias("look"))
                 player.getCurrentRoom().look();
             else if (command1Object.isNameOrAlias("jump"))
-                Output.revealByLine("you jump in the air", "\"whee, you shout\"");
+                Output.revealByLine("you jump in the air", 
+                    Output.randomText("\"whee\", you shout",
+                            "well, that was fun",
+                            "nothing else happened",
+                            "you are still in a small, concrete-reinforced room"));
             else if (command1Object.isNameOrAlias("die"))
             {
-                System.out.println(" how morbid of you.");
+                Output.revealByLetterln(" how morbid of you.");
                 Output.wait(3.0);
                 Output.clearScreen();
                 player.die();
@@ -317,12 +329,12 @@ public class Game
             else if (command1Object.isNameOrAlias("drop"))
                 player.drop(getItemObject(command2));
             else if (command1Object.isNameOrAlias("go"))
-                System.out.println("\n you're stuck inside a small, concrete-"
-                + "reinforced room.  you can't just leave.\n");
+                Output.revealByLine("you're stuck inside a small, concrete-"
+                + "reinforced room.", "you can't just leave.\n");
             else if (command1Object.isNameOrAlias("open"))
             {
                 player.getCurrentRoom().addItems(matches);
-                System.out.println("\n you've opened the matchbox, now there are "
+                Output.revealByLetterln("\n you've opened the matchbox, now there are "
                         + "matches all over the floor.");
             }
             else if (command1Object.isNameOrAlias("light"))
@@ -354,9 +366,10 @@ public class Game
                     getItemObject(command2).Switch();
             }
             else 
-                System.out.println(" internal error #1 - sorry bout that");
+                Output.revealByLetterln(" internal error #1 - sorry bout that");
             
             System.out.println("\n");
+            Output.wait(3.0);
         } 
         
         //--------------------------GAME OVER--------------------------
@@ -370,7 +383,7 @@ public class Game
                         "game over.");
             else
                 Output.revealByLine("you died in a small, concrete-reinforced room.",
-                        "game over");        
+                        "game over.");        
     }
     
     /**
@@ -456,7 +469,7 @@ public class Game
         
         //else
         Output.clearScreen();
-        System.out.println(" " + itemName + " is not an object in this room.\n\n");
+        Output.revealByLetterln(" " + itemName + " is not an object in this room.\n\n");
         return null;
     }
     
