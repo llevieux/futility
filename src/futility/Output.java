@@ -33,7 +33,7 @@ public class Output {
      */
     public static void clearScreen() 
     {
-        System.out.print(Futility.newLines(100));
+        System.out.print(newLines(100));
     }
 
     /**
@@ -82,6 +82,35 @@ public class Output {
                 wait(.75);
             }
         }
+    }
+
+    /**
+     * @param numberOfSpaces number of spaces to return
+     * @return numberOfSpaces spaces
+     */
+    public static String spaces(int numberOfSpaces) {
+        return repeatedCharactors(numberOfSpaces, ' ');
+    }
+
+    /**
+     * @param repetitions number of characters to return
+     * @param character which character to repeat repetitions times
+     * @return a string containing repetitions x character
+     */
+    public static String repeatedCharactors(int repetitions, char character) {
+        String output = "";
+        for (int i = 0; i < repetitions; i++) {
+            output += character;
+        }
+        return output;
+    }
+
+    /**
+     * @param numberOfLines number of newlines to return
+     * @return string containing numberOfNewLines x "\n"s
+     */
+    public static String newLines(int numberOfLines) {
+        return repeatedCharactors(numberOfLines, '\n');
     }
     
     
