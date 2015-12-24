@@ -23,7 +23,9 @@ import java.util.Scanner;
  * The "runme" class for futility.  The only public method, main(), introduces
  * the user, and makes a new game recursively.
  * 
- * Debug mode can be started by using the command line switch "debug" or "-d".
+ * Command line arguments
+ *      debug mode (doesn't wait): "debug", "--debug" or "-d".
+ *      skip intro: "skipintro" , "--skipintro", or "-s"
  * 
  * @author Lucas LeVieux <contact@lucaslevieux.com>
  */
@@ -71,17 +73,10 @@ public final class Futility
          */
         int gameCount = 1;
         
-        /**
-         * Whether or not the game should be played in debug mode.
-         */
-        boolean debugMode = 
-                args.length > 0 && //lazy evaluation saves error
-                (args[0].equals("-d") || args[0].equals("debug"));
-        
         do
         {
             Output.clearScreen();
-            new Game(gameCount, debugMode);
+            new Game(gameCount, args);
             System.out.print("\n try again? ");
             again = keyboard.nextLine();
             gameCount++;
@@ -93,14 +88,14 @@ public final class Futility
      */
     public static void about()
     {
-        System.out.print(" futility: the game" + Output.newLines(2)
+        Output.revealByLetter(" futility: the game" + Output.newLines(2)
             + "      by lucas levieux and kane mcgrath" + Output.newLines(5)
             + " github.com/llevieux/futility" + Output.newLines(5)
             + " futility is a text based game.  that means when you type in"
             + " certain commands, \n"
             + " things happen." + Output.newLines(2) 
             + " good luck I guess." + Output.newLines(5)
-            + " press enter to continue");
+            + " press enter to continue", .05);
         keyboard.nextLine();
         Output.clearScreen();
     }
