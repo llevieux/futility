@@ -18,7 +18,8 @@
 package futility;
 
 /**
- *
+ * Text output and parsing functions.
+ * 
  * @author Lucas LeVieux <contact@lucaslevieux.com>
  */
 public class Output {
