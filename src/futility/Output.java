@@ -104,6 +104,31 @@ public class Output {
     }
     
     /**
+     * Prints each letter in text, with .1 seconds between, and an extra line at
+     * the end.
+     * 
+     * @param text the text to be printed to the screen
+     */
+    public static void revealByLetterln(String text)
+    {
+        revealByLetter(text);
+        System.out.println();
+    }
+    
+    /**
+     * Prints each letter in text, with waitTime seconds between, and an extra line at
+     * the end.
+     * 
+     * @param text the text to be printed to the screen
+     * @param waitTime the amount of time, in seconds, to wait between characters
+     */
+    public static void revealByLetterln(String text, double waitTime)
+    {
+        revealByLetter(text, waitTime);
+        System.out.println();
+    }
+    
+    /**
      * Prints each letter in text, with waitTime seconds between.
      * 
      * @param text the text to be printed to the screen
@@ -134,7 +159,7 @@ public class Output {
      * @return numberOfSpaces spaces
      */
     public static String spaces(int numberOfSpaces) {
-        return repeatedCharactors(numberOfSpaces, ' ');
+        return repeatedCharacters(numberOfSpaces, ' ');
     }
 
     /**
@@ -142,7 +167,7 @@ public class Output {
      * @param character which character to repeat repetitions times
      * @return a string containing repetitions x character
      */
-    public static String repeatedCharactors(int repetitions, char character) {
+    public static String repeatedCharacters(int repetitions, char character) {
         String output = "";
         for (int i = 0; i < repetitions; i++) {
             output += character;
@@ -155,12 +180,12 @@ public class Output {
      * @return string containing numberOfNewLines x "\n"s
      */
     public static String newLines(int numberOfLines) {
-        return repeatedCharactors(numberOfLines, '\n');
+        return repeatedCharacters(numberOfLines, '\n');
     }
     
     public static void horizontalLine()
     {
-        revealByLetter(repeatedCharactors(COLS-2, '-'), .01);
+        revealByLetter(repeatedCharacters(COLS-2, '-'), .01);
         System.out.println();
     }
 }
