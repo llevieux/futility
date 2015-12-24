@@ -32,7 +32,7 @@ public class Output {
      * The maximum amount of characters per row.  Should be consistent with 
      * runme.bat.
      */
-    public static int COLS = 80;
+    private static final int COLS = 80;
 
     /**
      * Clears the screen by adding 100 newLines.
@@ -49,10 +49,12 @@ public class Output {
      */
     public static void wait(double seconds) 
     {
+        if (debugMode)
+            return;
+        
         try 
         {
-            if (!debugMode)
-                Thread.sleep((int) (1000 * seconds));
+            Thread.sleep((int) (1000 * seconds));
         } catch (InterruptedException ex) 
         {
             Thread.currentThread().interrupt();
@@ -92,11 +94,22 @@ public class Output {
     }
     
     /**
-     * Prints each letter in text, with a small space of time in between.
+     * Prints each letter in text, with .1 seconds between.
      * 
      * @param text the text to be printed to the screen
      */
     public static void revealByLetter(String text)
+    {
+        revealByLetter(text, .08);
+    }
+    
+    /**
+     * Prints each letter in text, with waitTime seconds between.
+     * 
+     * @param text the text to be printed to the screen
+     * @param waitTime the amount of time, in seconds, to wait between characters
+     */
+    public static void revealByLetter(String text, double waitTime)
     {
         text = " " + text; //prepending space
         char[] charArray = text.toCharArray();
@@ -111,7 +124,7 @@ public class Output {
             }
             else
                 System.out.print(charArray[i]);
-            wait(.1);
+            wait(waitTime);
             currentColumn++;
         }
     }
@@ -145,5 +158,9 @@ public class Output {
         return repeatedCharactors(numberOfLines, '\n');
     }
     
-    
+    public static void horizontalLine()
+    {
+        revealByLetter(repeatedCharactors(COLS-2, '-'), .01);
+        System.out.println();
+    }
 }
