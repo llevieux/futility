@@ -35,11 +35,6 @@ public class Game
     private static final Scanner keyboard = Futility.keyboard;
     
     /**
-     * The time between lines in revealText.
-     */
-    private double waitTime = .75; //.75 for normal, 0 for testing
-    
-    /**
      * Count of games played in this session
      */
     private int gameCount = 0;
@@ -54,11 +49,6 @@ public class Game
      */
     private Room[] rooms;
     
-    /**
-     * Valid commands.
-     */
-//    private static Command[] commands = {"about", "help", "inventory", "look", 
-//        "scope", "exit", "quit", "end", "jump", "die", "run", "go", "move"};
     private static Command[] commands = {
         new Command("about", "help", "info"),
         new Command("inventory", "inv"),

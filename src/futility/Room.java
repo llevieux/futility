@@ -17,8 +17,6 @@
  */
 package futility;
 
-import java.util.Arrays;
-
 /**
  * An object for a room.  Includes a name, an array of items that are contained
  * in it, an array of rooms that are accessible from it.
