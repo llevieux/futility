@@ -37,7 +37,7 @@ public class Game
     /**
      * The time between lines in revealText.
      */
-    private static final double WAITTIME = .75; //.75 for normal, 0 for testing
+    private double waitTime = .75; //.75 for normal, 0 for testing
     
     /**
      * Count of games played in this session
@@ -99,13 +99,31 @@ public class Game
     
     
     /**
-     * Runs a game.
+     * Runs the game.
+     * 
+     * Allows specification for debug mode, which, as of right now, takes the
+     * waiting out of reveal.
+     * 
+     * @param gameCount Count of games played in this session
+     * @param debugMode whether the game is in debug mode/
+     */
+    public Game (int gameCount, boolean debugMode)
+    {
+        if (debugMode)
+            this.waitTime = 0;
+        
+        this.gameCount = gameCount;
+        main();
+    }
+    
+    /**
+     * Runs a game, not in debug mode.
+     * 
      * @param gameCount Count of games played in this session
      */
     public Game (int gameCount)
     {
-        this.gameCount = gameCount;
-        main();
+        this(gameCount, false);
     }
     
     /**
@@ -400,7 +418,7 @@ public class Game
      * 
      * @param text the text to be revealed, element by element
      */
-    public static void revealText(String... text)
+    public void revealText(String... text)
     {
         for (int i=0; i<text.length; i++)
         {
@@ -408,7 +426,7 @@ public class Game
             for (int h=0; h<4; h++)
             {
                 System.out.println();
-                Futility.wait(WAITTIME);
+                Futility.wait(waitTime);
             }
         }
     }

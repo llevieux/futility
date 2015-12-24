@@ -23,6 +23,8 @@ import java.util.Scanner;
  * The "runme" class for futility.  The only public method, main(), introduces
  * the user, and makes a new game recursively.
  * 
+ * Debug mode can be started by using the command line switch "debug" or "-d".
+ * 
  * @author Lucas LeVieux <contact@lucaslevieux.com>
  */
 public final class Futility
@@ -39,7 +41,7 @@ public final class Futility
      * 
      * @param args the command line arguments (none used)
      */
-    public static void main(String[] args) {
+    public static void main(String... args) {
         clearScreen();
 
 	int leftSpacing = 16; //number of spaces to insert to the left of the wordmark
@@ -69,10 +71,17 @@ public final class Futility
          */
         int gameCount = 1;
         
+        /**
+         * Whether or not the game should be played in debug mode.
+         */
+        boolean debugMode = 
+                args.length > 0 && //lazy evaluation saves error
+                (args[0].equals("-d") || args[0].equals("debug"));
+        
         do
         {
             clearScreen();
-            new Game(gameCount);
+            new Game(gameCount, debugMode);
             System.out.println("\n try again?");
             again = keyboard.nextLine();
             gameCount++;
