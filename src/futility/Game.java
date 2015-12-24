@@ -238,27 +238,34 @@ public class Game
                 "there are no doors",
                 "and no windows");
         
+        Output.wait(3.0);
         
         while (player.isAlive() && player.getCurrentRoom() == theRoom)
         {            
-            System.out.print(" available commands: ");
+            String availableCommands = "available commands: ";
             
             for (int i=0; i<commands.length; i++)
             {
                 if (commands[i].requiresVerb())
-                    System.out.print(commands[i].getDescription());
+                    availableCommands += commands[i].getDescription();
                 else
-                    System.out.print(commands[i].getName());
+                    availableCommands += commands[i].getName();
                 
                 if (i < (commands.length-1))
-                    System.out.print(", "); //every time but the last time.
-                else
-                    System.out.println();
+                    availableCommands += ", "; //every time but the last time.
             }
-            
-            System.out.println(" inventory: " + player.getInventory());
-            System.out.println(" accessible rooms: " + player.getCurrentRoom().getStringOfAccessibleRooms());
-            System.out.println(" items in room: " + player.getCurrentRoom().getStringOfItemsInRoom());
+            Output.horizontalLine();
+            System.out.println();
+            Output.revealByLetter(availableCommands, .001);
+            System.out.println();
+            Output.revealByLetter("inventory: " + player.getInventory(), .001);
+            System.out.println();
+            Output.revealByLetter("accessible rooms: " + player.getCurrentRoom().getStringOfAccessibleRooms(), 
+                    .001);
+            System.out.println();
+            Output.revealByLetter("items in room: " + player.getCurrentRoom().getStringOfItemsInRoom(),
+                    .001);
+            System.out.println();
             System.out.println();
             
             String input = "", command1 = "", command2 = "";
@@ -360,7 +367,7 @@ public class Game
             if (gameCount > 4)
                 Output.revealByLine("you died in a small, concrete-reinforced room.",
                         "for the " + Game.ordinal(gameCount) + " time",
-                        "game over");
+                        "game over.");
             else
                 Output.revealByLine("you died in a small, concrete-reinforced room.",
                         "game over");        
