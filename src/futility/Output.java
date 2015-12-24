@@ -28,7 +28,11 @@ public class Output {
      */
     public static boolean debugMode = false;
     
-    
+    /**
+     * The maximum amount of characters per row.  Should be consistent with 
+     * runme.bat.
+     */
+    public static int COLS = 80;
 
     /**
      * Clears the screen by adding 100 newLines.
@@ -73,15 +77,16 @@ public class Output {
      *
      * @param text the text to be revealed, element by element
      */
-    public static void revealText(String... text) 
+    public static void revealByLine(String... text) 
     {
         for (int i = 0; i < text.length; i++) 
         {
-            System.out.print(" " + text[i]);
+            revealByLetter(text[i]);
+            wait(.8);
             for (int h = 0; h < 4; h++) 
             {
                 System.out.println();
-                wait(.75);
+                wait(.1);
             }
         }
     }
@@ -93,11 +98,21 @@ public class Output {
      */
     public static void revealByLetter(String text)
     {
+        text = " " + text; //prepending space
         char[] charArray = text.toCharArray();
+        int currentColumn = 1;
+        
         for (int i=0; i<charArray.length; i++)
         {
-            System.out.print(charArray[i]);
+            if (currentColumn >= (COLS - 10) && charArray[i] == ' ')
+            {
+                System.out.print("\n     "); //word wrap!
+                currentColumn = 5;
+            }
+            else
+                System.out.print(charArray[i]);
             wait(.1);
+            currentColumn++;
         }
     }
 

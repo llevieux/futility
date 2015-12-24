@@ -233,9 +233,10 @@ public class Game
         
         
         //--------------------------MAIN GAME--------------------------
-        Output.revealText("you are in a small, concrete-reinforced room",
+        Output.revealByLine("you are in a small, concrete-reinforced room",
                 "your only wish in your humble life is to get out", 
-                "there are no doors and no windows");
+                "there are no doors",
+                "and no windows");
         
         
         while (player.isAlive() && player.getCurrentRoom() == theRoom)
@@ -286,11 +287,11 @@ public class Game
             if (command1Object.isNameOrAlias("about"))
                 Futility.about();
             else if (command1Object.isNameOrAlias("inventory"))
-                Output.revealText(player.getInventory());
+                Output.revealByLine(player.getInventory());
             else if (command1Object.isNameOrAlias("look"))
                 player.getCurrentRoom().look();
             else if (command1Object.isNameOrAlias("jump"))
-                Output.revealText("you jump in the air", "\"whee, you shout\"");
+                Output.revealByLine("you jump in the air", "\"whee, you shout\"");
             else if (command1Object.isNameOrAlias("die"))
             {
                 System.out.println(" how morbid of you.");
@@ -300,7 +301,7 @@ public class Game
             }
             else if (command1Object.isNameOrAlias("exit"))
             {
-                Output.revealText("you are still in a small, concrete-reinforced room", 
+                Output.revealByLine("you are still in a small, concrete-reinforced room", 
                             "you can't \"" + command1 + "\".");
                 Output.clearScreen();
             }
@@ -353,15 +354,15 @@ public class Game
         
         //--------------------------GAME OVER--------------------------
         if (player.getCurrentRoom().getName() != "room")
-            Output.revealText("wow.", "you won.", "did you cheat?", 
+            Output.revealByLine("wow.", "you won.", "did you cheat?", 
                     "this game was supposed to be unbeatable", "what a hack");
         else if (!player.isAlive())
             if (gameCount > 4)
-                Output.revealText("you died in a small, concrete-reinforced room.",
+                Output.revealByLine("you died in a small, concrete-reinforced room.",
                         "for the " + Game.ordinal(gameCount) + " time",
                         "game over");
             else
-                Output.revealText("you died in a small, concrete-reinforced room.",
+                Output.revealByLine("you died in a small, concrete-reinforced room.",
                         "game over");        
     }
     
