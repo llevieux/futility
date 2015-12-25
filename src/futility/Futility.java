@@ -92,7 +92,7 @@ public final class Futility
             + "      by lucas levieux and kane mcgrath" + Output.newLines(5)
             + " github.com/llevieux/futility" + Output.newLines(5)
             + " futility is a text based game.  that means when you type in"
-            + " certain commands, \n"
+            + " certain commands,"
             + " things happen." + Output.newLines(2) 
             + " good luck I guess." + Output.newLines(5)
             + " press enter to continue", .05);

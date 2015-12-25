@@ -292,7 +292,10 @@ public class Game
             Output.clearScreen();
 
             if (command1Object.isNameOrAlias("about"))
+	    {
                 Futility.about();
+                continue; //skip the wait, about() already asks for confirmation
+	    }
             else if (command1Object.isNameOrAlias("inventory"))
             {
                 if (player.getInventory() != "(none)")

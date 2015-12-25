@@ -142,6 +142,8 @@ public class Output {
         
         for (int i=0; i<charArray.length; i++)
         {
+	    if (charArray[i] == '\n')
+	        currentColumn = 0;
             if (currentColumn >= (COLS - 10) && charArray[i] == ' ')
             {
                 System.out.print("\n     "); //word wrap!
