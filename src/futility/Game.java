@@ -316,9 +316,7 @@ public class Game
                             "you are still in a small, concrete-reinforced room"));
             else if (command1Object.isNameOrAlias("die"))
             {
-                Output.revealByLetterln(" how morbid of you.");
-                Output.wait(3.0);
-                Output.clearScreen();
+                Output.revealByLine("how morbid of you.");
                 player.die();
             }
             else if (command1Object.isNameOrAlias("exit"))
