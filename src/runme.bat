@@ -31,7 +31,6 @@ for /F "usebackq skip=2 tokens=1-3" %%A in (`REG QUERY %KEY_NAME% /v %VALUE_NAME
     set ValueType=%%B
     set ValueValue=%%C
 )
-@echo CurrentVersion %ValueValue%
 
 if "%ValueValue%" == "1.6" (
     for /F "usebackq skip=2 tokens=1-3" %%A in (`REG QUERY %KEY_NAME% /v %VALUE_FAMILYNAME% 2^>nul`) DO (
@@ -61,8 +60,11 @@ if defined ValueName (
     )
 )
 
-if NOT "%JRE_PATH2%" == "" goto START_FUTILITY
-else goto JAVA_NOT_INSTALLED
+if NOT "%JRE_PATH2%" == "" (
+    goto START_FUTILITY
+) else (
+    goto JAVA_NOT_INSTALLED
+)
 
 :CHECK_JAVA_32
 set KEY_NAME="HKEY_LOCAL_MACHINE\Software\JavaSoft\Java Runtime Environment"
@@ -74,8 +76,6 @@ for /F "usebackq skip=2 tokens=1-3" %%A in (`REG QUERY %KEY_NAME% /v %VALUE_NAME
     set ValueType=%%B
     set ValueValue=%%C
 )
-@echo CurrentVersion %ValueValue%
-if "%ValueValue%" == "" goto CHECK_JAVA_32
 
 if "%ValueValue%" == "1.6" (
     for /F "usebackq skip=2 tokens=1-3" %%A in (`REG QUERY %KEY_NAME% /v %VALUE_FAMILYNAME% 2^>nul`) DO (
@@ -105,8 +105,11 @@ if defined ValueName (
     )
 )
 
-if "%JRE_PATH2%" == ""  goto JAVA_NOT_INSTALLED
-else goto START_FUTILITY
+if "%JRE_PATH2%" == ""(
+    goto JAVA_NOT_INSTALLED
+) else (
+    goto START_FUTILITY
+)
 
 :JAVA_NOT_INSTALLED
 echo a current version of Java doesn't appear to be installed on your system :(
@@ -119,7 +122,7 @@ pause
 exit /B
 
 :START_FUTILITY
-rem run the jar file (if you open it directly, it doesn't do command line stuff for some reason)
+rem run the jar file (if you open it directly from file explorer, it doesn't run in the commandline)
 
 color 07
 mode con: cols=80 lines=25
