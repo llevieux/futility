@@ -23,22 +23,48 @@ package futility;
  * each lever is either on or off.  Otherwise they do nothing.
  */
 public class UselessSwitch extends Item{
+    /**
+     * Whether the switch is on or off.
+     * 
+     *      false -> off
+     *      true -> on
+     */
     private boolean state = false;
     
+    /**
+     * Constructor that initializes the switch off, with a name.
+     * 
+     * @param name the name of the switch
+     */
     public UselessSwitch(String name){
         super(name);
         isFlammable = false;
         isMoveable = false;
     }
     
+    /**
+     * Toggles the state of the switch, and outputs a message.
+     */
     public void Switch(){
-        System.out.println("\n you switched a switch!\n");
-        if (state)
+        if (state == true)
+        {
             state = false;
+            Output.revealByLine(Output.randomText("you switched a switch.",
+                getName() + " is now off",
+                "the switch is off.  \n\n you are still in the same room."));
+        }
         else
+        {
+            Output.revealByLine(Output.randomText("you switched a switch.  of course you did.",
+                getName() + " is now off.  or is it on?  who can tell.",
+                "the switch is on.  \n\n you are still in the same room."));
             state = true;
+        }
     }
     
+    /**
+     * @return the state of the switch. false -> off, true -> on
+     */
     public boolean getState(){
         return state;
     }
