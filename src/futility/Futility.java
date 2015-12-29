@@ -38,7 +38,9 @@ public final class Futility
     public static final Scanner keyboard = new Scanner(System.in);
     
     /**
-     * The current game being played.
+     * The current game being played.  It has default access, which means any 
+     * part of the program can access any other part of the program through
+     * Futility.game.
      */
     static Game game;
 
