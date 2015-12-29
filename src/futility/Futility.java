@@ -36,6 +36,11 @@ public final class Futility
      * Object which allows for user input.
      */
     public static final Scanner keyboard = new Scanner(System.in);
+    
+    /**
+     * The current game being played.
+     */
+    static Game game;
 
     /**
      * Introduces the user, then iteratively does a new Game.  Counts the number
@@ -76,7 +81,7 @@ public final class Futility
         do
         {
             Output.clearScreen();
-            new Game(gameCount, args);
+            game = new Game(gameCount, args);
             System.out.print("\n try again? ");
             again = keyboard.nextLine();
             gameCount++;
