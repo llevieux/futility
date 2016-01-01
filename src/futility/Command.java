@@ -36,6 +36,15 @@ public class Command
     private boolean requiresVerb = false;
     
     /**
+     * If a second command is required, it will be here.  For example:
+     * 
+     *       for the input = "strike box with rufus the hammer"
+     * 
+     * "with" is the required second command.
+     */
+    private String secondCommand = null;
+    
+    /**
      * A short description of how the command should be used. 
      * 
      * eg. "go <room>"
@@ -48,7 +57,7 @@ public class Command
     private String[] alias;
     
     /**
-     * Constructor that assumes the command needs no second command.
+     * Constructor that assumes the command needs no Item.
      * 
      * @param name The name of the command. eg "go" or "run"
      * @param alias other command names that do the exact same thing
@@ -60,10 +69,10 @@ public class Command
     }
     
     /**
-     * Constructor that assumes the command needs no second command.
+     * Constructor that assumes no secondary command necessary
      * 
      * @param name The name of the command. eg "go" or "run"
-     * @param requiresVerb If the command requires a second command (in 
+     * @param requiresVerb If the command requires an Item (in 
      * game.java's main loop).
      * @param description A short description of how the command should be used. 
      * eg. "go <room>"
@@ -71,6 +80,25 @@ public class Command
      */
     public Command(String name, boolean requiresVerb, String description,
             String... alias)
+    {
+        this(name,  alias);
+        this.description = description;
+        this.requiresVerb = requiresVerb;
+    }
+    
+    /**
+     * Constructor for making a second command required.
+     * 
+     * @param name The name of the command. eg "go" or "run"
+     * @param secondCommand The name of the second command. eg "with"
+     * @param requiresVerb If the command requires an Item (in 
+     * game.java's main loop).
+     * @param description A short description of how the command should be used. 
+     * eg. "go <room>"
+     * @param alias other command names that do the exact same thing
+     */
+    public Command(String name, String secondCommand, boolean requiresVerb, 
+            String description, String... alias)
     {
         this(name,  alias);
         this.description = description;
@@ -86,7 +114,7 @@ public class Command
     }
     
     /**
-     * @return If the command requires a second command (in 
+     * @return true if the command requires a second command (in 
      * game.java's main loop).
      */
     public boolean requiresVerb()
@@ -95,8 +123,25 @@ public class Command
     }
     
     /**
+     * @return true if a second command is needed beyond the main command.  for
+     * example "with".
+     */
+    public boolean requiresSecondCommand()
+    {
+        return secondCommand != null;
+    }
+
+    /**
+     * @return If a second command is required, this will return it.  Otherwise
+     * it will return null.
+     */
+    public String getSecondCommand() {
+        return secondCommand;
+    }
+    
+    /**
      * @return A short description of how the command should be used. 
-     * eg. "go <room>"
+     * eg. "go &lt;room&gt;"
      */
     public String getDescription()
     {
