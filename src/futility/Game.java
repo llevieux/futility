@@ -65,6 +65,7 @@ public class Game
         new Command("get", true, "get <item>", "pickup", "add", "take"),
         new Command("light", true, "light <match>", "strike", "ignite"),
         new Command("extinguish", true, "extinguish <match>", "putout", "ext"),
+        new Command("strike", true, "strike <object> with <hammer>", "hit"),
         new Command("drop", true, "drop <item>", "put", "remove", "leave")
     };
     
@@ -97,7 +98,7 @@ public class Game
      * waiting out of reveal.
      * 
      * @param gameCount Count of games played in this session
-     * @param debugMode whether the game is in debug mode/
+     * @param args optional command-line arguments.  see Futility.java for a list.
      */
     public Game (int gameCount, String[] args)
     {
@@ -143,7 +144,6 @@ public class Game
         Refrigerator refrigerator = new Refrigerator("refrigerator");
         LawnMower lawnMower = new LawnMower("lawnmower");
         //AntHill antHill = new AntHill("anthill");
-        //Box box = new Box("box");
         //Box anotherBox = new Box("anouther box");
         
         UselessSwitch[] levers = new UselessSwitch[random.nextInt(4) + 1];
@@ -268,37 +268,97 @@ public class Game
                     .001);
             System.out.println();
             
-            String input = "", command1 = "", command2 = "";
-            do
+            /**
+             * The literal input that is returned by the user, after being 
+             * converted to lowercase and trimmed of leading and trailing 
+             * whitespace.
+             */
+            String input = "";
+            
+            /**
+             * The array that holds all the different parts of the input as a
+             * array of strings.  
+             * 
+             * [0] -> the main command.  if it's valid, the corresponding
+             *          Command object is copied into mainCommand.  One word long.
+             * [1] -> the &lt;object&gt; following the command.  can be as many 
+             *          words as are in the &lt;object&gt;.  if it's valid, the 
+             *          corresponding Item object is copied into mainItem.
+             * [2] -> secondary command, for example "with".  not necessary, is 
+             *          usually null.
+             * [3] -> if [2] is not null, this will be the object of the 
+             *          secondary command.
+             * 
+             * Example:
+             * 
+             *      for the input = "strike box with rufus the hammer"
+             * 
+             * inputArray[0] = "strike"
+             * inputArray[1] = "box"
+             * inputArray[2] = "with"
+             * inputArray[3] = "rufus the hammer"
+             */
+            String[] inputArray = new String[4];
+            
+            do //prompt untill valid
             {
                 System.out.print(" what do you do? ");
                 input = keyboard.nextLine().toLowerCase().trim();
                 
-                String[] inputArray = input.split(" ", 2);
-                if (inputArray.length > 0)
-                    command1 = inputArray[0];
-                if (inputArray.length > 1)
-                    command2 = inputArray[1];
+                String[] inputWords = input.split(" ");
+                int whilePlace = -1;
                 
-                if (!isValidCommand(command1))
+                if (inputWords.length > 0)
+                    inputArray[0] = inputWords[0];
+                if (inputWords.length > 1)
+                {
+                    for (int i=1; i<inputWords.length; i++)
+                    {
+                        if ("with".equals(inputWords[i]))
+                        {
+                            inputArray[2] = inputWords[i];
+                            inputArray[3] = "";
+                            for (i++; i<inputWords.length; i++)
+                            {
+                                if (i<inputWords.length-1) //all except last
+                                    inputArray[3] += inputWords[i] + " ";
+                                else 
+                                    inputArray[3] += inputWords[i];
+                            }
+                        }
+                        else 
+                        {
+                            if (i==1)
+                                inputArray[1] = inputWords[i];
+                            else
+                                inputArray[1] += " " + inputWords[i];
+                        }
+                    }
+                }
+                
+                if (!isValidCommand(inputArray[0]))
                     Output.revealByLetterln(Output.randomText("\n nope, that's not something you can do.\n",
                             "\n you can't do that.\n",
                             "\n no.\n",
-                            "\n you tried to " + command1 + ", but nothing happened.\n"));
-            } while (!isValidCommand(command1));
+                            "\n you tried to " + inputArray[0] + ", but nothing happened.\n"));
+            } while (!isValidCommand(inputArray[0]));
             
-            Command command1Object = getCommandObject (command1);
+            Command mainCommand = getCommandObject(inputArray[0]);
+            
+            Item mainItem = null;
+            if (inputArray[1] != null)
+                getItemObject(inputArray[1]);
             
             Output.clearScreen();
 
-            if (command1Object.isNameOrAlias("about"))
+            if (mainCommand.isNameOrAlias("about"))
 	    {
                 Futility.about();
                 continue; //skip the wait, about() already asks for confirmation
 	    }
-            else if (command1Object.isNameOrAlias("inventory"))
+            else if (mainCommand.isNameOrAlias("inventory"))
             {
-                if (player.getInventory() != "(none)")
+                if (!"(none)".equals(player.getInventory()))
                     Output.revealByLine(player.getInventory());
                 else 
                     Output.revealByLine(
@@ -306,65 +366,65 @@ public class Game
                         "inventory: nothing",
                         "you're not carrying anything. pick something up, loser."));
             }
-            else if (command1Object.isNameOrAlias("look"))
+            else if (mainCommand.isNameOrAlias("look"))
                 player.getCurrentRoom().look();
-            else if (command1Object.isNameOrAlias("jump"))
+            else if (mainCommand.isNameOrAlias("jump"))
                 Output.revealByLine("you jump in the air", 
                     Output.randomText("\"whee\", you shout",
                             "well, that was fun",
                             "nothing else happened",
                             "you are still in a small, concrete-reinforced room"));
-            else if (command1Object.isNameOrAlias("die"))
+            else if (mainCommand.isNameOrAlias("die"))
             {
                 Output.revealByLine("how morbid of you.");
                 player.die();
             }
-            else if (command1Object.isNameOrAlias("exit"))
+            else if (mainCommand.isNameOrAlias("exit"))
             {
                 Output.revealByLine("you are still in a small, concrete-reinforced room", 
-                            "you can't \"" + command1 + "\".");
+                            "you can't \"" + mainCommand.getName() + "\".");
                 Output.clearScreen();
             }
-            else if (command1Object.isNameOrAlias("get"))
-                player.get(getItemObject(command2));
-            else if (command1Object.isNameOrAlias("drop"))
-                player.drop(getItemObject(command2));
-            else if (command1Object.isNameOrAlias("go"))
+            else if (mainCommand.isNameOrAlias("get"))
+                player.get(mainItem);
+            else if (mainCommand.isNameOrAlias("drop"))
+                player.drop(mainItem);
+            else if (mainCommand.isNameOrAlias("go"))
                 Output.revealByLine("you're stuck inside a small, concrete-"
                 + "reinforced room.", "you can't just leave.\n");
-            else if (command1Object.isNameOrAlias("open"))
+            else if (mainCommand.isNameOrAlias("open"))
             {
                 player.getCurrentRoom().addItems(matches);
                 Output.revealByLetterln("\n you've opened the matchbox, now there are "
                         + "matches all over the floor.");
             }
-            else if (command1Object.isNameOrAlias("light"))
+            else if (mainCommand.isNameOrAlias("light"))
             {
-                if (getItemObject(command2) != null)
-                    getItemObject(command2).light();
+                if (mainItem != null)
+                    mainItem.light();
             }
-            else if (command1Object.isNameOrAlias("extinguish"))
+            else if (mainCommand.isNameOrAlias("extinguish"))
             {
-                if (getItemObject(command2) != null)
-                    getItemObject(command2).extinguish();
+                if (mainItem != null)
+                    mainItem.extinguish();
             }
-            else if (command1Object.isNameOrAlias("examine"))
+            else if (mainCommand.isNameOrAlias("examine"))
             {
-                if (getItemObject(command2) != null)
-                    getItemObject(command2).examine();
+                if (mainItem != null)
+                    mainItem.examine();
             }
-            else if (command1Object.isNameOrAlias("eat"))
+            else if (mainCommand.isNameOrAlias("eat"))
             {
-                if (getItemObject(command2) != null)
+                if (mainItem != null)
                 {
-                    getItemObject(command2).eat();
+                    mainItem.eat();
                     player.die();
                 }
             }
-            else if (command1Object.isNameOrAlias("switch"))
+            else if (mainCommand.isNameOrAlias("switch"))
             {
-                if (getItemObject(command2) != null)
-                    getItemObject(command2).Switch();
+                if (mainItem != null)
+                    mainItem.Switch();
             }
             else 
                 Output.revealByLetterln(" internal error #1 - sorry bout that");
@@ -374,7 +434,7 @@ public class Game
         } 
         
         //--------------------------GAME OVER--------------------------
-        if (player.getCurrentRoom().getName() != "room")
+        if (!"room".equals(player.getCurrentRoom().getName()))
             Output.revealByLine("wow.", "you won.", "did you cheat?", 
                     "this game was supposed to be unbeatable", "what a hack");
         else if (!player.isAlive())
