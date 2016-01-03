@@ -3,7 +3,7 @@
 if exist Futility.jar (
     goto CHECK_FOR_JAVA
 ) else (
-    echo Futility.jar can't be found.  ensure that the directory is unzipped. 
+    echo hey! where's Futility.jar?  ensure that the directory is unzipped. 
     echo.
     echo if that doesn't fix things, try downloading the official build at 
     echo        github.com/llevieux/futility/releases
@@ -112,9 +112,9 @@ if "%JRE_PATH2%" == ""(
 )
 
 :JAVA_NOT_INSTALLED
-echo a current version of Java doesn't appear to be installed on your system :(
+echo hey! you don't have a current version of java!
 echo.
-echo you'll need to download it in order for this to work.
+echo you'll need it for this.
 echo.
 echo.
 start "" http://www.java.com/en/download/
