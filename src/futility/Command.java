@@ -31,9 +31,9 @@ public class Command
     private String name;
     
     /**
-     * If the command requires a second command (in game.java's main loop).
+     * True if the command requires an item to perform the action to.
      */
-    private boolean requiresVerb = false;
+    private boolean requiresItem = false;
     
     /**
      * If a second command is required, it will be here.  For example:
@@ -72,18 +72,18 @@ public class Command
      * Constructor that assumes no secondary command necessary
      * 
      * @param name The name of the command. eg "go" or "run"
-     * @param requiresVerb If the command requires an Item (in 
+     * @param requiresItem If the command requires an Item (in 
      * game.java's main loop).
      * @param description A short description of how the command should be used. 
      * eg. "go <room>"
      * @param alias other command names that do the exact same thing
      */
-    public Command(String name, boolean requiresVerb, String description,
+    public Command(String name, boolean requiresItem, String description,
             String... alias)
     {
         this(name,  alias);
         this.description = description;
-        this.requiresVerb = requiresVerb;
+        this.requiresItem = requiresItem;
     }
     
     /**
@@ -91,18 +91,18 @@ public class Command
      * 
      * @param name The name of the command. eg "go" or "run"
      * @param secondCommand The name of the second command. eg "with"
-     * @param requiresVerb If the command requires an Item (in 
+     * @param requiresItem If the command requires an Item (in 
      * game.java's main loop).
      * @param description A short description of how the command should be used. 
      * eg. "go <room>"
      * @param alias other command names that do the exact same thing
      */
-    public Command(String name, String secondCommand, boolean requiresVerb, 
+    public Command(String name, String secondCommand, boolean requiresItem, 
             String description, String... alias)
     {
         this(name,  alias);
         this.description = description;
-        this.requiresVerb = requiresVerb;
+        this.requiresItem = requiresItem;
     }
     
     /**
@@ -114,12 +114,11 @@ public class Command
     }
     
     /**
-     * @return true if the command requires a second command (in 
-     * game.java's main loop).
+     * @return True if the command requires an item to perform the action to.
      */
-    public boolean requiresVerb()
+    public boolean requiresItem()
     {
-        return requiresVerb;
+        return requiresItem;
     }
     
     /**
@@ -178,7 +177,7 @@ public class Command
         String output = name + ". aliases: ";
         for (int i=0; i<alias.length; i++) //look through the alias for input
             output += alias[i] + ", ";
-        if (requiresVerb)
+        if (requiresItem)
             output += "requires verb.  description: " + description;
         
         return output;
