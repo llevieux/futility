@@ -1,0 +1,4 @@
+[autorun] 
+open=runme.bat
+icon=icon.ico
+label=futility
