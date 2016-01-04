@@ -250,7 +250,7 @@ public class Game
             
             for (int i=0; i<commands.length; i++)
             {
-                if (commands[i].requiresVerb())
+                if (commands[i].requiresItem())
                     availableCommands += commands[i].getDescription();
                 else
                     availableCommands += commands[i].getName();
@@ -336,18 +336,25 @@ public class Game
                     }
                 }
                 
-                if (!isValidCommand(inputArray[0]))
-                    Output.revealByLetterln(Output.randomText("\n nope, that's not something you can do.\n",
-                            "\n you can't do that.\n",
-                            "\n no.\n",
-                            "\n you tried to " + inputArray[0] + ", but nothing happened.\n"));
-            } while (!isValidCommand(inputArray[0]));
+                if (getCommandObject(inputArray[0]) == null)
+                    Output.revealByLetterln(Output.randomText("\n nope, that's "
+                            + "not something you can do.\n\n",
+                            "\n you can't do that.\n\n",
+                            "\n no.\n\n",
+                            "\n you tried to " + inputArray[0] + ", but nothing happened.\n\n"));
+                else if (getCommandObject(inputArray[0]).requiresItem()
+                        && inputArray[1] == null)
+                    Output.revealByLetterln("\n you'll need to enter something "
+                            + "to " + inputWords[0] + ".\n\n");
+                else if (getCommandObject(inputArray[0]).requiresItem()
+                        && getItemObject(inputArray[1]) == null)
+                    Output.revealByLetterln("\n " + inputWords[1] + " is not an object "
+                            + "in this room.\n\n");
+                
+            } while (!isValidCommand(inputArray));
             
             Command mainCommand = getCommandObject(inputArray[0]);
-            
-            Item mainItem = null;
-            if (inputArray[1] != null)
-                getItemObject(inputArray[1]);
+            Item mainItem = getItemObject(inputArray[1]); //might be null
             
             Output.clearScreen();
 
@@ -383,7 +390,6 @@ public class Game
             {
                 Output.revealByLine("you are still in a small, concrete-reinforced room", 
                             "you can't \"" + mainCommand.getName() + "\".");
-                Output.clearScreen();
             }
             else if (mainCommand.isNameOrAlias("get"))
                 player.get(mainItem);
@@ -399,33 +405,15 @@ public class Game
                         + "matches all over the floor.");
             }
             else if (mainCommand.isNameOrAlias("light"))
-            {
-                if (mainItem != null)
-                    mainItem.light();
-            }
+                mainItem.light();
             else if (mainCommand.isNameOrAlias("extinguish"))
-            {
-                if (mainItem != null)
-                    mainItem.extinguish();
-            }
+                mainItem.extinguish();
             else if (mainCommand.isNameOrAlias("examine"))
-            {
-                if (mainItem != null)
-                    mainItem.examine();
-            }
+                mainItem.examine();
             else if (mainCommand.isNameOrAlias("eat"))
-            {
-                if (mainItem != null)
-                {
-                    mainItem.eat();
-                    player.die();
-                }
-            }
+                mainItem.eat();
             else if (mainCommand.isNameOrAlias("switch"))
-            {
-                if (mainItem != null)
-                    mainItem.Switch();
-            }
+                mainItem.toggle();
             else 
                 Output.revealByLetterln(" internal error #1 - sorry bout that");
             
@@ -485,12 +473,30 @@ public class Game
     
     
     /**
-     * @param command the command as given in the main loop
-     * @return true if the command is a valid command
+     * @param command the parsed input as given in the input loop as inputArray
+     * @return true if the command is a valid command:
+     *      the main command is valid
+     *      the main item is valid (exists in room), if required according to the 
+     *              main command
+     *      the secondary command is valid, if required according to the 
+     *              main command
+     *      the secondary item is valid (exists in room), if secondary command 
+     *              is required
      */
-    private boolean isValidCommand(String command)
+    private boolean isValidCommand(String[] inputArray)
     {        
-        return getCommandObject(command) != null;
+        Command mainCommand = getCommandObject(inputArray[0]);
+        Item mainItem = getItemObject(inputArray[1]);
+        
+        if (
+                mainCommand == null ||
+                mainCommand.requiresItem() && mainItem == null ||
+                mainCommand.requiresSecondCommand() && 
+                    (inputArray[2] == null || inputArray[3] == null)
+                )
+            return false;
+        else
+            return true;
     }
     
     /**
@@ -529,8 +535,6 @@ public class Game
                 return itemsInInventory[i];
         
         //else
-        Output.clearScreen();
-        Output.revealByLetterln(" " + itemName + " is not an object in this room.\n\n");
         return null;
     }
     
