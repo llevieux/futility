@@ -65,8 +65,9 @@ public class Game
         new Command("get", true, "get <item>", "pickup", "add", "take"),
         new Command("light", true, "light <match>", "strike", "ignite"),
         new Command("extinguish", true, "extinguish <match>", "putout", "ext"),
-        new Command("strike", true, "strike <object> with <hammer>", "hit"),
-        new Command("drop", true, "drop <item>", "put", "remove", "leave")
+        new Command("drop", true, "drop <item>", "put", "remove", "leave"),
+            
+        new Command("strike", "with", true, "strike <object> with <hammer>", "hit")
     };
     
     /**
@@ -85,7 +86,7 @@ public class Game
             "marcos", "brie", "bling", "trevor", "amathyst", "jaden", "irwin",
             "asher", "jesus", "carolina", "chance", "bilbo", "steve", "john",
             "olleh", "bam", "ban", "bun", "orion", "baby", "ice cube", "yolo",
-            "doodle", "diddle", "jax", "harry", "cassidy", "light", "flame"
+            "doodle", "diddle", "jax", "harry", "cassidy"
         };
     
     private static boolean skipIntro = false;
@@ -336,12 +337,20 @@ public class Game
                     }
                 }
                 
-                if (getCommandObject(inputArray[0]) == null)
+                if ("".equals(input))
+                    Output.revealByLetterln(Output.randomText("\n hey! you didn't"
+                            + " enter anything\n\n",
+                            "\n you were supposed to type something there\n\n",
+                            "\n oh, come on.\n\n"
+                            ));
+                else if (getCommandObject(inputArray[0]) == null)
                     Output.revealByLetterln(Output.randomText("\n nope, that's "
                             + "not something you can do.\n\n",
                             "\n you can't do that.\n\n",
                             "\n no.\n\n",
-                            "\n you tried to " + inputArray[0] + ", but nothing happened.\n\n"));
+                            "\n oh, come on.\n\n",
+                            "\n you tried to " + inputArray[0] + ", but nothing happened.\n\n"
+                            ));
                 else if (getCommandObject(inputArray[0]).requiresItem()
                         && inputArray[1] == null)
                     Output.revealByLetterln("\n you'll need to enter something "
@@ -387,10 +396,8 @@ public class Game
                 player.die();
             }
             else if (mainCommand.isNameOrAlias("exit"))
-            {
                 Output.revealByLine("you are still in a small, concrete-reinforced room", 
                             "you can't \"" + mainCommand.getName() + "\".");
-            }
             else if (mainCommand.isNameOrAlias("get"))
                 player.get(mainItem);
             else if (mainCommand.isNameOrAlias("drop"))
@@ -399,11 +406,7 @@ public class Game
                 Output.revealByLine("you're stuck inside a small, concrete-"
                 + "reinforced room.", "you can't just leave.\n");
             else if (mainCommand.isNameOrAlias("open"))
-            {
-                player.getCurrentRoom().addItems(matches);
-                Output.revealByLetterln("\n you've opened the matchbox, now there are "
-                        + "matches all over the floor.");
-            }
+                mainItem.open();
             else if (mainCommand.isNameOrAlias("light"))
                 mainItem.light();
             else if (mainCommand.isNameOrAlias("extinguish"))
