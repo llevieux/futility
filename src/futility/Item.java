@@ -83,7 +83,7 @@ public class Item
         return name + ": " + description;
     }
     
-    public void Switch()
+    public void toggle()
     {
         System.out.println(" you can't switch the " + name);
     }

@@ -45,7 +45,7 @@ public class UselessSwitch extends Item{
     /**
      * Toggles the state of the switch, and outputs a message.
      */
-    public void Switch(){
+    public void toggle(){
         if (state == true)
         {
             state = false;
