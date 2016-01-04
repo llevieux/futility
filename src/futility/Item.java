@@ -93,4 +93,8 @@ public class Item
     {
         Output.revealByLine(name + " doesn't open.");
     }
+    
+    public void Strike(Item toStrike){
+        Output.revealByLine("you hit " + toStrike.name + ".  hope that's fun for you.");
+    }
 }
