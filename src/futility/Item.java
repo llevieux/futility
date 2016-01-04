@@ -85,6 +85,11 @@ public class Item
     
     public void toggle()
     {
-        System.out.println(" you can't switch the " + name);
+        System.out.println(" you can't switch " + name);
+    }
+    
+    public void open()
+    {
+        Output.revealByLine(name + " doesn't open.");
     }
 }
