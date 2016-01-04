@@ -18,20 +18,26 @@
 package futility;
 
 /**
- * @author Kane
+ * @author Kane McGrath
  */
 public class Matchbox extends Item{
-    private Match[] matches = new Match[6];
+    private Match[] matches;
     
-    public Matchbox(String name, Match[] p2){
+    public Matchbox(String name, Match[] matches){
         super(name);
         isFlammable = true;
         isMoveable = true;
-        description = "the flame will guide all who seek darkness to the brim of daylight where all shall be calm";
+        description = "the flame will guide all who seek darkness to the brim of "
+                + "daylight where all shall be calm";
         
-        for(int i = 0; i < p2.length; i++){
-            matches[i] = p2[i];
-        }
+        this.matches = matches;
+    }
+    
+    public void open()
+    {
+        Futility.game.player.getCurrentRoom().addItems(matches);
+        Output.revealByLetterln("\n you've opened the matchbox, now there are "
+                        + "matches all over the floor.");
     }
     
     
