@@ -63,7 +63,7 @@ public class Game
         new Command("eat", true, "eat <item>"),
         new Command("open", true, "open <matchbox>"),
         new Command("get", true, "get <item>", "pickup", "add", "take"),
-        new Command("light", true, "light <match>", "strike", "ignite"),
+        new Command("light", true, "light <match>", "ignite"),
         new Command("extinguish", true, "extinguish <match>", "putout", "ext"),
         new Command("drop", true, "drop <item>", "put", "remove", "leave"),
             
