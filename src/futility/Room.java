@@ -302,6 +302,10 @@ public class Room
             Output.revealByLine("the room is just a normal room.");
         else
             Output.revealByLine(lookText);
+        
+        if (!getStringOfItemsInRoom().equals("(none)"))
+            Output.revealByLetterln("there are things in here: " + getStringOfItemsInRoom(),
+                    .001);
     }
     
     /**
