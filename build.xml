@@ -5,5 +5,12 @@
     <target name="-post-jar"> 
         <delete file="${dist.dir}/README.txt" /> 
         <copy file="${src.dir}/runme.bat" tofile="${dist.dir}/runme.bat" />
+        <copy file="${src.dir}/autorun.inf" tofile="${dist.dir}/autorun.inf" />
+        
+        <copy file="images/map.png" tofile="${dist.dir}/map.png" />
+        <copy file="images/icon.ico" tofile="${dist.dir}/icon.ico" />
+        
+        <attrib file="${dist.dir}/autorun.inf" hidden="true" />
+        <attrib file="${dist.dir}/icon.ico" hidden="true" />
     </target> 
 </project>
