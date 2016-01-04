@@ -63,6 +63,7 @@ public class Item
     
     public void eat(){
         System.out.println(" you ate the " + name);
+        Futility.game.player.die();
     }
     
     public void burn(){
