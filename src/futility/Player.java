@@ -91,9 +91,13 @@ public class Player
             return;
         
         if (!toGet.isMoveable)
+        {
             Output.revealByLine(Output.randomText("you can't pick that up.",
                     "you can't pick up " + toGet.getName(),
                     "no way"));
+            return;
+        }
+        
         
         for(int i=0; i<inventory.length; i++)
             if (inventory[i] == null) //there's an empty slot in the inventory
