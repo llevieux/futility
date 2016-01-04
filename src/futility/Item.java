@@ -54,28 +54,28 @@ public class Item
     }
     
     public void light(){
-        System.out.println(" you can't light the " + name);
+        Output.revealByLine("you can't light the " + name);
     }
     
     public void extinguish(){
-        System.out.println(" you can't extinguish the " + name);
+        Output.revealByLine("you can't extinguish the " + name);
     }
     
     public void eat(){
-        System.out.println(" you ate the " + name);
+        Output.revealByLine("you ate " + name);
         Futility.game.player.die();
     }
     
     public void burn(){
-        System.out.println(" you burned the " + name);
+        Output.revealByLine("you burned " + name);
     }
     
     public void toss(){
-        System.out.println(" you threw the " + name);
+        Output.revealByLine("you threw " + name);
     }
     
     public void examine(){
-        System.out.println(" " + description);
+        Output.revealByLine(description);
     }
     
     public String toString()
@@ -85,7 +85,7 @@ public class Item
     
     public void toggle()
     {
-        System.out.println(" you can't switch " + name);
+        Output.revealByLine("you can't switch " + name);
     }
     
     public void open()
