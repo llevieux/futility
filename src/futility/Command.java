@@ -36,6 +36,11 @@ public class Command
     private boolean requiresItem = false;
     
     /**
+     * True if the command requires a room to perform the action to.
+     */
+    private boolean requiresRoom = false;
+    
+    /**
      * If a second command is required, it will be here.  For example:
      * 
      *       for the input = "strike box with rufus the hammer"
@@ -100,9 +105,8 @@ public class Command
     public Command(String name, String secondCommand, boolean requiresItem, 
             String description, String... alias)
     {
-        this(name,  alias);
-        this.description = description;
-        this.requiresItem = requiresItem;
+        this(name, requiresItem, description, alias);
+        this.secondCommand = secondCommand;
     }
     
     /**
@@ -119,6 +123,14 @@ public class Command
     public boolean requiresItem()
     {
         return requiresItem;
+    }
+    
+    /**
+     * @return True if the command requires a room to perform the action to.
+     */
+    public boolean requiresRoom()
+    {
+        return requiresRoom;
     }
     
     /**
