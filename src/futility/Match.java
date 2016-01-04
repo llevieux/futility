@@ -31,27 +31,29 @@ public class Match extends Item{
     
     public void light(){
         if (!lit){
-            System.out.println(" you have lit the match");
+            Output.revealByLine("you have lit the match");
             lit = true;
         } else {
-            System.out.println(" the match is already lit");
+            Output.revealByLine("the match is already lit");
         }
         
     }
     public void eat(){
         if (lit){
-            System.out.println(" you have ate the match and the fire burns your throat");
+            Output.revealByLine("you have ate the match and the fire burns your throat");
+            Futility.game.player.die();
         } else {
-            System.out.println(" you have swallowed the match");
+            Output.revealByLine("you have swallowed the match");
         }
+        Futility.game.player.getCurrentRoom().removeItem(this);
     }
     public void extinguish(){
         if (lit){
-            System.out.println(" you have extinguished the match");
+            Output.revealByLine("you have extinguished the match");
             lit = false;
         } else {
-            System.out.println(" you try to extinguish the unlit match");
-            System.out.println(" and it does not work");
+            Output.revealByLine("you try to extinguish the unlit match",
+                    "and it does not work");
         }
     }
 }

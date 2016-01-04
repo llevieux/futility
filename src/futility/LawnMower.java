@@ -27,30 +27,30 @@ public class LawnMower extends Item{
         super(name);
         isFlammable = false;
         isMoveable = false;
-        description = "The real beauty is underneath";
+        description = "the real beauty is underneath";
     }
     
     public void mow(Item item){
         if (running){
-            System.out.println("You push the mower on to the " + name + " and it breaks"); 
+            Output.revealByLine("you push the mower on to the " + name + " and it breaks"); 
         }else{
-            System.out.println("You push the silent mower on to the " + name + " and it does nothing");
+            Output.revealByLine("you push the silent mower on to the " + name + " and it does nothing");
         }
     }
     public void start(){
         if (running){
-            System.out.println("The lawnmower is already running, you are losing your sanity."); 
+            Output.revealByLine("the lawnmower is already running, you are losing your sanity."); 
         }else{
-            System.out.println("You have started the lawnmower");
+            Output.revealByLine("you have started the lawnmower");
             running = true;
         }
     }
     public void stop(){
         if (running){
-            System.out.println("You Turn off the lawn mower"); 
+            Output.revealByLine("you turn off the lawn mower"); 
             running = false;
         }else{
-            System.out.println("It is already off");
+            Output.revealByLine("it is already off");
         }
     }
 }

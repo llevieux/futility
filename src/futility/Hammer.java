@@ -18,6 +18,6 @@ public class Hammer extends Item{
     }
     
     public void Strike(Item toStrike){
-        System.out.println(" You hit the " + this.name + " It made a loud noise");
+        Output.revealByLine("you hit the " + this.name + " It made a loud noise");
     }
 }
