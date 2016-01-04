@@ -90,18 +90,25 @@ public class Player
         if (toGet == null)
             return;
         
+        if (!toGet.isMoveable)
+            Output.revealByLine(Output.randomText("you can't pick that up.",
+                    "you can't pick up " + toGet.getName(),
+                    "no way"));
+        
         for(int i=0; i<inventory.length; i++)
-            if (toGet.isMoveable){
-                if (inventory[i] == null) //there's an emtpty slot in the inventory
-                {
-                    inventory[i] = toGet; //add to inventory
-                    currentRoom.removeItem(toGet); //remove from room
-                    return;
-                }
-            //else
-            System.out.println(" you are a human. you can't really hold more "
-                    + "than 2 things.  you'll need to drop something first.");  
+            if (inventory[i] == null) //there's an empty slot in the inventory
+            {
+                inventory[i] = toGet; //add to inventory
+                Output.revealByLine(Output.randomText("you've got "  + toGet.getName(),
+                    "you now have " + toGet.getName(),
+                    "you picked it up"));
+                currentRoom.removeItem(toGet); //remove from room
+                return;
             }
+        
+        //else
+        Output.revealByLine("you are only human.", "you can't really hold more "
+                + "than 2 things.", "you'll need to drop something first.");
     }
     
     /**
@@ -122,7 +129,7 @@ public class Player
                 return;
             }
         
-        System.out.println(" you do not have the item in your inventory");
+        Output.revealByLine("you do not have the item in your inventory");
                
     }
     
@@ -152,7 +159,7 @@ public class Player
     }
     
     /**
-     * Moves the player to a specified room.
+     * Moves the player to a specified room, if it's available
      * 
      * @param toRoom the room to move to
      */
@@ -160,6 +167,8 @@ public class Player
     {
         if (toRoom != null && currentRoom.isAccessible(toRoom))
             currentRoom = toRoom;
+        else 
+            Output.revealByLine("you can't move there.");
     }
     
      
