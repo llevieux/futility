@@ -406,7 +406,11 @@ public class Game
                 Output.revealByLine("you're stuck inside a small, concrete-"
                 + "reinforced room.", "you can't just leave.\n");
             else if (mainCommand.isNameOrAlias("open"))
+            {
+                if (mainItem instanceof Matchbox)
+                    player.getCurrentRoom().addItems(matches);
                 mainItem.open();
+            }
             else if (mainCommand.isNameOrAlias("light"))
                 mainItem.light();
             else if (mainCommand.isNameOrAlias("extinguish"))
@@ -414,11 +418,17 @@ public class Game
             else if (mainCommand.isNameOrAlias("examine"))
                 mainItem.examine();
             else if (mainCommand.isNameOrAlias("eat"))
+            {
                 mainItem.eat();
+                player.getCurrentRoom().removeItem(mainItem);
+                player.die();
+            }
             else if (mainCommand.isNameOrAlias("switch"))
                 mainItem.toggle();
+            else if (mainCommand.isNameOrAlias("strike"))
+                getItemObject(inputArray[3]).Strike(mainItem);
             else 
-                Output.revealByLetterln(" internal error #1 - sorry bout that");
+                Output.revealByLetterln("internal error #1 - sorry bout that");
             
             System.out.println("\n");
             Output.wait(3.0);

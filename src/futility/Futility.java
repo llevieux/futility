@@ -43,7 +43,7 @@ public final class Futility
      * Futility.game.
      */
     static Game game;
-
+    
     /**
      * Introduces the user, then iteratively does a new Game.  Counts the number
      * of games, and supplies it as constructor argument to Game.

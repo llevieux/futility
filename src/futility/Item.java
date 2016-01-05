@@ -28,7 +28,7 @@ public class Item
     boolean isFlammable;
     boolean isMoveable;
     String description;
-    
+    Match[] matches = null;
     
     public Item(String name, boolean isFlammable, boolean isMoveable)
     {
@@ -63,8 +63,6 @@ public class Item
     
     public void eat(){
         Output.revealByLine("you ate " + name);
-        Futility.game.player.getCurrentRoom().removeItem(this);
-        Futility.game.player.die();
     }
     
     public void burn(){

@@ -21,7 +21,7 @@ package futility;
  * @author Kane McGrath
  */
 public class Matchbox extends Item{
-    private Match[] matches;
+    Match[] matches;
     
     public Matchbox(String name, Match[] matches){
         super(name);
@@ -35,9 +35,9 @@ public class Matchbox extends Item{
     
     public void open()
     {
-        Futility.game.player.getCurrentRoom().addItems(matches);
         Output.revealByLetterln("\n you've opened the matchbox, now there are "
                         + "matches all over the floor.");
+        matches = null;
     }
     
     
