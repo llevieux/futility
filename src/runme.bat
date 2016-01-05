@@ -109,7 +109,7 @@ if defined ValueName (
     )
 )
 
-if "%JRE_PATH2%" == ""(
+if "%JRE_PATH2%" == "" (
     goto JAVA_NOT_INSTALLED
 ) else (
     goto START_FUTILITY
