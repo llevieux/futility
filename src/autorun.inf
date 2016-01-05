@@ -1,4 +1,5 @@
 [autorun] 
-open=runme.bat
+shellexecute=runme.bat
 icon=icon.ico
 label=futility
+action=run futility
