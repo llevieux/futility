@@ -129,4 +129,4 @@ exit /B
 rem run the jar file (if you open it directly from file explorer, it doesn't run in the commandline)
 
 cls
-java -jar Futility.jar
+java -jar futility.jar
