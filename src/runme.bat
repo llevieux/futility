@@ -4,10 +4,10 @@ color 07
 mode con: cols=80 lines=25
 title futility: the game
 
-if exist Futility.jar (
+if exist futility.jar (
     goto CHECK_FOR_JAVA
 ) else (
-    echo hey! where's Futility.jar?  ensure that the directory is unzipped. 
+    echo hey! where's futility.jar?  ensure that the directory is unzipped. 
     echo.
     echo if that doesn't fix things, try downloading the official build at 
     echo        github.com/llevieux/futility/releases
