@@ -1,5 +1,9 @@
 @echo off
 
+color 07
+mode con: cols=80 lines=25
+title futility: the game
+
 if exist Futility.jar (
     goto CHECK_FOR_JAVA
 ) else (
@@ -124,8 +128,5 @@ exit /B
 :START_FUTILITY
 rem run the jar file (if you open it directly from file explorer, it doesn't run in the commandline)
 
-color 07
-mode con: cols=80 lines=25
-title futility: the game
 cls
 java -jar Futility.jar
