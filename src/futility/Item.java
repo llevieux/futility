@@ -93,6 +93,11 @@ public class Item
     }
     
     public void Strike(Item toStrike){
-        Output.revealByLine("you hit " + toStrike.name + ".  hope that's fun for you.");
+        if (toStrike == this)
+            Output.revealByLine("you hit " + toStrike.name + " with itself?!?  how'd you do that?");
+        else if (isMoveable)
+            Output.revealByLine("you hit " + toStrike.name + ".  hope that's fun for you.");
+        else
+            Output.revealByLine("?!?! you can't even lift " + toStrike.name + ".");
     }
 }
