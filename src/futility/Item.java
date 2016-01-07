@@ -27,6 +27,7 @@ public class Item
     String name;
     boolean isFlammable;
     boolean isMoveable;
+    boolean broken = false;
     String description;
     Match[] matches = null;
     
@@ -67,14 +68,16 @@ public class Item
     
     public void burn(){
         Output.revealByLine("you burned " + name);
+        broken = true;
     }
     
     public void toss(){
         Output.revealByLine("you threw " + name);
+        broken = true;
     }
     
     public void examine(){
-        Output.revealByLine(description);
+        Output.revealByLine(description, name + "is also broken.");
     }
     
     public String toString()
@@ -84,7 +87,11 @@ public class Item
     
     public void toggle()
     {
-        Output.revealByLine("you can't switch " + name);
+        if (broken)
+               Output.revealByLine(name + " is broken.", 
+                       "plus, it doesn't have a switch on it");
+        else
+            Output.revealByLine("you can't switch " + name);
     }
     
     public void open()
@@ -96,7 +103,11 @@ public class Item
         if (toStrike == this)
             Output.revealByLine("you hit " + toStrike.name + " with itself?!?  how'd you do that?");
         else if (isMoveable)
+        {
             Output.revealByLine("you hit " + toStrike.name + ".  hope that's fun for you.");
+            toStrike.name = "broken " + toStrike.name;
+            broken = true;
+        }
         else
             Output.revealByLine("?!?! you can't even lift " + toStrike.name + ".");
     }
