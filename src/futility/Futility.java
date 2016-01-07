@@ -84,10 +84,12 @@ public final class Futility
         {
             Output.clearScreen();
             game = new Game(gameCount, args);
-            System.out.print("\n try again? ");
+            Output.revealByLetter("try again? ");
             again = keyboard.nextLine();
             gameCount++;
         } while (Character.toLowerCase(again.charAt(0)) == 'y');
+
+	Output.clearScreen(); //fresh exit!
     }
     
     /**
