@@ -65,9 +65,15 @@ public class Player
     {
         String result = "";
         for (int i=0; i<INVENTORYSIZE; i++) //go through each index of inventory
+        {
             if (inventory [i] != null) //ensure it is filled
-                result += inventory[i].getName() + ", "; //append to result
-        
+            {
+                if (i < 0) //not first run
+                    result += ", ";
+                result += inventory[i].getName(); //append to result
+            }
+        }
+
         if (result.equals(""))
             return "(none)";
         
