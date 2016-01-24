@@ -67,6 +67,7 @@ public class Output {
      *
      * @param text strings that have an equal chance of being printed to the
      * screen.
+     * @return one of the strings passed by text, selected randomly
      */
     public static String randomText(String... text) 
     {
