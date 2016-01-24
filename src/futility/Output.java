@@ -188,7 +188,7 @@ public class Output {
     
     public static void horizontalLine()
     {
-        revealByLetter(repeatedCharacters(COLS-2, '-'), .01);
+        revealByLetter(repeatedCharacters(COLS-2, '-'), 0);
         System.out.println();
     }
 }

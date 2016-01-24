@@ -261,12 +261,12 @@ public class Game
             }
             Output.horizontalLine();
             System.out.println();
-            Output.revealByLetterln(availableCommands, .001);
-            Output.revealByLetterln("inventory: " + player.getInventory(), .001);
+            Output.revealByLetterln(availableCommands, 0);
+            Output.revealByLetterln("inventory: " + player.getInventory(), 0);
             Output.revealByLetterln("accessible rooms: " + player.getCurrentRoom().getStringOfAccessibleRooms(), 
-                    .001);
+                    0);
             Output.revealByLetterln("items in room: " + player.getCurrentRoom().getStringOfItemsInRoom(),
-                    .001);
+                    0);
             System.out.println();
             
             /**
