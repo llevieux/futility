@@ -67,7 +67,7 @@ public class Game
         new Command("extinguish", true, "extinguish <match>", "putout", "ext"),
         new Command("drop", true, "drop <item>", "put", "remove", "leave"),
             
-        new Command("strike", "with", true, "strike <object> with <hammer>", "hit")
+        new Command("strike", "with", true, "strike <object> with <object>", "hit")
     };
     
     /**
